@@ -40,6 +40,6 @@ jobs:
             echo "无变更，跳过推送"
           else
             git commit -m "chore: 自动更新每周资讯 ($(date +%Y-%m-%d))"
-            git pull --rebase origin main
+            git pull --rebase origin master
             git push
           fi
