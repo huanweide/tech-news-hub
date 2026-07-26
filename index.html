@@ -26,6 +26,7 @@
         <button id="exportBtn" class="export-btn" type="button">⬇ 导出周报</button>
         <button id="shareBtn" class="share-btn" type="button">🖼 分享长图</button>
         <button id="kbBtn" class="kb-btn" type="button">📚 资料库</button>
+        <button id="dealsBtn" class="deals-btn" type="button">🎯 优惠圈</button>
         <button id="agentBtn" class="agent-btn" type="button">🤖 助手</button>
         <button id="themeToggle" class="theme-toggle" type="button">🌙 暗色</button>
       </div>
@@ -135,6 +136,40 @@
     <div id="kbContent" class="kb-content"></div>
   </section>
 
+  <!-- R18：模型优惠圈（集中发布中转站与大模型平台优惠资讯，超时自动下架） -->
+  <section id="dealsView" class="deals-view" hidden aria-label="模型优惠圈">
+    <div class="deals-head">
+      <div class="deals-head-main">
+        <h1 class="deals-title">🎯 模型优惠圈</h1>
+        <p class="deals-sub">集中发布中转站与大模型平台的优惠资讯：<b>当前优惠</b> / <b>新上线</b> / <b>降价预告</b> / <b>性价比推荐</b>。每条标注有效期，<b>超时自动下架</b>；新增优惠实时加入。
+          <span class="deals-auto">🔄 每周自动更新 · 当前 <b id="dealsCount">—</b> 条有效优惠</span>
+        </p>
+      </div>
+      <button class="deals-back-feed" type="button" data-feed="1">← 返回资讯流</button>
+    </div>
+    <div class="deals-search">
+      <input id="dealsSearch" class="deals-search-input" type="search" placeholder="搜索优惠：平台 / 关键词 / 标签…" aria-label="搜索优惠" />
+    </div>
+    <div class="deals-filters">
+      <div class="deals-filter-group" role="group" aria-label="优惠类型">
+        <span class="deals-filter-label">类型</span>
+        <button class="deals-type active" type="button" data-dtype="all">全部</button>
+        <button class="deals-type" type="button" data-dtype="current">当前优惠</button>
+        <button class="deals-type" type="button" data-dtype="new">新上线</button>
+        <button class="deals-type" type="button" data-dtype="pricecut">降价预告</button>
+        <button class="deals-type" type="button" data-dtype="value">性价比推荐</button>
+      </div>
+      <div class="deals-filter-group" role="group" aria-label="平台">
+        <span class="deals-filter-label">平台</span>
+        <button class="deals-platform active" type="button" data-dplat="all">全部</button>
+        <button class="deals-platform" type="button" data-dplat="relay">中转站</button>
+        <button class="deals-platform" type="button" data-dplat="official">官方直降</button>
+      </div>
+      <label class="deals-expire-toggle"><input type="checkbox" id="dealsShowExpired" /> 显示已过期</label>
+    </div>
+    <div id="dealsContent" class="deals-content"></div>
+  </section>
+
   <footer class="site-footer">
     <div class="footer-inner">
       <div class="footer-brand">◈ 科技前瞻 · TechPulse</div>
@@ -208,6 +243,7 @@
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
   <script src="news-data.js"></script>
   <script src="features.js"></script>
+  <script src="deals-data.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

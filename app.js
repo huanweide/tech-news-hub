@@ -8,8 +8,10 @@
   "use strict";
   var data = window.NEWS_DATA;
   var FX = window.TechNewsFeatures;
+  var DEALS = window.DEALS_DATA || { deals: [] };
   var state = { week: (data.weeks[data.weeks.length - 1] || {}).id || "all", cat: "ai", q: "", sort: "default", activeTags: [], hideGuide: false,
-    view: "feed", kbTab: "terms", kbQuery: "", kbTerm: null, kbArch: null, libCat: "all" };
+    view: "feed", kbTab: "terms", kbQuery: "", kbTerm: null, kbArch: null, libCat: "all",
+    dealsType: "all", dealsPlatform: "all", dealsShowExpired: false, dealsQ: "" };
 
   var searchInput = document.getElementById("searchInput");
   var exportBtn = document.getElementById("exportBtn");
@@ -720,6 +722,106 @@
   function kbEl(id) { return document.getElementById(id); }
   function openKB() { state.view = "kb"; state.kbTab = "terms"; state.kbTerm = null; state.kbArch = null; render(); }
   function closeKB() { state.view = "feed"; render(); }
+
+  /* ---------- R18：模型优惠圈（集中发布中转站与大模型平台优惠，超时自动下架） ---------- */
+  function parseDate(s) { if (!s) return null; var d = new Date(s + "T00:00:00"); return isNaN(d.getTime()) ? null : d; }
+  function dealStatus(d) {
+    var now = new Date();
+    var from = parseDate(d.validFrom), until = parseDate(d.validUntil);
+    if (until && now > until) return { key: "ended", label: "已结束", days: -1 };
+    if (from && now < from) { var du = Math.ceil((from - now) / 86400000); return { key: "upcoming", label: "即将开始", days: du }; }
+    var days = until ? Math.ceil((until - now) / 86400000) : null;
+    return { key: "active", label: "进行中", days: days };
+  }
+  function isDealExpired(d) { return dealStatus(d).key === "ended"; }
+  function dealsMatch(d) {
+    if (state.dealsType !== "all" && d.type !== state.dealsType) return false;
+    if (state.dealsPlatform !== "all" && d.platformType !== state.dealsPlatform) return false;
+    if (!state.dealsShowExpired && isDealExpired(d)) return false;
+    if (state.dealsQ) {
+      var q = state.dealsQ, hay = (d.title + " " + d.summary + " " + d.platform + " " + (d.tags || []).join(" ")).toLowerCase();
+      if (hay.indexOf(q) < 0) return false;
+    }
+    return true;
+  }
+  function filteredDeals() {
+    var rank = { active: 0, upcoming: 1, ended: 2 };
+    return (DEALS.deals || []).filter(dealsMatch).sort(function (a, b) {
+      var ra = rank[dealStatus(a).key], rb = rank[dealStatus(b).key];
+      if (ra !== rb) return ra - rb;
+      return (b.valueScore || 0) - (a.valueScore || 0);
+    });
+  }
+  function buildDealCard(d) {
+    var st = dealStatus(d);
+    var card = document.createElement("article");
+    card.className = "deal-card deal-type-" + d.type;
+    var typeLabel = { current: "当前优惠", new: "新上线", pricecut: "降价预告", value: "性价比推荐" }[d.type] || d.type;
+    var platLabel = d.platformType === "relay" ? "中转站" : (d.platformType === "official" ? "官方直降" : d.platformType);
+    var statusBadge = '<span class="badge deal-status ' + st.key + '">' +
+      (st.key === "active" ? "✅ 进行中" : st.key === "upcoming" ? "⏳ 即将开始" : "⛔ 已结束") +
+      (st.days > 0 ? " · 剩 " + st.days + " 天" : "") + '</span>';
+    var priceHtml = d.price ? '<div class="deal-price">💰 ' + escapeHtml(d.price) + '</div>' : "";
+    var validHtml = '<span class="deal-valid">📅 ' + escapeHtml(d.validFrom || "长期") + ' ~ ' + escapeHtml(d.validUntil || "长期") + '</span>';
+    var scoreHtml = (d.type === "value" && d.valueScore) ? '<span class="badge heat">⭐ 性价比 ' + d.valueScore + '</span>' : "";
+    var chips = (d.tags || []).map(function (t) { return '<span class="deal-tag">' + escapeHtml(t) + '</span>'; }).join("");
+    card.innerHTML =
+      '<div class="deal-top">' +
+        '<span class="badge deal-platform ' + d.platformType + '">' + escapeHtml(platLabel) + '</span>' +
+        '<span class="badge deal-type-badge">' + escapeHtml(typeLabel) + '</span>' +
+        statusBadge +
+      '</div>' +
+      '<h3 class="deal-title">' + escapeHtml(d.title) + '</h3>' +
+      '<p class="deal-summary">' + escapeHtml(d.summary) + '</p>' +
+      priceHtml +
+      '<div class="deal-meta">' +
+        '<span class="badge">🏷️ ' + escapeHtml(d.platform) + '</span>' +
+        scoreHtml +
+        validHtml +
+      '</div>' +
+      '<div class="tag-chips">' + chips + '</div>' +
+      '<div class="deal-actions">' +
+        (d.sourceUrl ? '<button class="deal-src" type="button" data-url="' + escapeHtml(d.sourceUrl) + '">查看原文 →</button>' : '') +
+        '<button class="deal-toggle" type="button" aria-expanded="false">展开详情</button>' +
+      '</div>' +
+      '<div class="deal-detail" hidden>' + escapeHtml(d.detail || "").replace(/\n+/g, "<br>") + '</div>';
+    var toggle = card.querySelector(".deal-toggle");
+    var detail = card.querySelector(".deal-detail");
+    toggle.addEventListener("click", function () {
+      var open = detail.hidden;
+      detail.hidden = !open;
+      toggle.setAttribute("aria-expanded", String(open));
+      toggle.textContent = open ? "收起详情" : "展开详情";
+    });
+    return card;
+  }
+  function renderDeals() {
+    var view = document.getElementById("dealsView");
+    if (!view) return;
+    view.hidden = false;
+    var cnt = document.getElementById("dealsCount");
+    var activeCount = (DEALS.deals || []).filter(function (d) { return !isDealExpired(d); }).length;
+    if (cnt) cnt.textContent = activeCount;
+    Array.prototype.forEach.call(view.querySelectorAll(".deals-type"), function (b) { b.classList.toggle("active", b.getAttribute("data-dtype") === state.dealsType); });
+    Array.prototype.forEach.call(view.querySelectorAll(".deals-platform"), function (b) { b.classList.toggle("active", b.getAttribute("data-dplat") === state.dealsPlatform); });
+    var list = filteredDeals();
+    var content = document.getElementById("dealsContent");
+    content.innerHTML = "";
+    if (!list.length) {
+      content.innerHTML = '<div class="empty"><div class="empty-icon">🎯</div><p class="empty-title">没有匹配的优惠</p><p class="empty-hint">换个类型或平台筛选，或清除搜索再试。</p></div>';
+      return;
+    }
+    var grid = document.createElement("div");
+    grid.className = "deals-grid";
+    list.forEach(function (d, i) {
+      var c = buildDealCard(d);
+      c.style.animationDelay = (i * 0.03) + "s";
+      grid.appendChild(c);
+    });
+    content.appendChild(grid);
+  }
+  function openDeals() { state.view = "deals"; state.dealsType = "all"; state.dealsPlatform = "all"; state.dealsShowExpired = false; state.dealsQ = ""; var ds = document.getElementById("dealsSearch"); if (ds) ds.value = ""; render(); }
+  function closeDeals() { state.view = "feed"; render(); }
   function syncKbTabs() {
     var tabs = kbEl("kbTabs"); if (!tabs) return;
     Array.prototype.forEach.call(tabs.querySelectorAll(".kb-tab"), function (b) {
@@ -827,12 +929,22 @@
   function render() {
     if (state.view === "kb" || state.view === "kbTerm" || state.view === "kbArch") {
       document.body.classList.add("kb-open");
+      document.body.classList.remove("deals-open");
       renderKB();
       document.title = "科技前瞻 · 资料库";
       return;
     }
+    if (state.view === "deals") {
+      document.body.classList.remove("kb-open");
+      document.body.classList.add("deals-open");
+      renderDeals();
+      document.title = "科技前瞻 · 模型优惠圈";
+      return;
+    }
     document.body.classList.remove("kb-open");
+    document.body.classList.remove("deals-open");
     kbEl("kbView").hidden = true;
+    var dv = document.getElementById("dealsView"); if (dv) dv.hidden = true;
     renderCats();
     renderTagBar();
     renderSidebar();
@@ -945,6 +1057,22 @@
   if (kbBtn) kbBtn.addEventListener("click", openKB);
   var kbSearchInput = document.getElementById("kbSearch");
   if (kbSearchInput) kbSearchInput.addEventListener("input", function () { state.kbQuery = kbSearchInput.value.trim(); render(); });
+
+  /* ---------- R18：优惠圈 导航委托与控件 ---------- */
+  document.addEventListener("click", function (e) {
+    var dt = e.target.closest && e.target.closest(".deals-type");
+    if (dt) { state.dealsType = dt.getAttribute("data-dtype"); render(); return; }
+    var dp = e.target.closest && e.target.closest(".deals-platform");
+    if (dp) { state.dealsPlatform = dp.getAttribute("data-dplat"); render(); return; }
+    var src = e.target.closest && e.target.closest(".deal-src");
+    if (src) { var u = src.getAttribute("data-url"); if (u) { try { window.open(u, "_blank", "noopener"); } catch (e2) {} } return; }
+  });
+  var dealsBtn = document.getElementById("dealsBtn");
+  if (dealsBtn) dealsBtn.addEventListener("click", openDeals);
+  var dealsSearchInput = document.getElementById("dealsSearch");
+  if (dealsSearchInput) dealsSearchInput.addEventListener("input", function () { state.dealsQ = dealsSearchInput.value.trim().toLowerCase(); render(); });
+  var dealsShowExpired = document.getElementById("dealsShowExpired");
+  if (dealsShowExpired) dealsShowExpired.addEventListener("change", function () { state.dealsShowExpired = dealsShowExpired.checked; render(); });
 
   /* ---------- toast ---------- */
   var toastTimer = null;
@@ -1143,7 +1271,8 @@
       { type: "function", function: { name: "lookup_term", description: "查询某个专业术语的权威释义，并返回其关联的架构与新闻。当用户问某个概念/名词是什么意思时使用。", parameters: { type: "object", properties: { term: { type: "string", description: "术语，如『MoE』『端云协同』『量子比特』" } }, required: ["term"] } } },
       { type: "function", function: { name: "lookup_architecture", description: "查询某个架构索引的含义、涉及名词与关联新闻。", parameters: { type: "object", properties: { query: { type: "string", description: "架构名称或关键词，如『MoE』『火箭堆栈』" } }, required: ["query"] } } },
       { type: "function", function: { name: "open_article", description: "打开/跳转到某篇新闻文章的详情页（会触发页面导航）。用于用户明确想看某篇文章全文时。", parameters: { type: "object", properties: { id: { type: "string", description: "文章ID，来自检索结果" } }, required: ["id"] } } },
-      { type: "function", function: { name: "save_note", description: "把用户的偏好、要点或待办保存为长期记忆（仅存于本机浏览器，下次对话仍可用）。", parameters: { type: "object", properties: { text: { type: "string", description: "要保存的内容" } }, required: ["text"] } } }
+      { type: "function", function: { name: "save_note", description: "把用户的偏好、要点或待办保存为长期记忆（仅存于本机浏览器，下次对话仍可用）。", parameters: { type: "object", properties: { text: { type: "string", description: "要保存的内容" } }, required: ["text"] } } },
+      { type: "function", function: { name: "lookup_deal", description: "查询「模型优惠圈」中的优惠资讯（中转站/官方直降/性价比推荐），可按关键词、平台或类型筛选。当用户问哪家中转站或大模型平台有优惠、性价比推荐、降价预告时使用。", parameters: { type: "object", properties: { query: { type: "string", description: "关键词，如『硅基流动』『降价』『性价比』" }, platform: { type: "string", description: "平台名或类型，如『硅基流动』『relay』『official』" }, type: { type: "string", description: "优惠类型：current(进行中)/new(新上线)/pricecut(降价预告)/value(性价比推荐)" } }, required: [] } } }
     ];
 
     /* ---- DOM ---- */
@@ -1202,6 +1331,26 @@
         return a.name.toLowerCase().indexOf(q) >= 0 || a.caption.toLowerCase().indexOf(q) >= 0 || a.title.toLowerCase().indexOf(q) >= 0;
       }).map(function (k) { var a = ARCH_IDX[k]; return { id: a.itemId, name: a.name, caption: a.caption }; });
     }
+    function agentLookupDeal(q) {
+      q = q || {};
+      var kw = (q.query || "").trim().toLowerCase();
+      var plat = (q.platform || "").trim().toLowerCase();
+      var typ = (q.type || "").trim().toLowerCase();
+      var list = (DEALS.deals || []).filter(function (d) {
+        if (typ && d.type !== typ) return false;
+        if (plat && d.platformType !== plat && (d.platform || "").toLowerCase().indexOf(plat) < 0) return false;
+        if (kw) {
+          var hay = [d.title, d.summary, (d.platform || ""), (d.tags || []).join(" ")].join(" ").toLowerCase();
+          if (hay.indexOf(kw) < 0) return false;
+        }
+        return true;
+      });
+      list.sort(function (a, b) { return (isDealExpired(a) ? 1 : 0) - (isDealExpired(b) ? 1 : 0) || (b.valueScore || 0) - (a.valueScore || 0); });
+      return list.slice(0, 6).map(function (d) {
+        var st = dealStatus(d);
+        return { id: d.id, title: d.title, platform: d.platform, type: d.type, status: st.label, valueScore: d.valueScore, summary: d.summary, price: d.price };
+      });
+    }
     function execTool(name, args) {
       if (name === "search_news") {
         var items = agentSearchNews(args.query, args.limit || 5);
@@ -1230,6 +1379,13 @@
         mem.notes.push({ text: args.text, ts: Date.now() });
         saveMem(mem);
         return { label: "保存记忆", text: "已保存：" + (args.text || "").slice(0, 40), result: { saved: true }, cards: [] };
+      }
+      if (name === "lookup_deal") {
+        var dl = agentLookupDeal(args);
+        var dcards = dl.map(function (d) {
+          return { kind: "优惠 · " + (d.platform || "") + " · " + d.status, title: d.title, sub: (d.price ? "💰" + d.price + " · " : "") + "★性价比" + (d.valueScore || "-"), go: { type: "deal", id: d.id } };
+        });
+        return { label: "查询优惠", text: "找到 " + dl.length + " 条", result: { count: dl.length, deals: dl }, cards: dcards };
       }
       return { label: name, text: "未知工具", result: {}, cards: [] };
     }
@@ -1319,6 +1475,7 @@
       if (go.type === "article") { var it = data.items.filter(function (x) { return x.id === go.id; })[0]; if (it) goToItem(it); }
       else if (go.type === "arch") { state.kbArch = go.id; state.view = "kbArch"; render(); }
       else if (go.type === "term") { state.kbTerm = go.term; state.view = "kbTerm"; render(); }
+      else if (go.type === "deal") { openDeals(); }
     }
     function showTyping() { hideTyping(); var t = document.createElement("div"); t.className = "agent-typing"; t.id = "agentTyping"; t.innerHTML = "<span></span><span></span><span></span>"; agentMsgs.appendChild(t); scrollAgentBottom(); }
     function hideTyping() { var t = document.getElementById("agentTyping"); if (t && t.parentNode) t.parentNode.removeChild(t); }
@@ -1337,6 +1494,7 @@
       if (name === "lookup_architecture") return "查询架构「" + (args.query || "") + "」";
       if (name === "open_article") { var it = data.items.filter(function (x) { return x.id === args.id; })[0]; return "打开文章《" + (it ? it.title : args.id) + "》"; }
       if (name === "save_note") return "保存记忆「" + (args.text || "").slice(0, 30) + "」";
+      if (name === "lookup_deal") return "查询优惠「" + (args.query || args.platform || args.type || "") + "」";
       return name;
     }
     function hideSuggest() { agentSuggest.innerHTML = ""; }

@@ -17,7 +17,7 @@ window.URL.createObjectURL = () => 'blob:x'; window.URL.revokeObjectURL = () => 
 window.__serverKeys = undefined; // 显式声明：本站服务器从不持有密钥
 
 function load(f) { window.eval(fs.readFileSync(f, 'utf8')); }
-load('./news-data.js'); load('./features.js'); load('./app.js');
+load('./news-data.js'); load('./features.js'); load('./deals-data.js'); load('./app.js');
 const ND = window.NEWS_DATA;
 
 function click(el) { if (!el) return; el.dispatchEvent(new window.MouseEvent('click', { bubbles: true, cancelable: true })); }
@@ -42,6 +42,9 @@ window.fetch = function (url, opts) {
   } else if (/记住|记忆|save/i.test(text)) {
     if (done[text]) resp = finalResp('好的，已记录到你的记忆。');
     else { done[text] = 1; resp = toolResp('save_note', { text: '我关注 AI 监管' }); }
+  } else if (/优惠|性价比|降价|deal/i.test(text)) {
+    if (done[text]) resp = finalResp('已为你列出优惠，见上方卡片。');
+    else { done[text] = 1; resp = toolResp('lookup_deal', { query: '硅基流动' }); }
   } else if (msgs.some(m => m.role === 'tool')) {
     resp = finalResp('根据资料库，已为你整理如下（见上方卡片）。');
   } else {
@@ -119,6 +122,20 @@ window.fetch = function (url, opts) {
   await delay(30);
   const notesAfter = (JSON.parse(window.localStorage.getItem('techpulse-agent-mem') || '{}').notes || []).length;
   ok(notesAfter === notesBefore + 1, '笔记已写入本地记忆：' + notesBefore + '→' + notesAfter);
+
+  /* 7.5 发送“找优惠”→ lookup_deal 工具（第 6 个工具）+ 打开优惠圈 */
+  $('#agentInput').value = '帮我找硅基流动的优惠';
+  $('#agentForm').dispatchEvent(new window.Event('submit', { bubbles: true, cancelable: true }));
+  await delay(20);
+  ok($('.agent-confirm') != null, 'lookup_deal 触发确认框');
+  ok(/查询优惠/.test($('.agent-confirm-label').textContent), '确认框标注为“查询优惠”');
+  click($('.agent-confirm-yes'));
+  await delay(30);
+  var dealCards = $all('.agent-card').filter(function (c) { var k = c.querySelector('.agent-card-kind'); return k && /优惠/.test(k.textContent); });
+  ok(dealCards.length >= 1, 'lookup_deal 结果以卡片呈现：' + dealCards.length);
+  click(dealCards[dealCards.length - 1].querySelector('.agent-card-go'));
+  await delay(20);
+  ok(document.body.className.indexOf('deals-open') >= 0, '点击优惠卡片打开模型优惠圈视图（body.deals-open）');
 
   /* 8. 安全机制：密钥本地化，永不发往本站服务器 */
   ok(captured.url === BASE + '/chat/completions', '请求直连用户配置的接口（非本站服务器）：' + captured.url);
