@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>科技前瞻 · TechPulse</title>
+  <meta name="description" content="每周更新，聚焦 AI 与科技圈，打破信息差。平台级科技资讯摘要：头条、热度榜、8 维度深度解读与读者行动建议。" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- 吸顶头部 -->
+  <header class="topbar" id="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <span class="logo">◈</span>
+        <span class="brand-name">科技前瞻</span>
+        <span class="brand-en">TechPulse</span>
+        <span class="badge nonprofit" title="本站为非盈利公益科普平台，内容仅供学习参考">非盈利</span>
+      </div>
+      <p class="tagline">深度技术研判 · 非盈利公益科普平台｜逐条拆解底层机制、架构与产业逻辑，附可追溯来源</p>
+      <div class="topbar-actions">
+        <div class="search-wrap">
+          <input id="searchInput" class="search-input" type="search" placeholder="搜索标题 / 摘要 / 8维度全文…" aria-label="搜索资讯" />
+          <span id="searchCount" class="search-count" hidden aria-live="polite"></span>
+        </div>
+        <button id="exportBtn" class="export-btn" type="button">⬇ 导出周报</button>
+        <button id="shareBtn" class="share-btn" type="button">🖼 分享长图</button>
+        <button id="kbBtn" class="kb-btn" type="button">📚 资料库</button>
+        <button id="agentBtn" class="agent-btn" type="button">🤖 助手</button>
+        <button id="themeToggle" class="theme-toggle" type="button">🌙 暗色</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 分类药丸导航 -->
+  <nav class="cat-tabs" id="catTabs" aria-label="分类切换"></nav>
+
+  <div class="container">
+    <div class="main">
+      <!-- Hero 头条 -->
+      <section class="hero" id="hero" aria-label="本周头条"></section>
+
+      <!-- 话题标签栏 -->
+      <section class="tagbar-block">
+        <div class="block-title">话题</div>
+        <div class="tag-bar" id="tagBar" aria-label="话题标签筛选"></div>
+      </section>
+
+      <!-- 主网格工具条 -->
+      <div class="feed-toolbar">
+        <h2 class="section-title">全部资讯</h2>
+        <div class="feed-toolbar-right">
+          <div class="sort-group" role="group" aria-label="排序方式">
+            <button class="sort-btn active" data-sort="default" type="button">默认</button>
+            <button class="sort-btn" data-sort="impact" type="button">影响力降序</button>
+          </div>
+          <div class="result-count" id="resultCount"></div>
+        </div>
+      </div>
+
+      <!-- 本周速览 -->
+      <div class="week-overview" id="weekOverview" aria-live="polite"></div>
+
+      <!-- 首屏引导 -->
+      <div id="guideSlot"></div>
+
+      <!-- 资讯网格 -->
+      <main class="grid" id="feed" aria-live="polite"></main>
+
+      <!-- 订阅 CTA -->
+      <section class="newsletter" id="newsletter" aria-label="订阅每周资讯">
+        <div class="nl-text">
+          <h3>每周一封，科技圈不漏看</h3>
+          <p>把本周头条、热度榜与 8 维度深度解读，直接送到你的邮箱。免费、随时退订。</p>
+        </div>
+        <form class="nl-form" id="nlForm" novalidate>
+          <input id="nlEmail" class="nl-input" type="email" placeholder="你的邮箱地址" aria-label="邮箱地址" />
+          <button class="nl-btn" type="submit">订阅</button>
+        </form>
+        <p class="nl-status" id="nlStatus" role="status" aria-live="polite"></p>
+      </section>
+    </div>
+
+    <!-- 右侧栏 -->
+    <aside class="sidebar" aria-label="侧边栏">
+      <div class="widget" id="weekWidget">
+        <div class="widget-title">周次归档</div>
+        <div class="week-rail" id="weekRail"></div>
+      </div>
+      <div class="widget">
+        <div class="widget-title">本周编辑精选</div>
+        <div class="pick-list" id="editorsPick"></div>
+      </div>
+      <div class="widget">
+        <div class="widget-title">热度榜 · Top 5</div>
+        <ol class="hot-list" id="hotList"></ol>
+      </div>
+      <div class="widget" id="actionWidget">
+        <div class="widget-title">✅ 我的行动清单 <span id="actionProgress" class="action-progress"></span></div>
+        <div class="action-list" id="actionList"></div>
+        <p class="action-empty" id="actionEmpty">还没添加。在任意资讯的「读者行动建议」里点「＋加入清单」，把本周值得做的事收进这里。</p>
+      </div>
+      <div class="widget">
+        <div class="widget-title">📊 影响力透视 · 本周 vs 上周</div>
+        <canvas id="impactChart" height="150" aria-label="AI圈与科技圈本周与上周平均影响力对比柱状图"></canvas>
+        <p class="chart-fallback" id="chartFallback" hidden>图表需联网加载 Chart.js 可视化库；数据见上方热度榜与下方本周速览。</p>
+        <div class="trend-block">
+          <div class="trend-title">📈 影响力走势（跨周）</div>
+          <canvas id="trendChart" height="130" aria-label="AI圈与科技圈及整体平均影响力跨周走势折线图"></canvas>
+          <p class="trend-note">折线展示各分类两周平均影响力变化方向（当前含 2 个周次数据点，随更新累积更丰富）。</p>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- 资料库 / 索引（R15：学习性 + 新闻性 的核心载体，默认隐藏，进入后替代资讯流） -->
+  <section id="kbView" class="kb-view" hidden aria-label="资料库与索引">
+    <div class="kb-head">
+      <div class="kb-head-main">
+        <h1 class="kb-title">📚 资料库 · 名词与架构索引</h1>
+        <p class="kb-sub">把每周新闻里的硬核概念与架构沉淀为可检索的知识库：点术语看权威释义，点架构看其含义与关联新闻。
+          <span class="kb-auto">🔄 每周自动更新 · 当前数据：<b id="kbWeek">—</b></span>
+        </p>
+      </div>
+      <button class="kb-back-feed" type="button" data-feed="1">← 返回资讯流</button>
+    </div>
+    <div class="kb-search">
+      <input id="kbSearch" class="kb-search-input" type="search" placeholder="在资料库搜索：名词 / 架构 / 新闻…" aria-label="搜索资料库" />
+    </div>
+    <div class="kb-tabs" id="kbTabs" role="tablist" aria-label="资料库分栏">
+      <button class="kb-tab" type="button" data-kbtab="terms" role="tab">名词索引</button>
+      <button class="kb-tab" type="button" data-kbtab="arch" role="tab">架构索引</button>
+      <button class="kb-tab" type="button" data-kbtab="lib" role="tab">新闻库</button>
+    </div>
+    <div id="kbContent" class="kb-content"></div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">◈ 科技前瞻 · TechPulse</div>
+      <p>资讯来源真实可引用，关键结论均已交叉验证。每周更新，持续向可部署、可分享的应用层靠拢。</p>
+      <p class="footer-nonprofit">🤍 本站为<b>非盈利公益科普平台</b>：内容仅供学习参考，不投放任何广告、不接入商业变现、不向用户收取费用；所有资讯均附可追溯来源。</p>
+      <p class="footer-meta">本站为纯静态演示 · 数据每周人工/自动更新 · 暗色与阅读偏好保存在本地</p>
+    </div>
+  </footer>
+
+  <p class="subhint" id="subhint" aria-live="polite"></p>
+  <button id="toTop" class="to-top" type="button" aria-label="回到顶部">↑</button>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <!-- R16：右侧 LLM 学习助手（Bring-Your-Own-Key · 本地密钥 · 检索增强） -->
+  <div id="agentOverlay" class="agent-overlay" hidden></div>
+  <aside id="agentPanel" class="agent-panel" aria-label="AI 学习助手" hidden>
+    <div class="agent-head">
+      <div class="agent-title">🤖 学习助手 <span class="agent-badge">BYOK·本地密钥</span></div>
+      <div class="agent-head-actions">
+        <button id="agentSettingsBtn" class="agent-ic" type="button" title="配置助手" aria-label="配置助手">⚙️</button>
+        <button id="agentCloseBtn" class="agent-ic" type="button" title="收起" aria-label="收起助手">✕</button>
+      </div>
+    </div>
+    <div id="agentMsgs" class="agent-msgs" aria-live="polite"></div>
+    <div id="agentSuggest" class="agent-suggest"></div>
+    <form id="agentForm" class="agent-input-row" autocomplete="off">
+      <textarea id="agentInput" class="agent-input" rows="1" placeholder="问点什么，或让助手帮你找文章…"></textarea>
+      <button id="agentSend" class="agent-send" type="submit" aria-label="发送">➤</button>
+    </form>
+  </aside>
+
+  <!-- 助手配置弹层 -->
+  <div id="agentSettings" class="agent-modal" hidden role="dialog" aria-modal="true" aria-label="助手配置">
+    <div class="agent-modal-card">
+      <div class="agent-modal-head"><h3>🤖 助手配置</h3><button id="agentSettingsClose" class="agent-ic" type="button" aria-label="关闭">✕</button></div>
+      <div class="agent-safety">🔐 <b>隐私与安全</b>：API 密钥仅保存在<b>本浏览器</b>的 localStorage，不会上传到任何服务器；每次请求由你的浏览器直接向你配置的接口发起，本站（及部署方）无法看到你的密钥。对话记忆与笔记也仅存本地。<br>建议为助手单独创建低额度密钥；不要在公共设备上保存密钥。</div>
+      <label class="agent-field">服务商预设
+        <select id="agentProvider">
+          <option value="">自定义</option>
+          <option value="openai">OpenAI</option>
+          <option value="deepseek">DeepSeek</option>
+          <option value="moonshot">Kimi（Moonshot）</option>
+          <option value="qwen">通义千问（DashScope）</option>
+          <option value="ollama">本地 Ollama</option>
+        </select>
+      </label>
+      <label class="agent-field">接口地址（兼容 OpenAI /v1）
+        <input id="agentBaseURL" class="agent-input-modal" type="text" placeholder="https://api.openai.com/v1" />
+      </label>
+      <label class="agent-field">模型名称
+        <input id="agentModel" class="agent-input-modal" type="text" placeholder="gpt-4o-mini" />
+      </label>
+      <label class="agent-field">API 密钥
+        <input id="agentKey" class="agent-input-modal" type="password" placeholder="sk-..." autocomplete="off" />
+      </label>
+      <div class="agent-toggles">
+        <label class="agent-toggle"><input type="checkbox" id="agentInteractive" /> 可交互（允许助手调用资料库工具去检索/索引）</label>
+        <label class="agent-toggle"><input type="checkbox" id="agentConfirm" /> 可确认（执行索引/导航操作前先征求你同意）</label>
+        <label class="agent-toggle"><input type="checkbox" id="agentStream" /> 流式输出（如接口支持）</label>
+      </div>
+      <div class="agent-modal-actions">
+        <button id="agentSave" class="agent-btn-primary" type="button">保存配置</button>
+        <button id="agentClearKey" class="agent-btn-ghost" type="button">清除密钥</button>
+        <button id="agentClearMem" class="agent-btn-ghost" type="button">清除记忆</button>
+      </div>
+      <p id="agentSettingsStatus" class="agent-settings-status" role="status"></p>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script src="news-data.js"></script>
+  <script src="features.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+# WorkBuddy 内部状态（不公开）
+.workbuddy/
+.loop-state.json
+
+# 依赖（CI 中按需安装）
+node_modules/
+
+# Python
+__pycache__/
+*.pyc
+
+# OS / 编辑器
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

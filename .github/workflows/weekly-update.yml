@@ -1,0 +1,45 @@
+name: 每周自动更新资讯
+
+on:
+  schedule:
+    - cron: '0 22 * * 0'   # 每周日 22:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: 安装依赖
+        run: npm install
+
+      - name: 抓取并生成本周资讯
+        env:
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+        run: node scripts/weekly_update.cjs
+
+      - name: 运行测试（质量门）
+        run: npm test
+
+      - name: 提交并推送
+        run: |
+          git config user.name "techpulse-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add news-data.js
+          if git diff --cached --quiet; then
+            echo "无变更，跳过推送"
+          else
+            git commit -m "chore: 自动更新每周资讯 ($(date +%Y-%m-%d))"
+            git pull --rebase origin main
+            git push
+          fi
