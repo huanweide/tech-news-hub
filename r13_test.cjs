@@ -125,11 +125,6 @@ try {
   ok(doc.documentElement.getAttribute("data-theme") !== before, "暗色主题切换生效");
   click(tt); // 切回
 
-  /* ---- 分享长图：无 html2canvas 时仅 toast，不崩溃 ---- */
-  let threw = false;
-  try { click($("#shareBtn")); } catch (e) { threw = true; fails.push("share 抛错:" + e.message); }
-  ok(!threw, "无 html2canvas 时点击分享不抛错（优雅降级）");
-
   /* ---- 相关阅读跳转 ---- */
   const rel = $(".related-item");
   if (rel) {

@@ -875,3 +875,11 @@ mark { background: #fff3a3; color: inherit; padding: 0 2px; border-radius: 3px; 
   .deals-grid { grid-template-columns: 1fr; }
   .deals-expire-toggle { margin-left: 0; }
 }
+/* 优惠圈作为首页资讯流的同页常驻区块：高亮聚焦 + 顶部区隔 */
+.deals-view { margin: 34px auto 0; background: var(--surface-2); border-radius: 20px 20px 0 0; border-top: 1px solid var(--border); }
+.deals-view.flash { animation: dealFlash 1.6s ease; }
+@keyframes dealFlash {
+  0% { box-shadow: 0 0 0 0 rgba(124,139,255,0); }
+  15% { box-shadow: 0 0 0 4px rgba(124,139,255,.55); }
+  100% { box-shadow: 0 0 0 0 rgba(124,139,255,0); }
+}

@@ -11,7 +11,7 @@ const delay = (ms) => new Promise(r => setTimeout(r, ms));
 const html = fs.readFileSync('./index.html', 'utf8').replace(/<script[\s\S]*?<\/script>/g, '');
 const dom = new JSDOM(html, { runScripts: 'outside-only', pretendToBeVisual: true, url: 'http://localhost/' });
 const { window } = dom; const { document } = window;
-window.scrollTo = () => {}; window.Chart = undefined; window.html2canvas = undefined;
+window.scrollTo = () => {}; window.Chart = undefined; window.html2canvas = undefined; window.Element.prototype.scrollIntoView = function(){};
 window.URL.createObjectURL = () => 'blob:x'; window.URL.revokeObjectURL = () => {};
 window.open = () => null;
 
@@ -31,9 +31,9 @@ const offExpected = notExpired.length;
 (async function run() {
   /* 1. 优惠圈按钮与视图打开 */
   ok($('#dealsBtn') != null, '优惠圈按钮存在');
+  ok($('#dealsView').hidden === false, '优惠圈区块默认同页常驻可见（与 AI 资讯在一起）');
   click($('#dealsBtn'));
-  ok($('#dealsView').hidden === false, '点击后优惠圈视图打开');
-  ok(document.body.classList.contains('deals-open'), 'body 带 deals-open 类');
+  ok($('#dealsView').hidden === false, '点击优惠圈后区块仍可见（平滑滚动+高亮聚焦）');
   ok($('#dealsContent') != null, '优惠内容容器存在');
 
   /* 2. 默认过滤掉过期项（自动下架） */
@@ -90,10 +90,9 @@ const offExpected = notExpired.length;
     ok(firstCard.querySelector('.deal-detail').hidden === false, '点击展开后详情可见');
   }
 
-  /* 9. 返回资讯流（关闭优惠圈视图） */
+  /* 9. 回到顶部（优惠圈同页常驻，不隐藏） */
   click($('.deals-back-feed'));
-  ok($('#dealsView').hidden === true, '返回后优惠圈视图隐藏');
-  ok(!document.body.classList.contains('deals-open'), '返回后 body 移除 deals-open');
+  ok($('#dealsView').hidden === false, '点击回到顶部后优惠圈区块仍常驻可见');
 
   console.log('\nR18 deals_test: ' + pass + ' passed, ' + fail + ' failed');
   if (fail) { console.log('FAILED:\n - ' + fails.join('\n - ')); process.exit(1); }

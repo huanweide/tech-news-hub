@@ -15,7 +15,6 @@
 
   var searchInput = document.getElementById("searchInput");
   var exportBtn = document.getElementById("exportBtn");
-  var shareBtn = document.getElementById("shareBtn");
   var themeToggle = document.getElementById("themeToggle");
   var catTabs = document.getElementById("catTabs");
   var hero = document.getElementById("hero");
@@ -820,8 +819,20 @@
     });
     content.appendChild(grid);
   }
-  function openDeals() { state.view = "deals"; state.dealsType = "all"; state.dealsPlatform = "all"; state.dealsShowExpired = false; state.dealsQ = ""; var ds = document.getElementById("dealsSearch"); if (ds) ds.value = ""; render(); }
-  function closeDeals() { state.view = "feed"; render(); }
+  function focusDeals() {
+    var dv = document.getElementById("dealsView"); if (!dv) return;
+    if (dv.scrollIntoView) dv.scrollIntoView({ behavior: "smooth", block: "start" });
+    dv.classList.add("flash");
+    setTimeout(function () { dv.classList.remove("flash"); }, 1600);
+  }
+  function backToFeedTop() { if (window.scrollTo) window.scrollTo({ top: 0, behavior: "smooth" }); }
+  function openDeals() {
+    state.dealsType = "all"; state.dealsPlatform = "all"; state.dealsShowExpired = false; state.dealsQ = "";
+    var ds = document.getElementById("dealsSearch"); if (ds) ds.value = "";
+    renderDeals();
+    focusDeals();
+  }
+  function closeDeals() { backToFeedTop(); }
   function syncKbTabs() {
     var tabs = kbEl("kbTabs"); if (!tabs) return;
     Array.prototype.forEach.call(tabs.querySelectorAll(".kb-tab"), function (b) {
@@ -929,22 +940,14 @@
   function render() {
     if (state.view === "kb" || state.view === "kbTerm" || state.view === "kbArch") {
       document.body.classList.add("kb-open");
-      document.body.classList.remove("deals-open");
       renderKB();
       document.title = "科技前瞻 · 资料库";
       return;
     }
-    if (state.view === "deals") {
-      document.body.classList.remove("kb-open");
-      document.body.classList.add("deals-open");
-      renderDeals();
-      document.title = "科技前瞻 · 模型优惠圈";
-      return;
-    }
     document.body.classList.remove("kb-open");
-    document.body.classList.remove("deals-open");
     kbEl("kbView").hidden = true;
-    var dv = document.getElementById("dealsView"); if (dv) dv.hidden = true;
+    // 模型优惠圈与 AI 资讯同页常驻（不再整页切换），默认可见
+    var dv = document.getElementById("dealsView"); if (dv) dv.hidden = false;
     renderCats();
     renderTagBar();
     renderSidebar();
@@ -955,6 +958,7 @@
     renderWeekOverview();
     renderSearchCount();
     renderActionList();
+    renderDeals();
     document.title = "科技前瞻 · " + catLabel(state.cat) + " · " + weekLabel(state.week);
   }
 
@@ -1052,6 +1056,8 @@
     if (kt) { state.kbTab = kt.getAttribute("data-kbtab"); state.view = "kb"; state.kbQuery = ""; var kq = kbEl("kbSearch"); if (kq) kq.value = ""; render(); return; }
     var feed = e.target.closest && e.target.closest("[data-feed]");
     if (feed) { closeKB(); return; }
+    var top = e.target.closest && e.target.closest("[data-top]");
+    if (top) { backToFeedTop(); return; }
   });
   var kbBtn = document.getElementById("kbBtn");
   if (kbBtn) kbBtn.addEventListener("click", openKB);
@@ -1084,99 +1090,7 @@
     toastTimer = setTimeout(function () { toastEl.classList.remove("show"); }, 2800);
   }
 
-  /* ---------- R12：分享长图（html2canvas，带优雅降级） ---------- */
-  function shareThemeColors() {
-    var dark = document.documentElement.getAttribute("data-theme") === "dark";
-    return dark
-      ? { bg: "#161a23", text: "#e6e8ef", soft: "#aab3c5", brand: "#7c8bff", brand2: "#b07bff", ai: "#8b8dff", tech: "#2dd4d2", border: "#272d3a", chip: "#202634" }
-      : { bg: "#ffffff", text: "#1a1d29", soft: "#5b6678", brand: "#5b6cff", brand2: "#9b5bff", ai: "#6366f1", tech: "#0ea5a4", border: "#e6eaf2", chip: "#eef2f9" };
-  }
-  function buildShareModel() {
-    var list = filtered();
-    var heroItem = list.slice().sort(function (a, b) { return b.impactScore - a.impactScore; })[0];
-    var items = list.filter(function (it) { return !heroItem || it.id !== heroItem.id; });
-    return {
-      cat: catLabel(state.cat), week: weekLabel(state.week), count: list.length,
-      top: heroItem, items: items, generated: new Date().toLocaleString("zh-CN")
-    };
-  }
-  function shareLongImage() {
-    if (typeof window.html2canvas !== "function") {
-      toast("分享长图需联网加载组件，请联网后重试（或点「导出周报」保存 Markdown）");
-      return;
-    }
-    var m = buildShareModel();
-    var th = shareThemeColors();
-    var card = document.createElement("div");
-    card.id = "shareCard";
-    card.setAttribute("style",
-      "--sc-bg:" + th.bg + ";--sc-text:" + th.text + ";--sc-soft:" + th.soft + ";--sc-brand:" + th.brand +
-      ";--sc-brand2:" + th.brand2 + ";--sc-ai:" + th.ai + ";--sc-tech:" + th.tech + ";--sc-border:" + th.border + ";--sc-chip:" + th.chip + ";" +
-      "background:var(--sc-bg);color:var(--sc-text);font-family:-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;" +
-      "width:620px;padding:30px 30px 24px;box-sizing:border-box;position:fixed;left:-9999px;top:0;z-index:-1;line-height:1.6;");
-    var styleTag = '<style>' +
-      '.sc-h{display:flex;align-items:center;justify-content:space-between;}' +
-      '.sc-brand{font-size:22px;font-weight:800;}' +
-      '.sc-brand b{background:linear-gradient(120deg,var(--sc-brand),var(--sc-brand2));-webkit-background-clip:text;background-clip:text;color:transparent;}' +
-      '.sc-np{font-size:12px;font-weight:700;color:var(--sc-tech);border:1px solid var(--sc-tech);border-radius:999px;padding:3px 10px;}' +
-      '.sc-meta{margin-top:10px;font-size:13px;color:var(--sc-soft);font-weight:600;}' +
-      '.sc-desc{margin-top:4px;font-size:12.5px;color:var(--sc-soft);}' +
-      '.sc-sep{height:1px;background:var(--sc-border);margin:14px 0;}' +
-      '.sc-top{background:var(--sc-chip);border:1px solid var(--sc-border);border-radius:14px;padding:14px 16px;margin-bottom:12px;}' +
-      '.sc-kick{font-size:11px;font-weight:800;letter-spacing:1px;color:var(--sc-brand);text-transform:uppercase;}' +
-      '.sc-top h2{margin:6px 0 4px;font-size:19px;line-height:1.35;font-weight:800;}' +
-      '.sc-top p{margin:0;font-size:13px;color:var(--sc-soft);}' +
-      '.sc-item{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--sc-border);}' +
-      '.sc-rank{width:26px;height:26px;flex-shrink:0;border-radius:8px;background:linear-gradient(120deg,var(--sc-brand),var(--sc-brand2));color:#fff;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:2px;}' +
-      '.sc-body{flex:1;min-width:0;}' +
-      '.sc-title{font-size:15px;font-weight:700;display:flex;align-items:center;gap:8px;}' +
-      '.sc-cat{font-size:11px;font-weight:700;color:#fff;background:var(--sc-ai);border-radius:999px;padding:1px 9px;}' +
-      '.sc-sum{font-size:12.5px;color:var(--sc-soft);margin:4px 0 6px;}' +
-      '.sc-bar{height:6px;background:var(--sc-chip);border-radius:999px;overflow:hidden;}' +
-      '.sc-bar i{display:block;height:100%;background:linear-gradient(120deg,var(--sc-brand),var(--sc-brand2));}' +
-      '.sc-src{font-size:11px;color:var(--sc-soft);margin-top:5px;}' +
-      '.sc-score{font-size:18px;font-weight:800;color:var(--sc-brand);flex-shrink:0;}' +
-      '.sc-foot{margin-top:14px;font-size:11.5px;color:var(--sc-soft);line-height:1.6;}' +
-      '</style>';
-    var rows = m.items.map(function (it, i) {
-      return '<div class="sc-item"><div class="sc-rank">' + (i + 1) + '</div>' +
-        '<div class="sc-body"><div class="sc-title">' + escapeHtml(it.title) + ' <span class="sc-cat">' + catLabel(it.category) + '</span></div>' +
-        '<div class="sc-sum">' + escapeHtml(it.summary) + '</div>' +
-        '<div class="sc-bar"><i style="width:' + it.impactScore + '%"></i></div>' +
-        '<div class="sc-src">来源：' + it.sources.map(function (s) { return s.name; }).join(" · ") + '</div></div>' +
-        '<div class="sc-score">' + it.impactScore + '</div></div>';
-    }).join("");
-    var head =
-      '<div class="sc-h"><div class="sc-brand">◈ 科技前瞻 <b>TechPulse</b></div><div class="sc-np">🤍 非盈利公益科普</div></div>' +
-      '<div class="sc-meta">' + m.cat + ' · ' + m.week + '</div>' +
-      '<div class="sc-desc">每周打破信息差 · 本周精选出 ' + m.count + ' 条值得读的科技资讯（影响力 1–100 分）</div>' +
-      '<div class="sc-sep"></div>' +
-      (m.top ? '<div class="sc-top"><div class="sc-kick">本周头条 · 影响力 ' + m.top.impactScore + '</div><h2>' + escapeHtml(m.top.title) + '</h2><p>' + escapeHtml(m.top.summary) + '</p></div>' : '') +
-      rows +
-      '<div class="sc-sep"></div>' +
-      '<div class="sc-foot">🤍 本站为非盈利公益科普平台：内容仅供学习参考，不投放广告、不接入商业变现、不向用户收费；所有资讯附可追溯来源。<br>生成于 ' + m.generated + ' · 访问 TechPulse 查看全文与 8 维度解读</div>';
-    card.innerHTML = styleTag + head;
-    document.body.appendChild(card);
-    var cleanup = function () { if (card.parentNode) card.parentNode.removeChild(card); };
-    try {
-      window.html2canvas(card, { scale: 2, backgroundColor: null, logging: false })
-        .then(function (canvas) {
-          try {
-            canvas.toBlob(function (blob) {
-              var url = URL.createObjectURL(blob);
-              var a = document.createElement("a");
-              a.href = url; a.download = "techpulse-分享-" + state.week + ".png";
-              document.body.appendChild(a); a.click(); document.body.removeChild(a);
-              setTimeout(function () { try { URL.revokeObjectURL(url); } catch (e) {} }, 1200);
-              toast("已生成分享长图 🖼（PNG 已下载）");
-              cleanup();
-            }, "image/png");
-          } catch (e) { toast("分享长图生成失败，请重试"); cleanup(); }
-        })
-        .catch(function () { toast("分享长图生成失败，请重试"); cleanup(); });
-    } catch (e) { toast("分享长图生成失败，请重试"); cleanup(); }
-  }
-  if (shareBtn) shareBtn.addEventListener("click", shareLongImage);
+
 
   /* ---------- 导出周报 ---------- */
   function exportMarkdown() {
@@ -1475,7 +1389,7 @@
       if (go.type === "article") { var it = data.items.filter(function (x) { return x.id === go.id; })[0]; if (it) goToItem(it); }
       else if (go.type === "arch") { state.kbArch = go.id; state.view = "kbArch"; render(); }
       else if (go.type === "term") { state.kbTerm = go.term; state.view = "kbTerm"; render(); }
-      else if (go.type === "deal") { openDeals(); }
+      else if (go.type === "deal") { if (state.view !== "feed") { state.view = "feed"; render(); } focusDeals(); }
     }
     function showTyping() { hideTyping(); var t = document.createElement("div"); t.className = "agent-typing"; t.id = "agentTyping"; t.innerHTML = "<span></span><span></span><span></span>"; agentMsgs.appendChild(t); scrollAgentBottom(); }
     function hideTyping() { var t = document.getElementById("agentTyping"); if (t && t.parentNode) t.parentNode.removeChild(t); }

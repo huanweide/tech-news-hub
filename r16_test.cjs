@@ -12,7 +12,7 @@ const delay = (ms) => new Promise(r => setTimeout(r, ms));
 const html = fs.readFileSync('./index.html', 'utf8').replace(/<script[\s\S]*?<\/script>/g, '');
 const dom = new JSDOM(html, { runScripts: 'outside-only', pretendToBeVisual: true, url: 'http://localhost/' });
 const { window } = dom; const { document } = window;
-window.scrollTo = () => {}; window.Chart = undefined; window.html2canvas = undefined;
+window.scrollTo = () => {}; window.Chart = undefined; window.html2canvas = undefined; window.Element.prototype.scrollIntoView = function(){};
 window.URL.createObjectURL = () => 'blob:x'; window.URL.revokeObjectURL = () => {};
 window.__serverKeys = undefined; // 显式声明：本站服务器从不持有密钥
 
@@ -135,7 +135,8 @@ window.fetch = function (url, opts) {
   ok(dealCards.length >= 1, 'lookup_deal 结果以卡片呈现：' + dealCards.length);
   click(dealCards[dealCards.length - 1].querySelector('.agent-card-go'));
   await delay(20);
-  ok(document.body.className.indexOf('deals-open') >= 0, '点击优惠卡片打开模型优惠圈视图（body.deals-open）');
+  ok($('#dealsView').hidden === false, '点击优惠卡片后优惠圈区块可见（同页常驻）');
+  ok($all('#dealsContent .deal-card').length >= 1, '优惠圈已渲染卡片');
 
   /* 8. 安全机制：密钥本地化，永不发往本站服务器 */
   ok(captured.url === BASE + '/chat/completions', '请求直连用户配置的接口（非本站服务器）：' + captured.url);

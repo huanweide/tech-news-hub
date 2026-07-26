@@ -24,7 +24,6 @@
           <span id="searchCount" class="search-count" hidden aria-live="polite"></span>
         </div>
         <button id="exportBtn" class="export-btn" type="button">⬇ 导出周报</button>
-        <button id="shareBtn" class="share-btn" type="button">🖼 分享长图</button>
         <button id="kbBtn" class="kb-btn" type="button">📚 资料库</button>
         <button id="dealsBtn" class="deals-btn" type="button">🎯 优惠圈</button>
         <button id="agentBtn" class="agent-btn" type="button">🤖 助手</button>
@@ -137,7 +136,7 @@
   </section>
 
   <!-- R18：模型优惠圈（集中发布中转站与大模型平台优惠资讯，超时自动下架） -->
-  <section id="dealsView" class="deals-view" hidden aria-label="模型优惠圈">
+  <section id="dealsView" class="deals-view" aria-label="模型优惠圈">
     <div class="deals-head">
       <div class="deals-head-main">
         <h1 class="deals-title">🎯 模型优惠圈</h1>
@@ -145,7 +144,7 @@
           <span class="deals-auto">🔄 每周自动更新 · 当前 <b id="dealsCount">—</b> 条有效优惠</span>
         </p>
       </div>
-      <button class="deals-back-feed" type="button" data-feed="1">← 返回资讯流</button>
+      <button class="deals-back-feed" type="button" data-top="1">↑ 回到顶部</button>
     </div>
     <div class="deals-search">
       <input id="dealsSearch" class="deals-search-input" type="search" placeholder="搜索优惠：平台 / 关键词 / 标签…" aria-label="搜索优惠" />
@@ -240,7 +239,6 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
   <script src="news-data.js"></script>
   <script src="features.js"></script>
   <script src="deals-data.js"></script>
