@@ -770,7 +770,7 @@
         '<span class="badge deal-type-badge">' + escapeHtml(typeLabel) + '</span>' +
         statusBadge +
       '</div>' +
-      '<h3 class="deal-title">' + escapeHtml(d.title) + '</h3>' +
+      '<h2 class="deal-title">' + escapeHtml(d.title) + '</h2>' +
       '<p class="deal-summary">' + escapeHtml(d.summary) + '</p>' +
       priceHtml +
       '<div class="deal-meta">' +

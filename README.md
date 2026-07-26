@@ -28,7 +28,7 @@ python -m http.server 8080
 ## 自动更新机制（0 元）
 - **主更新（高质量）**：WorkBuddy 自动化任务每周一 09:00，由 AI 模型抓取当周真实新闻、撰写权威内容、追加到 `news-data.js`、跑测试并推送；GitHub Pages 自动重新部署。
 - **兜底更新（不断档）**：GitHub Actions `weekly-update.yml` 每周日 22:00 UTC 从预设科技 RSS 抓取；若仓库配置了 `DEEPSEEK_API_KEY` Secret，则用 AI 生成权威摘要，否则生成基础更新，提交并推送。
-- 每次推送前自动运行 `npm test`（r13–r16 共 126 项断言）作为质量门；`weekly-update.yml` 同时运行 `node scripts/deals_update.cjs` 同步模型优惠圈（可选 `DEEPSEEK_API_KEY` 做 AI 摘要）。
+- 每次推送前自动运行 `npm test`（r13–r16 + deals + a11y 共 138 项断言，含 axe-core 无障碍回归）作为质量门；`weekly-update.yml` 同时运行 `node scripts/deals_update.cjs` 同步模型优惠圈（可选 `DEEPSEEK_API_KEY` 做 AI 摘要）。
 
 ## 隐私
 - LLM 助手为 Bring-Your-Own-Key：API 密钥仅存于**你的浏览器 localStorage**，请求由浏览器**直连你配置的接口**，本站静态托管不持有、不传输你的密钥。

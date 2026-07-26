@@ -4,12 +4,13 @@
   "private": true,
   "description": "科技前瞻 TechPulse — 每周更新的权威科技资讯与可检索知识库（非盈利公益）",
   "scripts": {
-    "test": "node r13_test.cjs && node r14_test.cjs && node r15_test.cjs && node r16_test.cjs && node deals_test.cjs",
+    "test": "node r13_test.cjs && node r14_test.cjs && node r15_test.cjs && node r16_test.cjs && node deals_test.cjs && node a11y_test.cjs",
     "weekly-update": "node scripts/weekly_update.cjs",
     "deals-update": "node scripts/deals_update.cjs"
   },
   "devDependencies": {
-    "jsdom": "^24.1.0",
-    "fast-xml-parser": "^4.4.1"
+    "axe-core": "^4.12.1",
+    "fast-xml-parser": "^4.4.1",
+    "jsdom": "^24.1.0"
   }
 }
