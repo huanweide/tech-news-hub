@@ -28,7 +28,7 @@ python -m http.server 8080
 ## 自动更新机制（0 元）
 - **主更新（高质量）**：WorkBuddy 自动化任务每周一 09:00，由 AI 模型抓取当周真实新闻、撰写权威内容、追加到 `news-data.js`、跑测试并推送；GitHub Pages 自动重新部署。
 - **兜底更新（不断档）**：GitHub Actions `weekly-update.yml` 每周日 22:00 UTC 从预设科技 RSS 抓取；若仓库配置了 `DEEPSEEK_API_KEY` Secret，则用 AI 生成权威摘要，否则生成基础更新，提交并推送。
-- 每次推送前自动运行 `npm test`（r13–r16 + deals + a11y 共 138 项断言，含 axe-core 无障碍回归）作为质量门；`weekly-update.yml` 同时运行 `node scripts/deals_update.cjs` 同步模型优惠圈（可选 `DEEPSEEK_API_KEY` 做 AI 摘要）。
+- 每次推送前自动运行 `npm test`（r13–r16 + deals + a11y 共 139 项断言，含 axe-core 无障碍回归）作为质量门；`weekly-update.yml` 同时运行 `node scripts/deals_update.cjs` 同步模型优惠圈（可选 `DEEPSEEK_API_KEY` 做 AI 摘要）。
 
 ## 隐私
 - LLM 助手为 Bring-Your-Own-Key：API 密钥仅存于**你的浏览器 localStorage**，请求由浏览器**直连你配置的接口**，本站静态托管不持有、不传输你的密钥。
@@ -56,16 +56,16 @@ scripts/deals_update.cjs  优惠圈后端发布脚本（幂等追加，GitHub Ac
 ```
 
 ## 模型优惠圈（🎯 优惠资讯模块）
-集中发布**中转站平台**（如 WorkBuddy、龙虾等）与**大模型官方平台**（如硅基流动、火山引擎等）的优惠资讯，帮读者选对模型、真正薅到羊毛。
+集中发布**中转站聚合平台**（如 OpenRouter）与**大模型官方直降平台**（硅基流动、火山引擎、DeepSeek、阿里云百炼、智谱 GLM、腾讯云混元等）的**真实、可核验**优惠资讯（每条附官方来源链接），帮读者选对模型、真正薅到羊毛。
 
 - **四类资讯**：当前实行的优惠（current）/ 新上线优惠（new）/ 模型降价预告（pricecut）/ 模型性价比评估推荐（value）。
 - **多维度筛选**：按类型、按平台（中转站 / 官方）、按关键词实时过滤；默认隐藏已过期优惠（可切换显示）。
 - **自动过期下架**：每条优惠含 `validFrom` / `validUntil` 有效时间范围，渲染时按当前日期计算「进行中 / 即将开始 / 已结束」并自动隐藏过期项。
 - **完整前后端（0 元静态站）**：
-  - 前端：`deals-data.js` 数据层 + `app.js` 渲染 + `style.css` 样式，顶栏 🎯优惠圈 进入独立视图。
+  - 前端：`deals-data.js` 数据层 + `app.js` 渲染 + `style.css` 样式，🎯优惠圈 为资讯流中的同页常驻区块（点按钮平滑滚动+高亮聚焦）。
   - 后端（发布脚本）：`scripts/deals_update.cjs` 幂等追加新优惠到 `deals-data.js`（按 id 合并、可选 DeepSeek AI 摘要、`DRY_RUN` 安全预览、无候选源时为安全 no-op），由 GitHub Actions 周更调用。
   - 助手：LLM 助手新增 `lookup_deal` 工具，可直接问「硅基流动有什么优惠」「性价比推荐」。
-- **投稿/更新**：把优惠条目加入 `deals-sources.json`（或在 `deals-data.js` 直接编辑），下次自动更新即合并发布。
+- **数据真实可核验（单一事实来源）**：优惠数据为**真实信息**，真相源是 `deals-sources.json`（人工策划、每条附官方来源）；`scripts/deals_update.cjs` 每周依据它**重新生成** `deals-data.js`（与现有内容一致则跳过，幂等）。要更新/新增真实优惠，编辑 `deals-sources.json` 并推送；或在仓库 Secrets 配置 `DEEPSEEK_API_KEY`，让 Actions 每周用官方页面润色 detail。
 
 ## 许可
 非盈利公益科普，内容仅供学习参考；转载请保留来源。

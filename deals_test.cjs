@@ -39,7 +39,7 @@ const offExpected = notExpired.length;
   /* 2. 默认过滤掉过期项（自动下架） */
   let cardsOff = $all('#dealsContent .deal-card');
   ok(cardsOff.length === offExpected, '默认展示有效优惠数=' + offExpected + '（实际 ' + cardsOff.length + '）');
-  ok(!$('#dealsContent').textContent.includes('春季中转站首单立减活动'), '已过期优惠默认不展示（自动下架）');
+  ok(!$('#dealsContent').textContent.includes('ArkClaw 邀新活动'), '已过期优惠默认不展示（自动下架）');
 
   /* 3. 勾选“显示已过期”后出现全部（含过期） */
   const exp = $('#dealsShowExpired');
@@ -48,7 +48,12 @@ const offExpected = notExpired.length;
   exp.dispatchEvent(new window.Event('change', { bubbles: true }));
   let cardsOn = $all('#dealsContent .deal-card');
   ok(cardsOn.length === allCount, '显示已过期后展示全部=' + allCount + '（实际 ' + cardsOn.length + '）');
-  ok($('#dealsContent').textContent.includes('春季中转站首单立减活动'), '勾选后过期优惠出现');
+  ok($('#dealsContent').textContent.includes('ArkClaw 邀新活动'), '勾选后过期优惠出现');
+  const endedCard = cardsOn.filter(function (c) { return c.textContent.includes('ArkClaw 邀新活动'); })[0];
+  if (endedCard) {
+    const eb = endedCard.querySelector('.deal-status');
+    ok(eb != null && /已结束/.test(eb.textContent), '真实过期优惠状态徽标正确：' + (eb ? eb.textContent : '无'));
+  } else { ok(false, '真实过期优惠卡片应存在'); }
 
   /* 4. 类型过滤：性价比推荐 */
   click($('.deals-type[data-dtype="all"]'));
@@ -59,11 +64,15 @@ const offExpected = notExpired.length;
   ok($('#dealsContent').textContent.includes('性价比评测'), '性价比推荐卡含预期内容');
 
   /* 5. 平台过滤：官方直降（先复位类型=全部） */
+  exp.checked = false;
+  exp.dispatchEvent(new window.Event('change', { bubbles: true }));
   click($('.deals-type[data-dtype="all"]'));
-  const officialExpected = DD.deals.filter(function (d) { return d.platformType === 'official'; }).length;
+  const officialExpected = DD.deals.filter(function (d) {
+    return d.platformType === 'official' && (!d.validUntil || new Date(d.validUntil + 'T00:00:00') >= today);
+  }).length;
   click($('.deals-platform[data-dplat="official"]'));
   let officialCards = $all('#dealsContent .deal-card');
-  ok(officialCards.length === officialExpected && officialExpected >= 3, '平台=官方直降 仅显示 ' + officialExpected + ' 条');
+  ok(officialCards.length === officialExpected && officialExpected >= 3, '平台=官方直降 仅显示活跃 ' + officialExpected + ' 条（实际 ' + officialCards.length + '）');
 
   /* 6. 状态计算：当前优惠显示“进行中” */
   click($('.deals-platform[data-dplat="all"]'));
@@ -75,11 +84,12 @@ const offExpected = notExpired.length;
   }
 
   /* 7. 即将开始状态（upcoming-gpu-voucher） */
-  const upCard = $all('#dealsContent .deal-card').filter(function (c) { return c.textContent.includes('GPU 算力券'); })[0];
-  if (upCard) {
-    const st = upCard.querySelector('.deal-status');
-    ok(st != null && /即将开始/.test(st.textContent), '即将开始优惠状态徽标正确：' + (st ? st.textContent : '无'));
-  } else { ok(false, '即将开始优惠卡片应存在'); }
+  const activeCards = $all('#dealsContent .deal-card');
+  const badStatus = activeCards.filter(function (c) {
+    const s = c.querySelector('.deal-status');
+    return s && (/已结束/.test(s.textContent) || /即将开始/.test(s.textContent));
+  });
+  ok(badStatus.length === 0, '隐藏过期态下无"已结束"/虚假"即将开始"徽标（实际 ' + badStatus.length + '）');
 
   /* 8. 展开详情 */
   const firstCard = $('#dealsContent .deal-card');
