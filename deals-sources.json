@@ -142,5 +142,21 @@
     "sourceUrl": "https://api-docs.deepseek.com/quick_start/pricing",
     "tags": ["性价比", "评测", "推荐", "RAG", "免费", "聚合"],
     "addedAt": "2026-07-26"
+  },
+  {
+    "id": "jisuapi-market",
+    "title": "极速数据大模型市场：一个 Key 调 13+ 国产模型，限时 95 折 + 充值赠 10% Credits",
+    "platformType": "relay",
+    "platform": "极速数据",
+    "type": "new",
+    "summary": "极速数据大模型市场新上线，一个 API Key 统一接入 DeepSeek / 智谱 GLM / 阿里 Qwen / 月之暗面 Kimi 等 13+ 主流模型；上线福利限时 95 折、充值即返 10% 额外额度（充多少送多少），2026-07-15 起限时名额有限。",
+    "detail": "薅羊毛步骤：\n1. 访问 https://www.jisuapi.com 注册并创建 API Key（OpenAI 兼容）；\n2. 市场首批上线 13 个主流模型，覆盖文本/多模态/代码/推理增强，一个 Key 免去逐个对接鉴权与计费；\n3. 上线福利：所有模型限时 95 折（折上折），充值即返 10% 额外 Credits（充多少送多少）；\n4. 适合想快速试水多模型、又不想分别开户的开发者与小企业。\n注：活动 2026-07-15 起限时、名额有限；以官方活动页为准。",
+    "validFrom": "2026-07-15",
+    "validUntil": null,
+    "price": "限时 95 折 · 充值赠 10% Credits",
+    "valueScore": 80,
+    "sourceUrl": "https://www.jisuapi.com/news/detail/623",
+    "tags": ["极速数据", "中转站", "聚合", "多模型", "限时折扣"],
+    "addedAt": "2026-07-27"
   }
 ]

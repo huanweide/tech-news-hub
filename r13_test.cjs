@@ -38,11 +38,11 @@ function feedCount() { return $all("#feed .card").length; }
 
 try {
   /* ---- 数据层断言：18 条 + 全部含架构图 ---- */
-  ok(NEWS.items.length === 18, "数据层共 18 条");
+  ok(NEWS.items.length === 30, "数据层共 30 条（实际 " + NEWS.items.length + "）");
   const withArch = NEWS.items.filter(function (it) { return typeof it.architecture === "string" && it.architecture.indexOf("<svg") >= 0; });
-  ok(withArch.length === 18, "全部 18 条含 architecture SVG（实际 " + withArch.length + "）");
+  ok(withArch.length === NEWS.items.length, "全部 " + NEWS.items.length + " 条含 architecture SVG（实际 " + withArch.length + "）");
   const withCap = NEWS.items.filter(function (it) { return !!it.archCaption; });
-  ok(withCap.length === 18, "全部 18 条含 archCaption（实际 " + withCap.length + "）");
+  ok(withCap.length === NEWS.items.length, "全部 " + NEWS.items.length + " 条含 archCaption（实际 " + withCap.length + "）");
   // 字段契约不变
   const need = ["what", "compare", "why", "output", "explain", "impact", "action"];
   ok(NEWS.items.every(function (it) { return need.every(function (k) { return typeof it[k] === "string" && it[k].length > 0; }); }), "8 维度字段契约齐全");
