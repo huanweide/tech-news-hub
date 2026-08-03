@@ -37,8 +37,9 @@ function click(el) {
 function feedCount() { return $all("#feed .card").length; }
 
 try {
-  /* ---- 数据层断言：18 条 + 全部含架构图 ---- */
-  ok(NEWS.items.length === 30, "数据层共 30 条（实际 " + NEWS.items.length + "）");
+  /* ---- 数据层断言：全部含架构图 ---- */
+  const validWeeks = new Set(NEWS.weeks.map(w => w.id));
+  ok(NEWS.items.length >= 30 && NEWS.items.every(i => validWeeks.has(i.week)), "数据层加载完整：条数应≥30 且每条归属有效周（实际 " + NEWS.items.length + "）");
   const withArch = NEWS.items.filter(function (it) { return typeof it.architecture === "string" && it.architecture.indexOf("<svg") >= 0; });
   ok(withArch.length === NEWS.items.length, "全部 " + NEWS.items.length + " 条含 architecture SVG（实际 " + withArch.length + "）");
   const withCap = NEWS.items.filter(function (it) { return !!it.archCaption; });
