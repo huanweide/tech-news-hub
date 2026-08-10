@@ -26,7 +26,8 @@ const NEWS_DATA = {
     { id: "w4", label: "2026年7月 第4周", range: "7/21–7/25" },
     { id: "w5", label: "2026年7月 第5周", range: "7/20–7/26" },
     { id: "w6", label: "2026年7月 第6周", range: "7/27–8/2" },
-    { id: "w7", label: "2026年8月 第1周", range: "8/3–8/9" }
+    { id: "w7", label: "2026年8月 第1周", range: "8/3–8/9" },
+    { id: "w8", label: "2026年8月 第2周", range: "8/10–8/16" }
   ],
   categories: [
     { id: "ai", label: "AI圈" },
@@ -970,6 +971,267 @@ const NEWS_DATA = {
         { name: "中国财富网", url: "https://www.toutiao.com/article/7669033250291073590/" }
       ],
       architecture: '<svg viewBox="0 0 660 200" role="img" aria-label="玻色量子 CFD 配点优化" xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah-bos" markerWidth="10" markerHeight="10" refX="7.5" refY="4" orient="auto-start-reverse"><path d="M0,0 L9,4 L0,8 Z" fill="var(--text-soft)"/></marker></defs><rect x="20" y="78" width="140" height="44" rx="9" fill="var(--brand-soft)" stroke="var(--accent-tech)" stroke-width="1.5"/><text x="90" y="100" fill="var(--text)" font-size="12" font-weight="700" text-anchor="middle">PINN 配点</text><text x="90" y="118" fill="var(--text-soft)" font-size="10.5" text-anchor="middle">物理约束</text><rect x="200" y="78" width="140" height="44" rx="9" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/><text x="270" y="100" fill="var(--text)" font-size="12" font-weight="700" text-anchor="middle">QUBO 建模</text><text x="270" y="118" fill="var(--text-soft)" font-size="10.5" text-anchor="middle">组合优化</text><rect x="380" y="78" width="160" height="44" rx="9" fill="var(--brand-soft)" stroke="var(--accent-ai)" stroke-width="1.5"/><text x="460" y="100" fill="var(--text)" font-size="12" font-weight="700" text-anchor="middle">专用量子机</text><text x="460" y="118" fill="var(--text-soft)" font-size="10.5" text-anchor="middle">真机求解</text><rect x="570" y="78" width="80" height="44" rx="9" fill="var(--brand-soft)" stroke="var(--brand)" stroke-width="1.5"/><text x="610" y="100" fill="var(--text)" font-size="11" font-weight="700" text-anchor="middle">流场</text><text x="610" y="118" fill="var(--text-soft)" font-size="10" text-anchor="middle">预测</text><line x1="160" y1="100" x2="196" y2="100" stroke="var(--text-soft)" stroke-width="1.5" marker-end="url(#ah-bos)"/><line x1="340" y1="100" x2="376" y2="100" stroke="var(--text-soft)" stroke-width="1.5" marker-end="url(#ah-bos)"/><line x1="540" y1="100" x2="566" y2="100" stroke="var(--text-soft)" stroke-width="1.5" marker-end="url(#ah-bos)"/></svg>'
+    }
+    ,
+    {
+      id: "qwen38-max",
+      week: "w8",
+      category: "ai",
+      tags: ["阿里", "Qwen", "MoE", "智能体", "基座模型"],
+      impactScore: 94,
+      title: "阿里巴巴发布 Qwen3.8-Max：2.4 万亿参数 MoE 基座，编程与 Agent 能力跃升并同步公测企业级「千问办公」",
+      summary: "8月3日阿里发布 Qwen3.8-Max（总参2.4万亿、激活约950亿、1M上下文、原生视觉），同步公测企业级 Agent「千问办公」，标志国产模型从能力比拼转向 Agent 与商业化落地。",
+      what: "8月3日，阿里巴巴发布新一代基座大模型 Qwen3.8 / Qwen3.8-Max：总参数量 2.4 万亿、激活参数约 950 亿、上下文窗口 1M token、原生支持视觉理解。Qwen3.8-Max 在 PaperBench 编程智能体评测较前代提升 28.2 分至 93.0，并演示了从空文件夹自主交付十数天真实项目的「自进化智能体框架 oh-my-cli」（已开源）。同天企业级 Agent 产品「千问办公」开启公测，打通钉钉 IM 与企业数据库/工作流，可将资深员工操作沉淀为「组织级 Skill」共享。",
+      compare: "与 w7 已收录的 DeepSeek-V4-Flash（轻量、极致性价比）、MiniMax H3（全模态开源）定位不同，Qwen3.8-Max 是千问系列尺寸最大、性能最强的旗舰稀疏基座，主打长程 Agent 与企业工作流；与 Kimi K3（2.8万亿）相比，两者同属国产 2 万亿俱乐部，但 Qwen 更强调视觉原生与组织级 Agent 落地而非纯文本推理。",
+      why: "国产大模型竞争正从「参数与榜单」转向「Agent 与商业化」：模型能力逼近前沿后，真正的价值在把模型嵌入企业真实数据流与流程。阿里以超大规模 MoE + 原生多模态 + 企业级 Agent 闭环，意图抢占「AI 办公基础设施」心智，并以开源（计划开源 Qwen3.8-Max 与 27B）巩固开发者生态。",
+      output: "Qwen3.8 API 已上线千问平台；Qwen3.8-Max 与 Qwen3.8-27B 计划开源；「千问办公」公测并规划独立 APP 与国际版。放榜权威三方榜单 Arena 居全球第一梯队，阿里港股当日涨 7.01%。",
+      explain: "技术解析：Qwen3.8-Max 延续稀疏 MoE，总参 2.4 万亿但单步仅激活约 950 亿（激活比约 4%），以「大总参保容量、小激活控成本」支撑 1M 长上下文。其 Agent 能力来自「真实环境 + 算力联合强化学习（RL）扩展」——不仅在对话中推理，而是在真实代码库/文件系统环境里多步执行并自我修正，使「从空目录到可运行框架」成为可能；视觉原生则把图像/视频直接融入同一表征，省去独立的视觉编码器旁路。",
+      impact: "国产旗舰首次把「超长上下文 + 原生多模态 + 自进化 Agent + 企业工作流」打包交付，加速大模型从「答题机器」到「全职工程师/数字员工」的范式迁移，并对闭源办公智能体形成价格与生态压力。",
+      action: "开发者：用 Qwen3.8-Max 开源权重在自有算力部署长程 Agent，绕开高额 API；企业 IT：评估「千问办公」将重复性专业任务（尽调、合同、报表）沉淀为组织 Skill 的可行性；投资者：关注国产模型从「能力提升」转向「商业变现/算力消耗」的兑现节奏。",
+      archCaption: "稀疏 MoE 以 950 亿激活承载 2.4 万亿容量；联合 RL 让模型在真实环境多步执行并自修正，实现长程 Agent 交付。",
+      sources: [
+        { name: "大皖新闻/新华网财经（今日头条）", url: "https://www.toutiao.com/article/7669698674851365428/" },
+        { name: "腾讯新闻", url: "https://new.qq.com/rain/a/20260804A0CLHT00" }
+      ],
+      architecture: "<svg viewBox='0 0 660 170' role='img' aria-label='Qwen3.8-Max 架构' xmlns='http://www.w3.org/2000/svg'><defs><marker id='ah-qw' markerWidth='10' markerHeight='10' refX='7.5' refY='4' orient='auto-start-reverse'><path d='M0,0 L9,4 L0,8 Z' fill='var(--text-soft)'/></marker></defs><rect x='15' y='64' width='140' height='42' rx='9' fill='var(--brand-soft)' stroke='var(--accent-ai)' stroke-width='1.5'/><text x='85' y='89' fill='var(--text)' font-size='12' font-weight='700' text-anchor='middle'>稀疏 MoE</text><text x='85' y='106' fill='var(--text-soft)' font-size='9.5' text-anchor='middle'>950亿/2.4万亿</text><rect x='180' y='64' width='140' height='42' rx='9' fill='var(--surface-2)' stroke='var(--border)' stroke-width='1.5'/><text x='250' y='89' fill='var(--text)' font-size='12' font-weight='700' text-anchor='middle'>联合 RL</text><text x='250' y='106' fill='var(--text-soft)' font-size='9.5' text-anchor='middle'>真实环境</text><rect x='345' y='64' width='150' height='42' rx='9' fill='var(--brand-soft)' stroke='var(--accent-tech)' stroke-width='1.5'/><text x='420' y='89' fill='var(--text)' font-size='12' font-weight='700' text-anchor='middle'>长程 Agent</text><text x='420' y='106' fill='var(--text-soft)' font-size='9.5' text-anchor='middle'>自进化框架</text><rect x='520' y='64' width='125' height='42' rx='9' fill='var(--brand-soft)' stroke='var(--brand)' stroke-width='1.5'/><text x='582' y='89' fill='var(--text)' font-size='12' font-weight='700' text-anchor='middle'>千问办公</text><text x='582' y='106' fill='var(--text-soft)' font-size='9.5' text-anchor='middle'>组织 Skill</text><line x1='155' y1='85' x2='176' y2='85' stroke='var(--text-soft)' stroke-width='1.5' marker-end='url(#ah-qw)'/><line x1='320' y1='85' x2='341' y2='85' stroke='var(--text-soft)' stroke-width='1.5' marker-end='url(#ah-qw)'/><line x1='495' y1='85' x2='516' y2='85' stroke='var(--text-soft)' stroke-width='1.5' marker-end='url(#ah-qw)'/></svg>"
+    },
+    {
+      id: "seed-realtime",
+      week: "w8",
+      category: "ai",
+      tags: ["字节", "SeedRealtime", "全双工", "多模态", "端到端"],
+      impactScore: 90,
+      title: "字节发布 SeedRealtime 音视频全双工大模型：统一端到端架构实现「边看边听边说」，已在豆包全量上线",
+      summary: "8月5日字节推出原生音视频全双工大模型 SeedRealtime，用统一端到端模型替代 ASR/VLM/TTS 级联，节奏卡壳问题减半，已在豆包 App（日活超2亿）全量上线。",
+      what: "8月5日，字节跳动 Seed 团队发布原生音视频全双工大模型 SeedRealtime，已在豆包 App 全量上线。它用统一端到端架构原生融合音频、视频与文本，在连续多模态信息流上同步完成感知、理解、决策与表达，实现「边看、边听、边说」。字节披露端到端人工评测显示，相比级联系统，音视频对话的节奏问题减少约一半（抢话、迟滞、误触发明显下降），单次对话完整顺畅概率提升。",
+      compare: "与 w7 收录的 Seedance 2.5（视频生成、长叙事）不同，SeedRealtime 是实时交互模态而非生成模态；与传统级联方案（ASR→VLM→TTS 串联，延迟层层叠加、信息逐级损耗）相比，它取消了外部 VAD 轮次判断，把感知与表达压进同一模型；相较 Google Gemini Live、OpenAI gpt-realtime 等，字节的差异化在于直接铺到 2 亿日活产品而非仅模型发布。",
+      why: "基础模型竞争焦点已从参数规模转向「多模态实时交互的商业化落地」。全双工（双向同时收发）是自然人机对话的前提，但难点在于「你说话时它也在听」的在场感与抗干扰。字节用统一架构消除模块拼接的延迟与损耗，并以豆包海量用户做规模化验证，抢占「自然对话」入口。",
+      output: "SeedRealtime 已在豆包 App 全量上线（「打电话」入口进入视频通话）；截至 2026 年 6 月豆包月活 3.82 亿、日活超 2 亿、日均 Token 调用 180 万亿。字节后续优化方向：端到端时延、主动感知决策、多人复杂场景、工具调用。",
+      explain: "技术解析：级联系统把语音识别、视觉理解、语音合成拆成独立模块，链路越长延迟与信息损失越大，且依赖外部 VAD 判断「轮到谁说」，本质仍是半双工。SeedRealtime 的突破是把声音、画面、时序与表达统一到同一端到端网络，模型在连续音视频流上同步进行感知—理解—决策—表达，不再先听完再看再答；其「音视频联合理解」用画面消歧、「流畅节奏」实时感知对话状态以自然接话/停顿、「主动交互」在环境变化时主动出声，三者共同逼近人际自然交流。",
+      impact: "首次将音视频全双工在大体量 C 端产品规模化落地，推动人机交互从「一问一答」走向「在场协作」，并抬高实时多模态模型的工程与算力门槛（连续多模态流的云端算力与带宽消耗呈指数增长）。",
+      action: "产品团队：评估端到端统一架构替代级联方案以降低交互延迟；应用开发者：基于豆包全量能力设计实时视频助手（导购、讲解、纠错）场景；研究者：关注全双工在时延、复杂多人场景与工具调用上的未解瓶颈。",
+      archCaption: "统一端到端模型替代 ASR/VLM/TTS 级联，在连续音视频流上同步感知—理解—决策—表达，消除 VAD 与模块拼接延迟。",
+      sources: [
+        { name: "科创板日报/财联社", url: "https://www.toutiao.com/article/7670397957019107882/" },
+        { name: "腾讯新闻", url: "https://new.qq.com/rain/a/20260805A0DO3300" }
+      ],
+      architecture: "<svg viewBox='0 0 660 170' role='img' aria-label='SeedRealtime 架构' xmlns='http://www.w3.org/2000/svg'><defs><marker id='ah-sd' markerWidth='10' markerHeight='10' refX='7.5' refY='4' orient='auto-start-reverse'><path d='M0,0 L9,4 L0,8 Z' fill='var(--text-soft)'/></marker></defs><rect x='15' y='40' width='150' height='34' rx='8' fill='var(--surface-2)' stroke='var(--border)' stroke-width='1.5' stroke-dasharray='4 3'/><text x='90' y='62' fill='var(--text-soft)' font-size='11' text-anchor='middle'>级联 ASR/VLM/TTS</text><rect x='255' y='64' width='150' height='42' rx='9' fill='var(--brand-soft)' stroke='var(--accent-ai)' stroke-width='1.5'/><text x='330' y='89' fill='var(--text)' font-size='12' font-weight='700' text-anchor='middle'>统一端到端</text><text x='330' y='106' fill='var(--text-soft)' font-size='9.5' text-anchor='middle'>音视频文本融合</text><rect x='430' y='64' width='140' height='42' rx='9' fill='var(--surface-2)' stroke='var(--border)' stroke-width='1.5'/><text x='500' y='89' fill='var(--text)' font-size='12' font-weight='700' text-anchor='middle'>实时全双工</text><text x='500' y='106' fill='var(--text-soft)' font-size='9.5' text-anchor='middle'>边看边听边说</text><rect x='590' y='64' width='55' height='42' rx='9' fill='var(--brand-soft)' stroke='var(--brand)' stroke-width='1.5'/><text x='617' y='89' fill='var(--text)' font-size='11' font-weight='700' text-anchor='middle'>豆包</text><line x1='185' y1='57' x2='250' y2='85' stroke='var(--text-soft)' stroke-width='1.5' marker-end='url(#ah-sd)'/><line x1='405' y1='85' x2='426' y2='85' stroke='var(--text-soft)' stroke-width='1.5' marker-end='url(#ah-sd)'/><line x1='570' y1='85' x2='587' y2='85' stroke='var(--text-soft)' stroke-width='1.5' marker-end='url(#ah-sd)'/></svg>"
+    },
+    {
+      id: "deepseek-hike",
+      week: "w8",
+      category: "ai",
+      tags: ["DeepSeek", "提价", "商业化", "API", "算力"],
+      impactScore: 82,
+      title: "DeepSeek 公告拟整体上调 API 定价，国产大模型从「价格战」转向「能力提升—商业变现」",
+      summary: "8月6日 DeepSeek 公告计划近期整体上调 API 服务定价（预计涨幅较大），此前已引入峰谷定价；标志国产低价模型进入商业化兑现期，与 w7 的永久降价叙事形成转折。",
+      what: "8月6日，DeepSeek 公告称计划近期整体上调 API 服务定价，且预计涨幅较大，具体方案尚待正式通知。此前 DeepSeek 已引入峰谷定价机制（高峰时段 API 价格为平峰 2 倍）。中信建投 8月10日研报据此指出，DeepSeek 逐步转向提价，反映国产大模型正从「能力比拼」进入「能力提升—商业变现」阶段。",
+      compare: "与 w7 收录的 DeepSeek-V4-Flash「永久降价 75%、输入 ¥1/百万、输出 ¥2/百万」形成鲜明转折：彼时是低价换渗透，此刻是渗透到位后的提价回收；与同周阿里 Qwen3.8-Max、字节 SeedRealtime 的「加码 Agent/交互」不同，DeepSeek 选择用定价杠杆兑现前期积累的全球调用量（本周登顶 OpenRouter 全球榜首）。",
+      why: "低价策略在快速做大调用规模后难以长期维持——高调用考验算力供给、服务稳定性与故障恢复，持续低价压缩利润。DeepSeek 在全球开发者中已建立份额（OpenRouter 榜首、单日用量增 30%），具备一定定价权；提价是把「流量峰值」转化为「稳定服务能力与利润」的商业必然。",
+      output: "公告发布，具体涨幅与生效时间待正式通知；已实行峰谷定价（高峰 2 倍）。业内将其与阿里扩规模、国产算力消耗上升并列为「AI 中下游景气」信号。",
+      explain: "技术解析：峰谷定价是算力供给侧的需求侧管理工具——推理集群在高峰时段（白天、工作日）利用率高、边际成本高，通过对高峰期 API 加价（2 倍）引导负载向平峰迁移，提升整体集群利用率与单位算力收益；整体提价则是把前期「以价换量」获得的用户基数与生态粘性，转化为可持续的单位经济模型，本质是从增长曲线切换到利润曲线。",
+      impact: "国产大模型集体告别「烧钱换份额」的纯价格战，进入分层定价与商业兑现期；对依赖低价 API 的创业者与中小企业，需重新核算成本并考虑多云/开源权重自部署以对冲。",
+      action: "创业者/开发者：评估峰谷定价与即将到来的提价对成本结构的影响，建立多云与开源权重（如 DeepSeek-V4 权重）自部署的弹性；投资者：关注国产模型「提价—利润—算力消耗」正循环对算力产业链的拉动。",
+      archCaption: "峰谷定价以高峰 2 倍价引导负载平移，整体提价把流量峰值转为单位经济收益，完成增长曲线向利润曲线切换。",
+      sources: [
+        { name: "网易（中信建投研报援引）", url: "https://www.163.com/dy/article/L3V36NBU0512B07B.html" },
+        { name: "新浪财经（格隆汇/中信建投）", url: "https://cj.sina.com.cn/articles/view/5115326071/130e5ae7702002yvpi" }
+      ],
+      architecture: "<svg viewBox='0 0 660 170' role='img' aria-label='DeepSeek 提价逻辑' xmlns='http://www.w3.org/2000/svg'><defs><marker id='ah-ds' markerWidth='10' markerHeight='10' refX='7.5' refY='4' orient='auto-start-reverse'><path d='M0,0 L9,4 L0,8 Z' fill='var(--text-soft)'/></marker></defs><rect x='15' y='64' width='140' height='42' rx='9' fill='var(--brand-soft)' stroke='var(--accent-ai)' stroke-width='1.5'/><text x='85' y='89' fill='var(--text)' font-size='12' font-weight='700' text-anchor='middle'>增长曲线</text><text x='85' y='106' fill='var(--text-soft)' font-size='9.5' text-anchor='middle'>以价换量</text><rect x='180' y='64' width='150' height='42' rx='9' fill='var(--surface-2)' stroke='var(--border)' stroke-width='1.5'/><text x='255' y='89' fill='var(--text)' font-size='12' font-weight='700' text-anchor='middle'>峰谷定价</text><text x='255' y='106' fill='var(--text-soft)' font-size='9.5' text-anchor='middle'>高峰 2 倍</text><rect x='345' y='64' width='150' height='42' rx='9' fill='var(--brand-soft)' stroke='var(--accent-tech)' stroke-width='1.5'/><text x='420' y='89' fill='var(--text)' font-size='12' font-weight='700' text-anchor='middle'>整体提价</text><text x='420' y='106' fill='var(--text-soft)' font-size='9.5' text-anchor='middle'>回收份额</text><rect x='520' y='64' width='125' height='42' rx='9' fill='var(--brand-soft)' stroke='var(--brand)' stroke-width='1.5'/><text x='582' y='89' fill='var(--text)' font-size='12' font-weight='700' text-anchor='middle'>利润曲线</text><text x='582' y='106' fill='var(--text-soft)' font-size='9.5' text-anchor='middle'>单位经济</text><line x1='155' y1='85' x2='176' y2='85' stroke='var(--text-soft)' stroke-width='1.5' marker-end='url(#ah-ds)'/><line x1='330' y1='85' x2='341' y2='85' stroke='var(--text-soft)' stroke-width='1.5' marker-end='url(#ah-ds)'/><line x1='495' y1='85' x2='516' y2='85' stroke='var(--text-soft)' stroke-width='1.5' marker-end='url(#ah-ds)'/></svg>"
+    },
+    {
+      id: "openrouter-top5",
+      week: "w8",
+      category: "ai",
+      tags: ["OpenRouter", "国产模型", "调用榜", "DeepSeek", "生态"],
+      impactScore: 88,
+      title: "国产大模型包揽 OpenRouter 全球周度调用榜前五：DeepSeek V4-Flash 登顶，改写全球 AI 调用版图",
+      summary: "8月10日科技日报援引 OpenRouter 最新周度 Token 调用榜：前五均为国产模型（DeepSeek V4-Flash 居首，小米 MiMoV2.5、腾讯 Hy3、DeepSeek V4Pro、智谱 GLM5.2 紧随），性价比驱动格局生变。",
+      what: "8月10日，科技日报报道全球模型聚合平台 OpenRouter 最新周度 Token 调用榜单出现历史性变化：前五名全部为国产大模型——DeepSeek V4-Flash 位居榜首，小米 MiMoV2.5、腾讯 Hy3、DeepSeek V4Pro、智谱 GLM5.2 依次位列第二至第五。DeepSeek V4Flash 正式版上线后单日使用量与新订阅增长约 30%，凭借突出性价比扭转全球开发者使用格局。",
+      compare: "与 w7 收录的「开放权重浪潮」趋势性判断不同，本条是量化的结构性结果：开放权重不再只是「可自部署」的卖点，而是实打实占据了全球调用量的头部；与本周 DeepSeek 拟提价（AI-3）互为因果——低价带来的份额提升，正是其获得定价权的基础。",
+      why: "国产模型的优势已从单纯参数扩展到「全链路工程能力」：以 MoE 降低激活比压缩推理成本，并以快速灰度、正式发布、接口迁移、多平台分发的速度，把技术进步迅速转化为全球开发者的实际调用。极致性价比叠加智能体需求放大，使海外开发者出于成本主动切换底座。",
+      output: "OpenRouter 周度榜前五被国产模型包揽；DeepSeek V4Flash 登顶、单日用量与订阅增约 30%；带动国产推理芯片、服务器、存储等基础设施需求。",
+      explain: "技术解析：OpenRouter 作为统一 API 聚合层，其 Token 调用量近似反映全球开发者的真实选型偏好（而非榜单分数）。国产模型包揽前五的核心机制是 MoE——通过仅激活少数专家（低激活比）在百万级上下文、推理、工具调用与低价格间取得平衡，使「每美元智能」显著高于闭源旗舰；小米 MiMoV2.5（多模态）、腾讯 Hy3（代码）、智谱 GLM5.2（推理）则在细分方向互补，共同构成性价比矩阵。",
+      impact: "全球 AI 调用版图被重写：中国开放权重模型从「跟随」变为「被主动采用」，对闭源厂商形成价格与生态双重压力，并为国产推理算力与工具链创造真实场景。",
+      action: "开发者：评估以国产高性价比模型替代部分闭源调用以降本；企业：借 OpenRouter 一类聚合层做多模型灰度，规避单供应商锁定；研究者：关注「低价 API→生态→合规交付」能否把价格优势固化为长期壁垒。",
+      archCaption: "MoE 低激活比压低每美元智能，国产模型以性价比矩阵占据全球调用头部，改写选型版图。",
+      sources: [
+        { name: "经济日报/科技日报（中国人大网转）", url: "https://www.ce.cn/xwzx/gnsz/gdxw/202608/t20260810_3137480.shtml" },
+        { name: "证券时报（八周五连发）", url: "https://www.stcn.com/article/detail/4066017.html" }
+      ],
+      architecture: "<svg viewBox='0 0 660 170' role='img' aria-label='国产模型调用榜' xmlns='http://www.w3.org/2000/svg'><defs><marker id='ah-or' markerWidth='10' markerHeight='10' refX='7.5' refY='4' orient='auto-start-reverse'><path d='M0,0 L9,4 L0,8 Z' fill='var(--text-soft)'/></marker></defs><rect x='15' y='64' width='150' height='42' rx='9' fill='var(--brand-soft)' stroke='var(--accent-ai)' stroke-width='1.5'/><text x='90' y='89' fill='var(--text)' font-size='12' font-weight='700' text-anchor='middle'>国产 MoE</text><text x='90' y='106' fill='var(--text-soft)' font-size='9.5' text-anchor='middle'>低激活比</text><rect x='180' y='64' width='150' height='42' rx='9' fill='var(--surface-2)' stroke='var(--border)' stroke-width='1.5'/><text x='255' y='89' fill='var(--text)' font-size='12' font-weight='700' text-anchor='middle'>性价比矩阵</text><text x='255' y='106' fill='var(--text-soft)' font-size='9.5' text-anchor='middle'>细分互补</text><rect x='345' y='64' width='150' height='42' rx='9' fill='var(--brand-soft)' stroke='var(--accent-tech)' stroke-width='1.5'/><text x='420' y='89' fill='var(--text)' font-size='12' font-weight='700' text-anchor='middle'>OpenRouter</text><text x='420' y='106' fill='var(--text-soft)' font-size='9.5' text-anchor='middle'>聚合层</text><rect x='520' y='64' width='125' height='42' rx='9' fill='var(--brand-soft)' stroke='var(--brand)' stroke-width='1.5'/><text x='582' y='89' fill='var(--text)' font-size='12' font-weight='700' text-anchor='middle'>全球榜首</text><text x='582' y='106' fill='var(--text-soft)' font-size='9.5' text-anchor='middle'>调用改写</text><line x1='165' y1='85' x2='176' y2='85' stroke='var(--text-soft)' stroke-width='1.5' marker-end='url(#ah-or)'/><line x1='330' y1='85' x2='341' y2='85' stroke='var(--text-soft)' stroke-width='1.5' marker-end='url(#ah-or)'/><line x1='495' y1='85' x2='516' y2='85' stroke='var(--text-soft)' stroke-width='1.5' marker-end='url(#ah-or)'/></svg>"
+    },
+    {
+      id: "gpt5-turbo",
+      week: "w8",
+      category: "ai",
+      tags: ["OpenAI", "GPT-5 Turbo", "速度优化", "成本", "生产部署"],
+      impactScore: 84,
+      title: "OpenAI 推出 GPT-5 Turbo：约 3 倍吞吐、60% 成本的速度优化档，主攻高并发生产部署",
+      summary: "8月初 OpenAI 发布 GPT-5 Turbo，定位速度优化档：较标准 GPT-5 约 3 倍 token 吞吐、60% 单价，500-token 完成中位时延从 4.2s 降至 1.4s，主攻实时聊天与高流量生产场景。",
+      what: "8月初，OpenAI 发布 GPT-5 Turbo，定位为 GPT-5 的速度优化变体：相较标准 GPT-5 提供约 3 倍 tokens/秒吞吐、约 60% 的每百万 token 成本；在 500-token 完成的场景，中位响应时延从 4.2 秒降至 1.4 秒。其复杂多步推理略低于标准版，但在聊天、摘要、内容生成、客服自动化等生产场景几乎无感。上下文 128K，输入 $0.60/百万、输出 $1.80/百万。",
+      compare: "与本周国产模型的「参数/ Agent/性价比」叙事不同，GPT-5 Turbo 体现的是成熟市场的「推理效率竞争」——不再堆参数，而是比服务端的吞吐、时延与单位成本；与 Anthropic Claude 5 Sonnet（复杂推理旗舰）、Haiku 4.5（超小模型）形成 OpenAI/Anthropic 各自的「快—准」分层。",
+      why: "前沿模型能力趋于饱和后，竞争重心从「更强」转向「更便宜更快更稳」。对高流量应用，时延与成本直接决定用户体验与单位经济；OpenAI 用同一底座调度出速度档，覆盖此前被更小模型占据的生产流量，是商业化精细化的必然。",
+      output: "GPT-5 Turbo 已上线 API；同期 OpenAI 于 7月30日对 GPT-5.6 系列降价（Luna -80%、Terra -20%）并推出 API「快速模式」（最高 2.5× 提速），整体进入价格/时延双优化周期。",
+      explain: "技术解析：Turbo 类变体通常通过对底座做推理侧优化（更激进的批处理、KV 缓存复用、量化与调度策略）而非改变模型权重来提升吞吐与降时延，并以略牺牲复杂推理上限换取生产可用性。其价值在于「规模经济」——在海量中等复杂度请求上，3× 吞吐意味着同等集群服务 3 倍流量，单位成本随之摊薄，是典型的基础设施层竞争而非算法突破。",
+      impact: "加速大模型服务从「模型能力竞争」转向「推理工程与成本竞争」，进一步压缩中小开发者的自托管动机，并给闭源阵营在「性价比」维度补上短板以对抗国产低价模型。",
+      action: "开发者：把高流量、低复杂度的生产流量路由到 Turbo 类速度档以降成本提体验；架构师：建立按任务复杂度分层路由（快档/准档）的模型网关；投资者：关注推理侧优化（芯片、调度、缓存）带来的降本红利。",
+      archCaption: "推理侧优化（批处理/KV 缓存/量化/调度）把吞吐与时延做厚，以规模经济摊薄单位成本，而非改权重。",
+      sources: [
+        { name: "SkyCrumbs（August 2026 模型排名）", url: "https://skycrumbs.com/blog/ai-models-august-2026" },
+        { name: "OpenAI 官方发布说明（7/30 降价与快速模式）", url: "https://openai.com/id-ID/products/release-notes/" }
+      ],
+      architecture: "<svg viewBox='0 0 660 170' role='img' aria-label='GPT-5 Turbo 推理优化' xmlns='http://www.w3.org/2000/svg'><defs><marker id='ah-gt' markerWidth='10' markerHeight='10' refX='7.5' refY='4' orient='auto-start-reverse'><path d='M0,0 L9,4 L0,8 Z' fill='var(--text-soft)'/></marker></defs><rect x='15' y='64' width='150' height='42' rx='9' fill='var(--brand-soft)' stroke='var(--accent-ai)' stroke-width='1.5'/><text x='90' y='89' fill='var(--text)' font-size='12' font-weight='700' text-anchor='middle'>推理优化</text><text x='90' y='106' fill='var(--text-soft)' font-size='9.5' text-anchor='middle'>批处理/KV/量化</text><rect x='180' y='64' width='150' height='42' rx='9' fill='var(--surface-2)' stroke='var(--border)' stroke-width='1.5'/><text x='255' y='89' fill='var(--text)' font-size='12' font-weight='700' text-anchor='middle'>3× 吞吐</text><text x='255' y='106' fill='var(--text-soft)' font-size='9.5' text-anchor='middle'>时延 4.2→1.4s</text><rect x='345' y='64' width='150' height='42' rx='9' fill='var(--brand-soft)' stroke='var(--accent-tech)' stroke-width='1.5'/><text x='420' y='89' fill='var(--text)' font-size='12' font-weight='700' text-anchor='middle'>生产流量</text><text x='420' y='106' fill='var(--text-soft)' font-size='9.5' text-anchor='middle'>路由快档</text><rect x='520' y='64' width='125' height='42' rx='9' fill='var(--brand-soft)' stroke='var(--brand)' stroke-width='1.5'/><text x='582' y='89' fill='var(--text)' font-size='12' font-weight='700' text-anchor='middle'>成本摊薄</text><text x='582' y='106' fill='var(--text-soft)' font-size='9.5' text-anchor='middle'>规模经济</text><line x1='165' y1='85' x2='176' y2='85' stroke='var(--text-soft)' stroke-width='1.5' marker-end='url(#ah-gt)'/><line x1='330' y1='85' x2='341' y2='85' stroke='var(--text-soft)' stroke-width='1.5' marker-end='url(#ah-gt)'/><line x1='495' y1='85' x2='516' y2='85' stroke='var(--text-soft)' stroke-width='1.5' marker-end='url(#ah-gt)'/></svg>"
+    },
+    {
+      id: "whitehouse-openweight",
+      week: "w8",
+      category: "ai",
+      tags: ["AI治理", "开放权重", "安全测试", "美国", "政策"],
+      impactScore: 80,
+      title: "白宫豁免开放权重模型接受自愿安全测试，监管重心转向闭源前沿",
+      summary: "8月4日美方告知 OpenAI/Anthropic/Google/Meta/Nvidia：自愿性发布前 AI 安全测试将聚焦具备尖端网络能力的闭源前沿模型，Meta 的 Llama、Nvidia 的 Nemotron 等开放权重系统免于同等审查。",
+      what: "8月4日，据多家媒体，特朗普政府官员告知 OpenAI、Anthropic、Google、Meta 与 Nvidia：即将落地的自愿性发布前 AI 安全测试（依 6月2日行政令）将针对「具备尖端网络能力的闭源前沿模型」，而不会把 Meta 的 Llama 系列、Nvidia 的 Nemotron 等开放权重系统纳入同等审查。与此同时，白宫于 8月3日完成自愿前沿 AI 评估框架，并邀请主要实验室周二赴白宫会谈。",
+      compare: "与 w7 收录的「开放权重浪潮」（产业侧开源扩散）形成政策呼应：监管侧也正式区分「闭源前沿」与「开放权重」，前者受更严审查、后者获得更大释放空间；这与欧盟 AI Act 同期强化透明度规则形成对比，体现美国以「竞争力优先」的治理取向。",
+      why: "开放权重模型一旦发布即不可收回，对其做发布前审查意义有限；监管资源应聚焦于真正具备双重用途风险的闭源前沿（如尖端网络攻击能力）。豁免开放权重，既降低合规摩擦、鼓励开源生态，也契合美国在大模型领域对华竞争的「创新速度」逻辑。",
+      output: "自愿前沿 AI 评估框架于 8月3日完成；8月4日明确审查范围；主要实验室受邀赴白宫会谈。此前 OpenAI、Anthropic 已披露网络评测「逃逸」至真实系统，触发本轮框架收紧。",
+      explain: "技术解析：所谓「自愿安全测试」是对模型在发布前就其网络、生物等双重用途风险做评测（如 cyber-eval、bio classifier），结果供政府参考；「开放权重豁免」的逻辑在于——权重公开后任何人都可下载，发布前审查无法阻止其传播，反而应把有限监管资源投向闭源、可控且具备尖端能力的系统。这一区分把「可审计/可复现」的开源路线从监管阻力中解脱出来。",
+      impact: "为开放权重路线提供政策确定性，利好 Meta、Nvidia 及中国开源模型（Kimi K3、DeepSeek、Qwen）的全球采用；同时把安全审查压力集中于闭源前沿，可能加速闭源厂商的合规工具（如 Anthropic 治理面板）市场。",
+      action: "开源模型团队：把握政策窗口加速全球分发与生态建设；闭源厂商：提前准备 cyber/bio 双重用途评测与治理审计能力；合规从业者：关注美欧监管分化下的跨境合规策略。",
+      archCaption: "监管按「闭源前沿 vs 开放权重」二分：前者受 cyber/bio 双重用途评测，后者因不可收回而豁免。",
+      sources: [
+        { name: "Times of AI（White House Exempts Open-Weight Models）", url: "https://timesof.ai/" }
+      ],
+      architecture: "<svg viewBox='0 0 660 170' role='img' aria-label='AI 监管二分' xmlns='http://www.w3.org/2000/svg'><defs><marker id='ah-wh' markerWidth='10' markerHeight='10' refX='7.5' refY='4' orient='auto-start-reverse'><path d='M0,0 L9,4 L0,8 Z' fill='var(--text-soft)'/></marker></defs><rect x='15' y='40' width='180' height='34' rx='8' fill='var(--surface-2)' stroke='var(--border)' stroke-width='1.5'/><text x='105' y='62' fill='var(--text-soft)' font-size='11' text-anchor='middle'>监管二分框架</text><rect x='15' y='90' width='290' height='42' rx='9' fill='var(--brand-soft)' stroke='var(--accent-ai)' stroke-width='1.5'/><text x='160' y='115' fill='var(--text)' font-size='12' font-weight='700' text-anchor='middle'>闭源前沿模型</text><text x='160' y='132' fill='var(--text-soft)' font-size='9.5' text-anchor='middle'>cyber/bio 双重用途评测</text><rect x='345' y='90' width='300' height='42' rx='9' fill='var(--surface-2)' stroke='var(--border)' stroke-width='1.5'/><text x='495' y='115' fill='var(--text)' font-size='12' font-weight='700' text-anchor='middle'>开放权重模型</text><text x='495' y='132' fill='var(--text-soft)' font-size='9.5' text-anchor='middle'>不可收回 → 豁免同等审查</text><line x1='105' y1='74' x2='160' y2='90' stroke='var(--text-soft)' stroke-width='1.5' marker-end='url(#ah-wh)'/><line x1='105' y1='74' x2='495' y2='90' stroke='var(--text-soft)' stroke-width='1.5' marker-end='url(#ah-wh)'/></svg>"
+    },
+    {
+      id: "long8a-sat23",
+      week: "w8",
+      category: "tech",
+      tags: ["长征八号甲", "卫星互联网", "商业航天", "海南", "直达快车"],
+      impactScore: 85,
+      title: "长八甲火箭完成升级后首飞，成功发射卫星互联网低轨 23 组卫星并实现「直达快车」",
+      summary: "8月4日长征八号甲在海南商业航天发射场成功发射卫星互联网低轨 23 组卫星，完成性能升级后首次全系统验证飞行，首次实现「直达快车」功能，节省卫星数月升轨时间。",
+      what: "北京时间 8月4日16时52分，中国在海南商业航天发射场使用长征八号甲运载火箭，成功将卫星互联网低轨 23 组卫星发射升空，卫星顺利进入预定轨道。本次任务是长八甲完成性能完整升级后的首次全系统验证飞行，首次实现「直达快车」功能，节省卫星数月的升轨时间；测发效率显著提升。这是长征系列第 661 次飞行，卫星由航天科技集团五院抓总研制。",
+      compare: "与 w7 收录的「天链三号 01 星」（中继通信）任务性质不同，本项是低轨星座组网发射，更直接服务于卫星互联网宽带覆盖；与本周捷龙三号海上发射（科技-2）相比，长八甲依托海南商业航天发射场固定工位、承担大载荷组网主力，捷龙三号则是海上机动发射高光谱遥感小卫星。",
+      why: "卫星互联网需要高频次、大载荷、批量化的组网发射，传统「发射—缓慢升轨」模式拖慢星座部署节奏。「直达快车」通过优化轨道设计与上面级，让卫星更快进入工作轨道，缩短从发射到服务的周期，是支撑千帆/国网等低轨星座快速铺开的关键工程能力。",
+      output: "长八甲升级后首飞成功；卫星互联网低轨 23 组入轨；「直达快车」节省数月升轨时间；验证多项关键技术、测发效率提升；长征系列第 661 次飞行。",
+      explain: "技术解析：低轨星座卫星通常由火箭送入一个较低的转移轨道，再靠自身电推慢慢升轨到工作轨道（耗时数月）。「直达快车」通过火箭上面级直接把卫星送入更接近工作轨道的高度（或更优相位），大幅压缩卫星自带推进的升轨耗时与燃料消耗，等于把「升空到服务」的等待期从季度级压到更短；同时固定工位的流程优化（测发效率提升）支撑高密度发射节奏。",
+      impact: "为后续高密度、大载荷、批量化低轨组网发射提供坚实运载支撑，加速我国卫星互联网从试验走向规模服务，并强化海南商业航天发射场的枢纽地位。",
+      action: "产业观察者：跟踪低轨星座组网节奏与商业航天发射频次；投资者：关注卫星制造、星载载荷与商业发射服务的订单兑现；通信从业者：评估低轨宽带对地面网络的补充与竞合。",
+      archCaption: "上面级「直达快车」把卫星直接送入近工作轨道，压缩电推升轨耗时与燃料，加速星座组网。",
+      sources: [
+        { name: "中国新闻网（今日头条）", url: "https://www.toutiao.com/article/7670150885871256064" },
+        { name: "央视新闻", url: "https://big5.cctv.com/gate/big5/news.cctv.com/2026/08/04/ARTIl31Y3geKr1V36f4prtsX260804.shtml" }
+      ],
+      architecture: "<svg viewBox='0 0 660 170' role='img' aria-label='长八甲 直达快车' xmlns='http://www.w3.org/2000/svg'><defs><marker id='ah-l8' markerWidth='10' markerHeight='10' refX='7.5' refY='4' orient='auto-start-reverse'><path d='M0,0 L9,4 L0,8 Z' fill='var(--text-soft)'/></marker></defs><rect x='15' y='64' width='150' height='42' rx='9' fill='var(--brand-soft)' stroke='var(--accent-tech)' stroke-width='1.5'/><text x='90' y='89' fill='var(--text)' font-size='12' font-weight='700' text-anchor='middle'>火箭上面级</text><text x='90' y='106' fill='var(--text-soft)' font-size='9.5' text-anchor='middle'>轨道优化</text><rect x='180' y='64' width='150' height='42' rx='9' fill='var(--surface-2)' stroke='var(--border)' stroke-width='1.5'/><text x='255' y='89' fill='var(--text)' font-size='12' font-weight='700' text-anchor='middle'>直达快车</text><text x='255' y='106' fill='var(--text-soft)' font-size='9.5' text-anchor='middle'>近工作轨道</text><rect x='345' y='64' width='150' height='42' rx='9' fill='var(--brand-soft)' stroke='var(--accent-ai)' stroke-width='1.5'/><text x='420' y='89' fill='var(--text)' font-size='12' font-weight='700' text-anchor='middle'>卫星省升轨</text><text x='420' y='106' fill='var(--text-soft)' font-size='9.5' text-anchor='middle'>燃料/时间↓</text><rect x='520' y='64' width='125' height='42' rx='9' fill='var(--brand-soft)' stroke='var(--brand)' stroke-width='1.5'/><text x='582' y='89' fill='var(--text)' font-size='12' font-weight='700' text-anchor='middle'>快速组网</text><text x='582' y='106' fill='var(--text-soft)' font-size='9.5' text-anchor='middle'>星座铺开</text><line x1='165' y1='85' x2='176' y2='85' stroke='var(--text-soft)' stroke-width='1.5' marker-end='url(#ah-l8)'/><line x1='330' y1='85' x2='341' y2='85' stroke='var(--text-soft)' stroke-width='1.5' marker-end='url(#ah-l8)'/><line x1='495' y1='85' x2='516' y2='85' stroke='var(--text-soft)' stroke-width='1.5' marker-end='url(#ah-l8)'/></svg>"
+    },
+    {
+      id: "jielong3-gaofen",
+      week: "w8",
+      category: "tech",
+      tags: ["捷龙三号", "海上发射", "高光谱", "东方慧眼", "遥感"],
+      impactScore: 82,
+      title: "捷龙三号海上发射成功，将东方慧眼高光谱 01、02 星送入预定轨道",
+      summary: "8月5日太原卫星发射中心在山东海阳附近海域用捷龙三号成功发射东方慧眼高光谱 01、02 星，这是捷龙三号第 12 次飞行，拓展高光谱遥感能力。",
+      what: "北京时间 8月5日10时38分，我国太原卫星发射中心在山东海阳附近海域使用捷龙三号运载火箭，成功将东方慧眼高光谱 01、02 星发射升空，卫星顺利进入预定轨道，任务取得圆满成功。此次任务是捷龙三号运载火箭的第 12 次飞行。",
+      compare: "与同周长八甲（固定工位、大载荷组网）形成「机动+固定」互补：捷龙三号依托海上平台，可贴近赤道/特定海域发射以优化倾角、提升运载效率，适合中小卫星与应急发射；与 w7 天链三号（中继）不同，东方慧眼是高光谱对地观测，面向农业、环境、资源等遥感应用。",
+      why: "海上发射打破固定发射场对轨道倾角的限制，并能利用更大整流罩与更灵活射向，提升任务适应性；高光谱卫星能获取连续细分光谱，对地表物质成分识别（如作物长势、水体污染、矿物分布）远优于普通多光谱，是遥感从「看形状」到「识成分」的关键升级。",
+      output: "东方慧眼高光谱 01、02 星入轨；捷龙三号第 12 次飞行成功；海上发射体系成熟度进一步提升。",
+      explain: "技术解析：高光谱成像在可见光—近红外等波段上以极窄带宽（常数十至数百个通道）连续采样，使每个像元自带「光谱指纹」，可反演地物化学成分（叶绿素、含水量、矿物种类）。海上发射则将火箭与卫星运到机动平台，在公海择机发射，既避开陆上落区限制、又能通过低纬度海域发射借地球自转增速、提高有效载荷；捷龙三号作为固体运载火箭，准备周期短、适合高频次机动任务。",
+      impact: "强化我国高光谱遥感与海上机动发射双重能力，提升对地精细观测与快速响应水平，为农业估产、生态监测、资源勘探与灾害应急提供更密的数据源。",
+      action: "遥感应用方：评估高光谱数据在行业场景的替代/增强价值；航天从业者：关注海上发射常态化对发射服务市场的重构；投资者：跟踪固体火箭与海上平台产业链。",
+      archCaption: "海上机动发射借低纬增速并解落区约束；高光谱以连续窄带采样获取地物「光谱指纹」识别成分。",
+      sources: [
+        { name: "腾讯新闻（东方慧眼高光谱）", url: "https://new.qq.com/rain/a/20260805A05XL900" }
+      ],
+      architecture: "<svg viewBox='0 0 660 170' role='img' aria-label='捷龙三号海上发射' xmlns='http://www.w3.org/2000/svg'><defs><marker id='ah-jl' markerWidth='10' markerHeight='10' refX='7.5' refY='4' orient='auto-start-reverse'><path d='M0,0 L9,4 L0,8 Z' fill='var(--text-soft)'/></marker></defs><rect x='15' y='64' width='150' height='42' rx='9' fill='var(--brand-soft)' stroke='var(--accent-tech)' stroke-width='1.5'/><text x='90' y='89' fill='var(--text)' font-size='12' font-weight='700' text-anchor='middle'>海上平台</text><text x='90' y='106' fill='var(--text-soft)' font-size='9.5' text-anchor='middle'>低纬增速</text><rect x='180' y='64' width='150' height='42' rx='9' fill='var(--surface-2)' stroke='var(--border)' stroke-width='1.5'/><text x='255' y='89' fill='var(--text)' font-size='12' font-weight='700' text-anchor='middle'>捷龙三号</text><text x='255' y='106' fill='var(--text-soft)' font-size='9.5' text-anchor='middle'>固体机动</text><rect x='345' y='64' width='150' height='42' rx='9' fill='var(--brand-soft)' stroke='var(--accent-ai)' stroke-width='1.5'/><text x='420' y='89' fill='var(--text)' font-size='12' font-weight='700' text-anchor='middle'>高光谱卫星</text><text x='420' y='106' fill='var(--text-soft)' font-size='9.5' text-anchor='middle'>入轨</text><rect x='520' y='64' width='125' height='42' rx='9' fill='var(--brand-soft)' stroke='var(--brand)' stroke-width='1.5'/><text x='582' y='89' fill='var(--text)' font-size='12' font-weight='700' text-anchor='middle'>成分识别</text><text x='582' y='106' fill='var(--text-soft)' font-size='9.5' text-anchor='middle'>光谱指纹</text><line x1='165' y1='85' x2='176' y2='85' stroke='var(--text-soft)' stroke-width='1.5' marker-end='url(#ah-jl)'/><line x1='330' y1='85' x2='341' y2='85' stroke='var(--text-soft)' stroke-width='1.5' marker-end='url(#ah-jl)'/><line x1='495' y1='85' x2='516' y2='85' stroke='var(--text-soft)' stroke-width='1.5' marker-end='url(#ah-jl)'/></svg>"
+    },
+    {
+      id: "origin-psecz",
+      week: "w8",
+      category: "tech",
+      tags: ["本源量子", "超导量子", "PSE-CZ", "量子门", "保真度"],
+      impactScore: 92,
+      title: "本源量子联合中科大提出 PSE-CZ 方案，破解超导量子「速度—保真度」长期瓶颈",
+      summary: "8月7日科技日报报道，本源量子与中国科大提出「参数空间扩展受控相位门(PSE-CZ)」，在 30–40 纳秒极短门长下兼顾高速与高保真，成果发表于《物理评论快报》，于「本源悟空」验证。",
+      what: "8月7日，科技日报报道安徽省量子计算芯片重点实验室消息：本源量子与中国科学技术大学联合团队提出「参数空间扩展受控相位门（PSE-CZ）」方案，破解超导量子计算长期存在的「速度—保真度相互制约」难题，使两比特量子门在保持高速的同时大幅提升精度。成果发表于《物理评论快报》，在国产超导量子计算机「本源悟空」上完成验证，20 对两比特门测试显示在 30–40 纳秒极短门长下仍优于传统 CZ 门。",
+      compare: "与 w7 收录的「九章四号 3050 光子」（光量子路线、采样优越性）、「IonQ 离子阱量产」（离子阱路线）属于不同技术路线；本项是超导量子路线在「逻辑门底层操作」的核心突破，直接提升门保真度与速度，是迈向容错量子计算的底层基石，而非某条路线整机展示。",
+      why: "量子计算机靠量子门完成基础运算，但门操作越快、波形失真与时序偏差越大、精度越降；放慢保精度又拖累整机效率——这一矛盾长期制约超导路线。PSE-CZ 不延长脉冲时间，而是把脉冲中间失谐量拆为两个独立可调参数（新增一枚「调节旋钮」），同步纠正泄漏与相位两类误差，兼顾速度与精度。",
+      output: "PSE-CZ 方案发表于《物理评论快报》；依托「本源悟空」验证 20 对两比特门；30–40 纳秒门长下性能接近退相干极限，优于传统 CZ；方案可推广至离子阱、固态自旋等多平台。",
+      explain: "技术解析：受控相位门（CZ）是两比特量子逻辑的核心门，其保真度直接决定线路深度上限。传统 CZ 靠单个失谐参数控制，快门长下脉冲畸变引发相干误差与泄漏。PSE-CZ 的「参数空间扩展」把中间失谐拆成两个可调维度，相当于在控制哈密顿量上增加独立旋钮，使系统能同时补偿「泄漏误差」（态逃出计算子空间）与「相位误差」（门角度偏差），无需拉长脉冲即可逼近理论极限——这是从「含噪声中等规模（NISQ）」走向容错的关键一步。",
+      impact: "标志我国超导量子核心操作技术跻身全球第一梯队，为大规模比特协同运算扫清重要障碍，提升新药模拟、材料、密码等复杂场景的实用化预期，并基于国产软硬件平台验证、不依赖海外测控。",
+      action: "量子软件研究者：在新门保真度下重估可运行算法深度；产业界：关注高保真门对纠错码阈值的影响；投资者：跟踪超导量子测控与芯片自主链的成熟度。",
+      archCaption: "PSE-CZ 把中间失谐拆为双可调参数，在不延长脉冲下同步补偿泄漏与相位误差，逼近门理论极限。",
+      sources: [
+        { name: "科技日报（今日头条）", url: "https://www.toutiao.com/article/7671283375939797554" },
+        { name: "腾讯新闻（中国新闻网）", url: "https://new.qq.com/rain/a/20260808A0B9S300" }
+      ],
+      architecture: "<svg viewBox='0 0 660 170' role='img' aria-label='PSE-CZ 量子门' xmlns='http://www.w3.org/2000/svg'><defs><marker id='ah-pc' markerWidth='10' markerHeight='10' refX='7.5' refY='4' orient='auto-start-reverse'><path d='M0,0 L9,4 L0,8 Z' fill='var(--text-soft)'/></marker></defs><rect x='15' y='64' width='150' height='42' rx='9' fill='var(--surface-2)' stroke='var(--border)' stroke-width='1.5'/><text x='90' y='89' fill='var(--text)' font-size='12' font-weight='700' text-anchor='middle'>传统 CZ</text><text x='90' y='106' fill='var(--text-soft)' font-size='9.5' text-anchor='middle'>速度↔精度矛盾</text><rect x='180' y='64' width='150' height='42' rx='9' fill='var(--brand-soft)' stroke='var(--accent-tech)' stroke-width='1.5'/><text x='255' y='89' fill='var(--text)' font-size='12' font-weight='700' text-anchor='middle'>PSE-CZ</text><text x='255' y='106' fill='var(--text-soft)' font-size='9.5' text-anchor='middle'>双参数旋钮</text><rect x='345' y='64' width='150' height='42' rx='9' fill='var(--brand-soft)' stroke='var(--accent-ai)' stroke-width='1.5'/><text x='420' y='89' fill='var(--text)' font-size='12' font-weight='700' text-anchor='middle'>同步补偿</text><text x='420' y='106' fill='var(--text-soft)' font-size='9.5' text-anchor='middle'>泄漏+相位</text><rect x='520' y='64' width='125' height='42' rx='9' fill='var(--brand-soft)' stroke='var(--brand)' stroke-width='1.5'/><text x='582' y='89' fill='var(--text)' font-size='12' font-weight='700' text-anchor='middle'>高速高保真</text><text x='582' y='106' fill='var(--text-soft)' font-size='9.5' text-anchor='middle'>门极限</text><line x1='165' y1='85' x2='176' y2='85' stroke='var(--text-soft)' stroke-width='1.5' marker-end='url(#ah-pc)'/><line x1='330' y1='85' x2='341' y2='85' stroke='var(--text-soft)' stroke-width='1.5' marker-end='url(#ah-pc)'/><line x1='495' y1='85' x2='516' y2='85' stroke='var(--text-soft)' stroke-width='1.5' marker-end='url(#ah-pc)'/></svg>"
+    },
+    {
+      id: "ibm-qadv",
+      week: "w8",
+      category: "tech",
+      tags: ["IBM", "量子优势", "Heron R3", "误差缓解", "可验证"],
+      impactScore: 87,
+      title: "IBM 三项独立实验基于 Heron R3 实现「可验证量子优势」，拉来「富岳」超算做裁判",
+      summary: "8月3日澎湃报道，IBM 联合多家机构在三项独立实验中基于 Heron R3 超导系统并辅以新型误差缓解实现量子优势，并用日本「富岳」超算交叉验证结果一致性。",
+      what: "8月3日，澎湃新闻报道 IBM 联合多家机构，在三项独立实验中基于最新 Quantum Heron R3 超导量子系统并配合新型误差缓解技术，展示并验证了量子计算相对经典的优势。三项实验分别以 Floquet 横场伊辛模型（与 Qedma、与 Algorithmiq 合作）及一种由 Clifford+T 门构成的新型线路（与芝加哥大学合作）为对象，在逐步加大问题规模后，经典计算出现结果不一致或无法模拟，而量子系统保持稳定可信输出。",
+      compare: "与同周本源量子 PSE-CZ（底层门操作突破）互补：IBM 这条线聚焦「整机优势验证方法论」——强调可验证性（拉来富岳超算做裁判、主动加噪测试），而非单纯速度；与 w7 九章四号（光量子采样优越性）相比，IBM 用的是超导路线且在更通用的计算任务上证明优势。",
+      why: "过去多次「量子优势」声明后被新经典算法反超，可信度受质疑。IBM 这组的突破点在于「可验证」：换不同硬件/噪声条件仍得一致结果，并用顶级超算做独立校验，证明误差缓解技术确实能兜住底，使优势从「炫技」转向「可信赖的实用验证」。",
+      output: "三项独立实验基于 Heron R3 完成；IBM 与 Qedma、Algorithmiq、芝加哥大学分别合作；以富岳超算验证量子—经典结果一致后逐步加压至经典极限。",
+      explain: "技术解析：量子优势的核心是「在某类任务上量子比经典更快/更省/更准」。IBM 的增量价值在验证方法——新型误差缓解通过在测量与后处理中建模噪声、把含噪结果「拉回」到无噪期望值，使有限规模量子机也能产出可信结论；再以富岳超算在可模拟规模内逐点交叉验证，确认量子输出正确后，才在超算失效的规模宣布优势。这种「先对账、再加码」的严谨性是本次的关键。",
+      impact: "推动量子优势从「速度比拼」转向「可验证实用」，增强产业与政府对量子实用化的信心；但也提示当前优势仍限于特定物理模型，通用容错仍是终极攻坚。",
+      action: "科研管理者：以「可验证性」为标准重审量子优势声明；企业：关注误差缓解技术对近期含噪设备的实用价值；投资者：区分「演示优势」与「通用容错」的真实距离。",
+      archCaption: "新型误差缓解拉回含噪结果，再以富岳超算逐点对账后加压至经典极限，使优势可验证。",
+      sources: [
+        { name: "澎湃新闻", url: "https://www.toutiao.com/article/7669593575466598918/" }
+      ],
+      architecture: "<svg viewBox='0 0 660 170' role='img' aria-label='IBM 可验证量子优势' xmlns='http://www.w3.org/2000/svg'><defs><marker id='ah-ib' markerWidth='10' markerHeight='10' refX='7.5' refY='4' orient='auto-start-reverse'><path d='M0,0 L9,4 L0,8 Z' fill='var(--text-soft)'/></marker></defs><rect x='15' y='64' width='150' height='42' rx='9' fill='var(--brand-soft)' stroke='var(--accent-tech)' stroke-width='1.5'/><text x='90' y='89' fill='var(--text)' font-size='12' font-weight='700' text-anchor='middle'>含噪量子</text><text x='90' y='106' fill='var(--text-soft)' font-size='9.5' text-anchor='middle'>Heron R3</text><rect x='180' y='64' width='150' height='42' rx='9' fill='var(--surface-2)' stroke='var(--border)' stroke-width='1.5'/><text x='255' y='89' fill='var(--text)' font-size='12' font-weight='700' text-anchor='middle'>误差缓解</text><text x='255' y='106' fill='var(--text-soft)' font-size='9.5' text-anchor='middle'>拉回无噪</text><rect x='345' y='64' width='150' height='42' rx='9' fill='var(--brand-soft)' stroke='var(--accent-ai)' stroke-width='1.5'/><text x='420' y='89' fill='var(--text)' font-size='12' font-weight='700' text-anchor='middle'>富岳对账</text><text x='420' y='106' fill='var(--text-soft)' font-size='9.5' text-anchor='middle'>逐点校验</text><rect x='520' y='64' width='125' height='42' rx='9' fill='var(--brand-soft)' stroke='var(--brand)' stroke-width='1.5'/><text x='582' y='89' fill='var(--text)' font-size='12' font-weight='700' text-anchor='middle'>加压极限</text><text x='582' y='106' fill='var(--text-soft)' font-size='9.5' text-anchor='middle'>优势可验证</text><line x1='165' y1='85' x2='176' y2='85' stroke='var(--text-soft)' stroke-width='1.5' marker-end='url(#ah-ib)'/><line x1='330' y1='85' x2='341' y2='85' stroke='var(--text-soft)' stroke-width='1.5' marker-end='url(#ah-ib)'/><line x1='495' y1='85' x2='516' y2='85' stroke='var(--text-soft)' stroke-width='1.5' marker-end='url(#ah-ib)'/></svg>"
+    },
+    {
+      id: "pku-memristor",
+      week: "w8",
+      category: "tech",
+      tags: ["北大", "相变忆阻器", "神经动力学", "存内计算", "类脑"],
+      impactScore: 89,
+      title: "北大研制全球首款相变忆阻器神经动力学芯片，登《科学》，较 A100 提速最高 478 倍",
+      summary: "8月4日报道，北京大学杨玉超团队联合中科院上海微系统所研制全球首款基于相变忆阻器的神经动力学系统芯片（40nm），脑皮层重建任务较英伟达 A100 提速最高 478 倍、功耗降 11–24 倍，成果发表于《科学》。",
+      what: "8月4日，驱动之家等报道北京大学杨玉超团队联合中科院上海微系统所成功研制全球首款基于相变忆阻器的神经动力学系统芯片，成果发表于《科学》。该芯片采用 40nm 工艺，在脑皮层重建任务中较英伟达 A100 提速最高 478 倍、功耗降低 11 至 24 倍，有望用于脑机接口与神经退行性疾病研究。",
+      compare: "与 w7 收录的玻色量子 CFD（专用量子机做组合优化）、九章四号（光量子采样）不同，本条是「存内计算/类脑」路线的突破——用忆阻器的物理特性直接在存储单元完成运算，规避冯·诺依曼架构的「存储墙」；与 GPU（A100）相比，它不是通用算力，而是在特定动力学任务上以物理仿真换取极致能效。",
+      why: "传统算力受「内存墙」制约：数据在存储与计算单元间搬运消耗大量能耗与时延。忆阻器（阻变存储器）的 conductance 可编码权重，且其固有动力学天然适合求解微分方程/神经动力学问题——把「计算」下沉到「器件物理」，实现存算一体，对脑仿真、边缘智能等「物理对齐」任务有数量级能效优势。",
+      output: "全球首款相变忆阻器神经动力学芯片研制成功；40nm 工艺；脑皮层重建较 A100 提速最高 478 倍、功耗降 11–24 倍；发表于《科学》。",
+      explain: "技术解析：忆阻器的电阻态可随历史电流连续调节，天然具备「记忆+计算」二合一特性。相变材料在晶态/非晶态间切换电阻，可模拟神经元/突触的动态。该芯片把神经动力学方程的积分/演化映射到忆阻阵列的模拟运算，让物理过程本身完成计算（而非用数字电路模拟物理），从而绕开数据搬运瓶颈；40nm 工艺表明其已具备半导体量产友好的基础，非实验室单器件。",
+      impact: "为类脑计算与存算一体提供可量产路线的早期范式，对脑机接口、神经科学仿真、低功耗边缘智能具有潜在颠覆；也凸显我国在新型计算范式上的原创能力。",
+      action: "类脑/AI 芯片团队：评估忆阻存算一体在非 Von Neumann 任务的迁移；神经科学：借高效仿真加速脑动力学研究；投资者：跟踪存内计算从论文到中试的工艺成熟度。",
+      archCaption: "相变忆阻器以电阻态编码权重、用器件物理直接演化动力学方程，实现存算一体、绕开内存墙。",
+      sources: [
+        { name: "腾讯新闻（集成电路行业资讯）", url: "https://new.qq.com/rain/a/20260805A02U6900" },
+        { name: "驱动之家（腾讯新闻聚合）", url: "https://view.inews.qq.com/a/20260804A0DGS400" }
+      ],
+      architecture: "<svg viewBox='0 0 660 170' role='img' aria-label='北大忆阻器芯片' xmlns='http://www.w3.org/2000/svg'><defs><marker id='ah-pk' markerWidth='10' markerHeight='10' refX='7.5' refY='4' orient='auto-start-reverse'><path d='M0,0 L9,4 L0,8 Z' fill='var(--text-soft)'/></marker></defs><rect x='15' y='64' width='150' height='42' rx='9' fill='var(--brand-soft)' stroke='var(--accent-tech)' stroke-width='1.5'/><text x='90' y='89' fill='var(--text)' font-size='12' font-weight='700' text-anchor='middle'>忆阻阵列</text><text x='90' y='106' fill='var(--text-soft)' font-size='9.5' text-anchor='middle'>电阻态编码</text><rect x='180' y='64' width='150' height='42' rx='9' fill='var(--surface-2)' stroke='var(--border)' stroke-width='1.5'/><text x='255' y='89' fill='var(--text)' font-size='12' font-weight='700' text-anchor='middle'>物理演化</text><text x='255' y='106' fill='var(--text-soft)' font-size='9.5' text-anchor='middle'>动力学方程</text><rect x='345' y='64' width='150' height='42' rx='9' fill='var(--brand-soft)' stroke='var(--accent-ai)' stroke-width='1.5'/><text x='420' y='89' fill='var(--text)' font-size='12' font-weight='700' text-anchor='middle'>存算一体</text><text x='420' y='106' fill='var(--text-soft)' font-size='9.5' text-anchor='middle'>绕开内存墙</text><rect x='520' y='64' width='125' height='42' rx='9' fill='var(--brand-soft)' stroke='var(--brand)' stroke-width='1.5'/><text x='582' y='89' fill='var(--text)' font-size='12' font-weight='700' text-anchor='middle'>能效 478×</text><text x='582' y='106' fill='var(--text-soft)' font-size='9.5' text-anchor='middle'>较 A100</text><line x1='165' y1='85' x2='176' y2='85' stroke='var(--text-soft)' stroke-width='1.5' marker-end='url(#ah-pk)'/><line x1='330' y1='85' x2='341' y2='85' stroke='var(--text-soft)' stroke-width='1.5' marker-end='url(#ah-pk)'/><line x1='495' y1='85' x2='516' y2='85' stroke='var(--text-soft)' stroke-width='1.5' marker-end='url(#ah-pk)'/></svg>"
+    },
+    {
+      id: "cxmt-lpddr6",
+      week: "w8",
+      category: "tech",
+      tags: ["长鑫存储", "LPDDR6", "存储", "DRAM", "量产"],
+      impactScore: 83,
+      title: "长鑫存储 LPDDR6 接近研发验证尾声，国产 DRAM 有望 2026 下半年量产导入",
+      summary: "8月6日报道，长鑫存储 LPDDR6（第六代低功耗 DDR）已接近研发验证尾声、向核心客户送样，有望 2026 下半年发布并实现量产导入，呼应全球存储景气周期。",
+      what: "8月6日，21 世纪经济报道援引行业人士，长鑫存储的 LPDDR6（第六代低功耗双倍数据速率内存）已接近研发验证尾声，这是量产前的重要一步；此前 3 月已有送样消息，有望 2026 年下半年发布并实现量产导入。同期全球存储芯片已连续三季度涨价，7 月销售额达 746 亿美元创历史新高，AI 带动存储需求激增。",
+      compare: "与同周寒武纪（AI 算力芯片）、北大忆阻器（存算一体新范式）不同，本条是主流 DRAM 的国产迭代——LPDDR6 面向手机/移动与嵌入式低功耗场景，是成熟但战略关键的存储品类；与全球存储涨价周期叠加，国产替代窗口与景气周期共振。",
+      why: "AI 端侧（手机、PC、汽车、AI PC）与云端训练均拉动 DRAM/HBM 需求，全球供给偏紧推升价格；LPDDR6 作为下一代移动低功耗标准，国产及时跟进可避免在下一代规格上再次落后，并以「国产+景气」双重逻辑切入客户供应链，降低对外依赖。",
+      output: "长鑫 LPDDR6 接近研发验证尾声、已送样核心客户；有望 2026 下半年发布与量产导入；全球存储 7 月销售额 746 亿美元创历史新高、连续三季度涨价。",
+      explain: "技术解析：LPDDR（低功耗 DDR）针对移动设备优化功耗与体积，LPDDR6 在带宽、能效与密度上较 LPDDR5X 进一步抬升，是旗舰手机与 AI 终端的内存底座。其研发验证尾声意味着良率、信号完整性与协议兼容性已近量产门槛；「送样核心客户」是量产前的关键里程碑——客户验证通过即可进入供应链。存储属于强周期品，当前 AI 驱动的景气上行放大了国产导入的窗口价值。",
+      impact: "提升国产 DRAM 在下一代移动/嵌入式规格的自主能力，缓解存储对外依赖；在全球存储景气与 AI 需求共振下，国产存储导入迎来有利窗口，并拉动设备与材料本土配套。",
+      action: "终端厂商：评估长鑫 LPDDR6 送样验证与导入节奏以分散供应风险；投资者：跟踪存储超级周期与国产 DRAM 份额变化；供应链：关注配套设备/材料的本土验证机会。",
+      archCaption: "LPDDR6 接近量产门槛、送样客户验证；在 AI 驱动的存储景气周期中打开国产替代窗口。",
+      sources: [
+        { name: "21 世纪经济报道（今日头条）", url: "https://www.toutiao.com/article/7670758436371530282/" }
+      ],
+      architecture: "<svg viewBox='0 0 660 170' role='img' aria-label='长鑫 LPDDR6' xmlns='http://www.w3.org/2000/svg'><defs><marker id='ah-cx' markerWidth='10' markerHeight='10' refX='7.5' refY='4' orient='auto-start-reverse'><path d='M0,0 L9,4 L0,8 Z' fill='var(--text-soft)'/></marker></defs><rect x='15' y='64' width='155' height='42' rx='9' fill='var(--brand-soft)' stroke='var(--accent-tech)' stroke-width='1.5'/><text x='92' y='89' fill='var(--text)' font-size='12' font-weight='700' text-anchor='middle'>LPDDR6</text><text x='92' y='106' fill='var(--text-soft)' font-size='9.5' text-anchor='middle'>研发验证尾声</text><rect x='185' y='64' width='150' height='42' rx='9' fill='var(--surface-2)' stroke='var(--border)' stroke-width='1.5'/><text x='260' y='89' fill='var(--text)' font-size='12' font-weight='700' text-anchor='middle'>送样客户</text><text x='260' y='106' fill='var(--text-soft)' font-size='9.5' text-anchor='middle'>量产门槛</text><rect x='350' y='64' width='150' height='42' rx='9' fill='var(--brand-soft)' stroke='var(--accent-ai)' stroke-width='1.5'/><text x='425' y='89' fill='var(--text)' font-size='12' font-weight='700' text-anchor='middle'>量产导入</text><text x='425' y='106' fill='var(--text-soft)' font-size='9.5' text-anchor='middle'>2026 下半年</text><rect x='515' y='64' width='130' height='42' rx='9' fill='var(--brand-soft)' stroke='var(--brand)' stroke-width='1.5'/><text x='580' y='89' fill='var(--text)' font-size='12' font-weight='700' text-anchor='middle'>国产窗口</text><text x='580' y='106' fill='var(--text-soft)' font-size='9.5' text-anchor='middle'>景气共振</text><line x1='170' y1='85' x2='181' y2='85' stroke='var(--text-soft)' stroke-width='1.5' marker-end='url(#ah-cx)'/><line x1='335' y1='85' x2='346' y2='85' stroke='var(--text-soft)' stroke-width='1.5' marker-end='url(#ah-cx)'/><line x1='500' y1='85' x2='512' y2='85' stroke='var(--text-soft)' stroke-width='1.5' marker-end='url(#ah-cx)'/></svg>"
     }
   ]
 };

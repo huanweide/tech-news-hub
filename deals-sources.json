@@ -33,18 +33,18 @@
   },
   {
     "id": "deepseek-v4-pricecut",
-    "title": "DeepSeek-V4 永久降价 75%：输入缓存命中低至 ¥0.025/百万 tokens",
+    "title": "DeepSeek-V4 降价 75%（拟整体上调·待生效）：缓存命中低至 ¥0.025/百万 tokens",
     "platformType": "official",
     "platform": "DeepSeek",
     "type": "pricecut",
-    "summary": "DeepSeek-V4-Pro API 价格永久降为原价 1/4：输入缓存命中 ¥0.025/百万、缓存未命中 ¥3/百万、输出 ¥6/百万；V4-Flash 缓存命中低至 ¥0.02/百万。原 2.5 折限时优惠已转为永久。",
-    "detail": "降价要点（官方定价页，2026-05-31 起生效）：\n1. DeepSeek-V4-Flash：输入缓存命中 $0.0028/百万（≈¥0.02），缓存未命中 $0.14/百万，输出 $0.28/百万；\n2. DeepSeek-V4-Pro：输入缓存命中 $0.025/百万（≈¥0.18）官方公示 ¥0.025/百万档，缓存未命中 $3/百万，输出 $6/百万；75% 折扣已永久化；\n3. 适用：长文本、RAG、智能体等高缓存命中场景，成本较闭源旗舰低一个数量级；\n4. 接口：https://api.deepseek.com ，OpenAI / Anthropic 双格式兼容。\n注：价格为官方公示，随官方调整而变化，以定价页为准。",
+    "summary": "DeepSeek-V4 当前价为 2026-05-31 起降价 75% 后的水平（V4-Pro 输入缓存命中 ¥0.025/百万、V4-Flash 缓存命中 ¥0.02/百万）；但 8月6日官方公告称计划近期整体上调 API 定价（预计涨幅较大，具体方案待正式通知），当前低价仍有效、建议尽早锁定用量。",
+    "detail": "降价要点（官方定价页，2026-05-31 起生效）：\n1. DeepSeek-V4-Flash：输入缓存命中 $0.0028/百万（≈¥0.02），缓存未命中 $0.14/百万，输出 $0.28/百万；\n2. DeepSeek-V4-Pro：输入缓存命中 $0.025/百万（≈¥0.18）官方公示 ¥0.025/百万档，缓存未命中 $3/百万，输出 $6/百万；75% 折扣已永久化；\n3. 适用：长文本、RAG、智能体等高缓存命中场景，成本较闭源旗舰低一个数量级；\n4. 接口：https://api.deepseek.com ，OpenAI / Anthropic 双格式兼容。\n⚠️ 价格调整预告（2026-08-06 官方公告）：DeepSeek 宣布计划近期整体上调 API 服务定价，预计涨幅较大，具体方案与生效时间以正式通知为准；此前 6月底已引入峰谷定价（高峰时段价格 2 倍）。当前降价后价格仍有效，建议高频用户尽早锁定用量并评估多云 / 自部署对冲。\n注：价格为官方公示，随官方调整而变化，以定价页为准。",
     "validFrom": "2026-05-31",
     "validUntil": null,
     "price": "V4-Flash 缓存命中 ¥0.02/百万 · V4-Pro ¥0.025/百万",
     "valueScore": 95,
     "sourceUrl": "https://api-docs.deepseek.com/quick_start/pricing",
-    "tags": ["DeepSeek", "永久降价", "性价比", "V4", "缓存命中"],
+    "tags": ["DeepSeek", "降价", "性价比", "V4", "缓存命中", "拟上调"],
     "addedAt": "2026-07-26"
   },
   {
@@ -158,5 +158,21 @@
     "sourceUrl": "https://www.jisuapi.com/news/detail/623",
     "tags": ["极速数据", "中转站", "聚合", "多模型", "限时折扣"],
     "addedAt": "2026-07-27"
+  },
+  {
+    "id": "qoder-qwen38-free",
+    "title": "Qoder × Qwen3.8-Max 限时免费调用：新/老用户各领 800 次 + 错峰 5 折",
+    "platformType": "official",
+    "platform": "Qoder",
+    "type": "new",
+    "summary": "Qoder 一周年叠加 Qwen3.8-Max（2.4T 参数新旗舰）全端首发：新注册与活动前付费用户各领 800 次免费调用，活动期间下单再叠 2000 次；错峰时段（22:00–08:00）5 折。领取截止 2026-09-03，调用有效期至 2026-09-30。",
+    "detail": "薅羊毛步骤：\n1. 8月3日 Qwen3.8-Max 上线 Qoder（Desktop / JetBrains 插件 / CLI / Cloud Agents / 移动端），端内一键领取；\n2. 新注册用户（Pro Trial）与 8月3日前有付费订单的存量付费用户，各领 800 次免费调用（限领 1 次）；\n3. 活动期间新下单（Pro / Pro+ / Ultra / 个人资源包）再叠加 2000 次（可与 800 次叠加，约 200 个任务）；\n4. 错峰福利：Qwen3.8-Max 白天原价、22:00–08:00 错峰 5 折，适合夜间批量跑代码 / 推理。\n注：仅限个人版；领取截止 2026-09-03 23:59，调用额度有效期至 2026-09-30；以官方活动页为准。",
+    "validFrom": "2026-08-03",
+    "validUntil": "2026-09-03",
+    "price": "新/老用户 800 次 + 下单叠 2000 次 · 错峰 5 折",
+    "valueScore": 81,
+    "sourceUrl": "https://docs.qoder.com/zh/events/qwen-max",
+    "tags": ["Qoder", "Qwen3.8-Max", "限时免费", "通义千问", "阿里"],
+    "addedAt": "2026-08-10"
   }
 ]
