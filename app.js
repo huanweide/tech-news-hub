@@ -70,6 +70,12 @@
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
     });
   }
+  /* R9：来源 url 协议白名单校验——仅允许 http/https/mailto，拒绝 javascript:/data: 等 */
+  function safeUrlAttr(u) {
+    var v = String(u == null ? "" : u).trim();
+    if (!/^(https?:|mailto:)/i.test(v)) return "#";
+    return v;
+  }
   function hl(text) {
     var s = String(text);
     if (!state.q) return escapeHtml(s);
@@ -359,7 +365,7 @@
     });
     var src = document.createElement("div");
     src.className = "dim sources";
-    src.innerHTML = '<div class="dim-kicker">引用来源</div>' + it.sources.map(function (s) { return '<a href="' + s.url + '" target="_blank" rel="noopener">' + s.name + " ↗</a>"; }).join("");
+    src.innerHTML = '<div class="dim-kicker">引用来源</div>' + it.sources.map(function (s) { return '<a href="' + escapeHtml(safeUrlAttr(s.url)) + '" target="_blank" rel="noopener">' + escapeHtml(s.name) + " ↗</a>"; }).join("");
     d.appendChild(src);
     // 相关阅读（按共享标签推荐）
     var rel = FX ? FX.recommend(it.id, data.items, 3) : [];
