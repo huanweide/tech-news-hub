@@ -13,6 +13,20 @@
     view: "feed", kbTab: "terms", kbQuery: "", kbTerm: null, kbArch: null, libCat: "all",
     dealsType: "all", dealsPlatform: "all", dealsShowExpired: false, dealsQ: "" };
 
+  /* IMP-084：统一的防抖工具，避免输入时每次按键触发整页全量重渲染 */
+  function debounce(fn, ms) {
+    var t;
+    return function () {
+      var args = arguments, self = this;
+      clearTimeout(t);
+      t = setTimeout(function () { fn.apply(self, args); }, ms);
+    };
+  }
+
+  /* IMP-093：初始化时建立 id→对象 索引，避免频繁线性查找文章 */
+  var itemById = {};
+  (data.items || []).forEach(function (it) { itemById[it.id] = it; });
+
   var searchInput = document.getElementById("searchInput");
   var exportBtn = document.getElementById("exportBtn");
   var themeToggle = document.getElementById("themeToggle");
@@ -505,9 +519,9 @@
   }
 
   /* ---------- 主网格 ---------- */
-  function renderFeed() {
+  function renderFeed(list) {
     feed.innerHTML = "";
-    var list = filtered();
+    if (!list) list = filtered();
     if (!list.length) { feed.appendChild(buildEmptyState()); guideSlot.innerHTML = ""; return; }
     if (!state.hideGuide && isInitialView()) guideSlot.innerHTML = "", guideSlot.appendChild(buildGuide());
     else guideSlot.innerHTML = "";
@@ -566,16 +580,18 @@
   }
 
   /* ---------- 工具栏 ---------- */
-  function renderToolbar() {
+  function renderToolbar(list) {
+    if (!list) list = filtered();
     sortBtns.forEach(function (b) { b.classList.toggle("active", b.getAttribute("data-sort") === state.sort); });
-    resultCountEl.textContent = "共 " + filtered().length + " 条";
+    resultCountEl.textContent = "共 " + list.length + " 条";
     subhintEl.textContent = "标签为「同时满足」筛选（AND）；🔥 影响力 1–100 分，越高越值得优先读。";
   }
 
   /* ---------- R9：搜索实时计数 ---------- */
-  function renderSearchCount() {
+  function renderSearchCount(list) {
     if (!searchCountEl) return;
-    var n = filtered().length;
+    if (!list) list = filtered();
+    var n = list.length;
     if (state.q) {
       searchCountEl.hidden = false;
       searchCountEl.innerHTML = "🔍 <b>" + n + "</b> 条匹配";
@@ -592,10 +608,12 @@
     try { var v = localStorage.getItem(ACT_KEY); if (v) return JSON.parse(v) || {}; } catch (e) {}
     return {};
   }
-  function saveActions(obj) { try { localStorage.setItem(ACT_KEY, JSON.stringify(obj)); } catch (e) {} }
-  function hasAction(id) { return !!loadActions()[id]; }
+  /* IMP-085：模块内缓存 actions，读取走缓存；写入后刷新缓存，避免每次 render 同步读写 localStorage */
+  var actionsCache = loadActions();
+  function saveActions(obj) { actionsCache = obj; try { localStorage.setItem(ACT_KEY, JSON.stringify(obj)); } catch (e) {} }
+  function hasAction(id) { return !!actionsCache[id]; }
   function toggleAction(id) {
-    var acts = loadActions();
+    var acts = actionsCache;
     if (acts[id]) delete acts[id]; else acts[id] = { done: false, ts: Date.now() };
     saveActions(acts);
     Array.prototype.forEach.call(document.querySelectorAll('.add-action[data-id="' + id + '"]'), function (b) {
@@ -609,7 +627,7 @@
   }
   function renderActionList() {
     if (!actionListEl) return;
-    var acts = loadActions();
+    var acts = actionsCache;
     var ids = Object.keys(acts);
     var done = ids.filter(function (id) { return acts[id] && acts[id].done; }).length;
     if (actionProgressEl) actionProgressEl.textContent = ids.length ? (done + "/" + ids.length + " 已完成") : "";
@@ -621,7 +639,7 @@
     if (actionEmptyEl) actionEmptyEl.hidden = true;
     actionListEl.innerHTML = "";
     ids.forEach(function (id) {
-      var it = data.items.filter(function (x) { return x.id === id; })[0];
+      var it = itemById[id];
       if (!it) return;
       var row = document.createElement("div");
       row.className = "action-item" + (acts[id].done ? " done" : "");
@@ -629,7 +647,7 @@
       cb.type = "checkbox"; cb.className = "action-cb"; cb.checked = !!acts[id].done;
       cb.setAttribute("aria-label", "标记完成：" + it.title);
       cb.addEventListener("change", function () {
-        var a = loadActions(); if (!a[id]) a[id] = {}; a[id].done = cb.checked; saveActions(a);
+        var a = actionsCache; if (!a[id]) a[id] = {}; a[id].done = cb.checked; saveActions(a);
         row.classList.toggle("done", cb.checked);
         renderActionList();
       });
@@ -648,6 +666,8 @@
   }
 
   /* ---------- R7：影响力透视图表 + 本周速览 ---------- */
+  /* IMP-086：图表仅依赖静态 NEWS_DATA，仅在 state.week/state.cat 变化时才重建，避免无谓的 Chart 销毁重建 */
+  var lastChartWeek = null, lastChartCat = null;
   function avgImpact(cat, week) {
     var list = data.items.filter(function (it) { return it.category === cat && (week === "all" || it.week === week); });
     if (!list.length) return 0;
@@ -906,7 +926,7 @@
   function renderKBArch() {
     var a = ARCH_IDX[state.kbArch];
     if (!a) { state.view = "kb"; return renderKB(); }
-    var item = data.items.filter(function (x) { return x.id === a.itemId; })[0];
+    var item = itemById[a.itemId];
     var rel = item ? FX.recommend(item.id, data.items, 5) : [];
     var all = [item].concat(rel).filter(Boolean);
     var html = '<button class="kb-back" type="button" data-back="1">← 返回索引</button><div class="kb-detail">';
@@ -959,15 +979,21 @@
     kbEl("kbView").hidden = true;
     // 模型优惠圈与 AI 资讯同页常驻（不再整页切换），默认可见
     var dv = document.getElementById("dealsView"); if (dv) dv.hidden = false;
+    /* IMP-088：render() 开头计算一次 filtered()，供各子渲染函数复用，避免重复全量 filter */
+    var list = filtered();
     renderCats();
     renderTagBar();
     renderSidebar();
-    renderToolbar();
-    renderFeed();
-    renderImpactChart();
-    renderTrendChart();
+    renderToolbar(list);
+    renderFeed(list);
+    if (state.week !== lastChartWeek || state.cat !== lastChartCat) {
+      renderImpactChart();
+      renderTrendChart();
+      lastChartWeek = state.week;
+      lastChartCat = state.cat;
+    }
     renderWeekOverview();
-    renderSearchCount();
+    renderSearchCount(list);
     renderActionList();
     renderDeals();
     document.title = "科技前瞻 · " + catLabel(state.cat) + " · " + weekLabel(state.week);
@@ -988,7 +1014,7 @@
   });
 
   /* ---------- 搜索 ---------- */
-  searchInput.addEventListener("input", function () { state.q = (searchInput.value || "").trim().toLowerCase(); render(); });
+  searchInput.addEventListener("input", debounce(function () { state.q = (searchInput.value || "").trim().toLowerCase(); render(); }, 200));
 
   /* ---------- 排序 ---------- */
   sortBtns.forEach(function (b) { b.addEventListener("click", function () { state.sort = b.getAttribute("data-sort"); render(); }); });
@@ -1006,7 +1032,7 @@
     var go = e.target.closest("[data-go]");
     if (go) {
       var id = go.getAttribute("data-go");
-      var it = data.items.filter(function (x) { return x.id === id; })[0];
+      var it = itemById[id];
       if (it) goToItem(it);
     }
   });
@@ -1073,7 +1099,7 @@
   var kbBtn = document.getElementById("kbBtn");
   if (kbBtn) kbBtn.addEventListener("click", openKB);
   var kbSearchInput = document.getElementById("kbSearch");
-  if (kbSearchInput) kbSearchInput.addEventListener("input", function () { state.kbQuery = kbSearchInput.value.trim(); render(); });
+  if (kbSearchInput) kbSearchInput.addEventListener("input", debounce(function () { state.kbQuery = kbSearchInput.value.trim(); render(); }, 200));
 
   /* ---------- R18：优惠圈 导航委托与控件 ---------- */
   document.addEventListener("click", function (e) {
@@ -1087,7 +1113,7 @@
   var dealsBtn = document.getElementById("dealsBtn");
   if (dealsBtn) dealsBtn.addEventListener("click", openDeals);
   var dealsSearchInput = document.getElementById("dealsSearch");
-  if (dealsSearchInput) dealsSearchInput.addEventListener("input", function () { state.dealsQ = dealsSearchInput.value.trim().toLowerCase(); render(); });
+  if (dealsSearchInput) dealsSearchInput.addEventListener("input", debounce(function () { state.dealsQ = dealsSearchInput.value.trim().toLowerCase(); render(); }, 200));
   var dealsShowExpired = document.getElementById("dealsShowExpired");
   if (dealsShowExpired) dealsShowExpired.addEventListener("change", function () { state.dealsShowExpired = dealsShowExpired.checked; render(); });
 
@@ -1295,7 +1321,7 @@
         return { label: "查询架构：" + (args.query || ""), text: "找到 " + a2.length + " 个架构", result: { query: args.query, count: a2.length, archs: a2 }, cards: ac };
       }
       if (name === "open_article") {
-        var it2 = data.items.filter(function (x) { return x.id === args.id; })[0];
+        var it2 = itemById[args.id];
         if (!it2) return { label: "打开文章：" + (args.id || ""), text: "未找到该文章", result: { error: "not found" }, cards: [] };
         goToItem(it2);
         return { label: "打开文章：" + it2.title, text: "已为你打开《" + it2.title + "》", result: { id: it2.id, title: it2.title }, cards: [] };
@@ -1397,7 +1423,7 @@
     }
     function agentNav(go) {
       if (!go) return;
-      if (go.type === "article") { var it = data.items.filter(function (x) { return x.id === go.id; })[0]; if (it) goToItem(it); }
+      if (go.type === "article") { var it = itemById[go.id]; if (it) goToItem(it); }
       else if (go.type === "arch") { state.kbArch = go.id; state.view = "kbArch"; render(); }
       else if (go.type === "term") { state.kbTerm = go.term; state.view = "kbTerm"; render(); }
       else if (go.type === "deal") { if (state.view !== "feed") { state.view = "feed"; render(); } focusDeals(); }
@@ -1417,7 +1443,7 @@
       if (name === "search_news") return "检索新闻「" + (args.query || "") + "」";
       if (name === "lookup_term") return "查询术语「" + (args.term || "") + "」";
       if (name === "lookup_architecture") return "查询架构「" + (args.query || "") + "」";
-      if (name === "open_article") { var it = data.items.filter(function (x) { return x.id === args.id; })[0]; return "打开文章《" + (it ? it.title : args.id) + "》"; }
+      if (name === "open_article") { var it = itemById[args.id]; return "打开文章《" + (it ? it.title : args.id) + "》"; }
       if (name === "save_note") return "保存记忆「" + (args.text || "").slice(0, 30) + "」";
       if (name === "lookup_deal") return "查询优惠「" + (args.query || args.platform || args.type || "") + "」";
       return name;
