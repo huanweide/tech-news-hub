@@ -883,3 +883,8 @@ mark { background: #fff3a3; color: inherit; padding: 0 2px; border-radius: 3px; 
   15% { box-shadow: 0 0 0 4px rgba(124,139,255,.55); }
   100% { box-shadow: 0 0 0 0 rgba(124,139,255,0); }
 }
+
+/* 轻量 UI 美化：平滑滚动 / 选区配色 / 键盘聚焦可见 */
+html { scroll-behavior: smooth; }
+::selection { background: var(--brand); color: #fff; }
+:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; border-radius: 4px; }
