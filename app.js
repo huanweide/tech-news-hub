@@ -9,7 +9,7 @@
   var data = window.NEWS_DATA;
   var FX = window.TechNewsFeatures;
   var DEALS = window.DEALS_DATA || { deals: [] };
-  var state = { week: (data.weeks[data.weeks.length - 1] || {}).id || "all", cat: "ai", q: "", sort: "default", activeTags: [], hideGuide: false,
+  var state = { week: (data.weeks[data.weeks.length - 1] || {}).id || "all", cat: "ai", q: "", sort: "default", activeTags: [], hideGuide: false, weekSwitched: false,
     view: "feed", kbTab: "terms", kbQuery: "", kbTerm: null, kbArch: null, libCat: "all",
     dealsType: "all", dealsPlatform: "all", dealsShowExpired: false, dealsQ: "" };
 
@@ -61,8 +61,8 @@
   function catColor(id) { return CAT_COLOR[id] || "var(--brand)"; }
   function coverGrad(it) { var idx = data.items.indexOf(it); return COVER_GRADS[((idx % COVER_GRADS.length) + COVER_GRADS.length) % COVER_GRADS.length]; }
   function iconFor(it) { return ICONS[it.id] || "📰"; }
-  function readingTime(it) { var t = [it.summary, it.what, it.compare, it.why, it.output, it.explain, it.impact, it.action].join(""); return Math.max(1, Math.round(t.length / 300)); }
-  function isDefault() { return state.q === "" && state.activeTags.length === 0 && state.week === "all"; }
+  function readingTime(it) { var t = [it.summary, it.what, it.compare, it.why, it.output, it.explain, it.impact, it.action].map(function (x) { return x || ""; }).join(""); return Math.max(1, Math.round(t.length / 300)); }
+  function isInitialView() { return state.q === "" && state.activeTags.length === 0 && !state.weekSwitched; }
 
   /* ---------- R8：搜索高亮 + 转义 ---------- */
   function escapeHtml(s) {
@@ -73,9 +73,14 @@
   function hl(text) {
     var s = String(text);
     if (!state.q) return escapeHtml(s);
-    var q = state.q, lower = s.toLowerCase(), i = lower.indexOf(q);
-    if (i < 0) return escapeHtml(s);
-    return escapeHtml(s.slice(0, i)) + "<mark>" + escapeHtml(s.slice(i, i + q.length)) + "</mark>" + escapeHtml(s.slice(i + q.length));
+    var q = state.q, lower = s.toLowerCase(), ql = q.toLowerCase(), qlen = q.length;
+    var out = "", start = 0, i;
+    while ((i = lower.indexOf(ql, start)) >= 0) {
+      out += escapeHtml(s.slice(start, i)) + "<mark>" + escapeHtml(s.slice(i, i + qlen)) + "</mark>";
+      start = i + qlen;
+    }
+    out += escapeHtml(s.slice(start));
+    return out;
   }
 
   /* ---------- R14：专业术语词典弹层 ---------- */
@@ -498,7 +503,7 @@
     feed.innerHTML = "";
     var list = filtered();
     if (!list.length) { feed.appendChild(buildEmptyState()); guideSlot.innerHTML = ""; return; }
-    if (!state.hideGuide && isDefault()) guideSlot.innerHTML = "", guideSlot.appendChild(buildGuide());
+    if (!state.hideGuide && isInitialView()) guideSlot.innerHTML = "", guideSlot.appendChild(buildGuide());
     else guideSlot.innerHTML = "";
     var heroItem = list.slice().sort(function (a, b) { return b.impactScore - a.impactScore; })[0];
     renderHero(heroItem);
@@ -515,13 +520,13 @@
     var all = document.createElement("button");
     all.className = "week-btn" + (state.week === "all" ? " active" : "");
     all.innerHTML = '<span class="wk-label">全部周次</span>';
-    all.addEventListener("click", function () { state.week = "all"; render(); });
+    all.addEventListener("click", function () { state.week = "all"; state.weekSwitched = true; render(); });
     weekRail.appendChild(all);
     data.weeks.forEach(function (w) {
       var b = document.createElement("button");
       b.className = "week-btn" + (state.week === w.id ? " active" : "");
       b.innerHTML = '<span class="wk-label">' + w.label + '</span><span class="wk-range">' + w.range + '</span>';
-      b.addEventListener("click", function () { state.week = w.id; render(); });
+      b.addEventListener("click", function () { state.week = w.id; state.weekSwitched = true; render(); });
       weekRail.appendChild(b);
     });
     editorsPick.innerHTML = "";
@@ -544,7 +549,7 @@
   }
 
   function goToItem(it) {
-    state.cat = it.category; state.week = it.week; state.q = ""; searchInput.value = ""; state.activeTags = [];
+    state.cat = it.category; state.week = it.week; state.weekSwitched = true; state.q = ""; searchInput.value = ""; state.activeTags = [];
     state.view = "feed"; state.kbTerm = null; state.kbArch = null; state.kbQuery = "";
     var kb = kbEl("kbView"); if (kb) kb.hidden = true;
     var kq = kbEl("kbSearch"); if (kq) kq.value = "";
