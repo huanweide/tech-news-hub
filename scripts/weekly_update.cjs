@@ -9,6 +9,7 @@
 const fs = require('fs');
 const path = require('path');
 const { XMLParser } = require('fast-xml-parser');
+const { fetchWithAOA, getBreaker, getBudget } = require('./aoa.cjs');
 
 const ROOT = path.resolve(__dirname, '..');
 const DATA_PATH = process.env.DATA_PATH || path.join(ROOT, 'news-data.js');
@@ -68,10 +69,9 @@ function weekRange(seq) {
 
 async function fetchFeed(feed) {
   try {
-    const ctrl = new AbortController();
-    const t = setTimeout(() => ctrl.abort(), 9000);
-    const r = await fetch(feed.url, { signal: ctrl.signal, headers: { 'User-Agent': 'TechPulseBot/1.0 (+https://huanweide.github.io/tech-news-hub/)' } });
-    clearTimeout(t);
+    const r = await fetchWithAOA('feed:' + feed.name, feed.url,
+      { headers: { 'User-Agent': 'TechPulseBot/1.0 (+https://huanweide.github.io/tech-news-hub/)' } },
+      { timeout: 9000, breaker: getBreaker('feed:' + feed.name, 3, 30000) });
     if (!r.ok) return [];
     const xml = await r.text();
     const p = new XMLParser({ ignoreAttributes: false, attributeNamePrefix: '@_' });
@@ -132,11 +132,11 @@ async function aiItem(raw, seq, idx) {
 原文摘要：${raw.desc}
 类别倾向：${raw.cat}`;
   try {
-    const r = await fetch('https://api.deepseek.com/v1/chat/completions', {
+    const r = await fetchWithAOA('llm-weekly', 'https://api.deepseek.com/v1/chat/completions', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + key },
       body: JSON.stringify({ model: 'deepseek-chat', messages: [{ role: 'system', content: '你只输出严格 JSON' }, { role: 'user', content: prompt }], temperature: 0.3 })
-    });
+    }, { timeout: 30000, breaker: getBreaker('llm-weekly', 5, 60000), budget: getBudget('llm-weekly', 500000), chargeUsage: true, maxTokens: 4000 });
     if (!r.ok) throw new Error('HTTP ' + r.status);
     const j = await r.json();
     const txt = (j.choices && j.choices[0] && j.choices[0].message && j.choices[0].message.content) || '';

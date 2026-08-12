@@ -10,6 +10,7 @@
  */
 const fs = require("fs");
 const path = require("path");
+const { fetchWithAOA, getBreaker, getBudget } = require("./aoa.cjs");
 
 const ROOT = path.join(__dirname, "..");
 const DATA_FILE = path.join(ROOT, "deals-data.js");
@@ -58,7 +59,7 @@ async function aiEnrich(d) {
   const key = process.env.DEEPSEEK_API_KEY;
   if (!key || !d.detail) return d;
   try {
-    const r = await fetch("https://api.deepseek.com/v1/chat/completions", {
+    const r = await fetchWithAOA("llm-deals", "https://api.deepseek.com/v1/chat/completions", {
       method: "POST",
       headers: { "Content-Type": "application/json", Authorization: "Bearer " + key },
       body: JSON.stringify({
@@ -66,7 +67,7 @@ async function aiEnrich(d) {
         messages: [{ role: "user", content: "把以下优惠信息的 detail 整理为更简洁的薅羊毛指南（保留关键链接、价格与步骤，2-5 点）：\n" + d.detail }],
         max_tokens: 500
       })
-    });
+    }, { timeout: 30000, breaker: getBreaker("llm-deals", 5, 60000), budget: getBudget("llm-deals", 200000), chargeUsage: true, maxTokens: 600 });
     if (!r.ok) throw new Error("HTTP " + r.status);
     const txt = await r.text();
     if (!txt) throw new Error("empty response");

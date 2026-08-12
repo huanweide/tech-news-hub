@@ -1342,12 +1342,32 @@
     }
 
     /* ---- 模型调用（兼容 OpenAI /v1，支持流式） ---- */
+    /* ---- AOA 防护：模型调用超时 + 熔断（防止 UI 卡死 / 故障级联） ---- */
+    var __aoaFailures = 0, __aoaOpenedAt = 0;
+    var AOA_THRESHOLD = 3, AOA_RESET = 30000, AOA_TIMEOUT = 60000;
+    function __aoaBreakerOpen() {
+      if (__aoaOpenedAt === 0) return false;
+      if (Date.now() - __aoaOpenedAt >= AOA_RESET) { __aoaFailures = 0; __aoaOpenedAt = 0; return false; }
+      return true;
+    }
+    function __aoaFetch(url, opts) {
+      if (__aoaBreakerOpen()) return Promise.reject(new Error('模型接口熔断中，请稍后再试'));
+      var ctrl = null, timer = null, signal = null;
+      if (typeof AbortController !== 'undefined') {
+        ctrl = new AbortController(); signal = ctrl.signal;
+        timer = setTimeout(function () { ctrl.abort(); }, AOA_TIMEOUT);
+      }
+      return fetch(url, Object.assign({}, opts, signal ? { signal: signal } : {}))
+        .then(function (res) { if (timer) clearTimeout(timer); if (!res.ok) { __aoaFailures++; } else { __aoaFailures = 0; } return res; },
+              function (err) { if (timer) clearTimeout(timer); __aoaFailures++; if (__aoaFailures >= AOA_THRESHOLD) __aoaOpenedAt = Date.now(); throw err; });
+    }
+
     function callModel(messages) {
       var url = (cfg.baseURL.replace(/\/+$/, "")) + "/chat/completions";
       var body = { model: cfg.model, messages: messages };
       if (cfg.interactive) body.tools = TOOLS;
       if (cfg.stream) body.stream = true;
-      return fetch(url, { method: "POST", headers: { "Content-Type": "application/json", "Authorization": "Bearer " + cfg.apiKey }, body: JSON.stringify(body) })
+      return __aoaFetch(url, { method: "POST", headers: { "Content-Type": "application/json", "Authorization": "Bearer " + cfg.apiKey }, body: JSON.stringify(body) })
         .then(function (res) {
           if (!res.ok) return res.text().then(function (t) { throw new Error("HTTP " + res.status + " " + t.slice(0, 200)); });
           if (cfg.stream && res.body && typeof res.body.getReader === "function") return parseStream(res);
