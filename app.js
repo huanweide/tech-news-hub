@@ -426,7 +426,7 @@
       (it.week === latestWeekId() ? '<span class="badge new">🆕 本周</span>' : '');
     var chips = document.createElement("div");
     chips.className = "tag-chips"; chips.style.width = "100%";
-    chips.innerHTML = it.tags.map(function (t) { return '<button class="tag-chip" type="button" data-tag="' + t + '">' + t + '</button>'; }).join("");
+    chips.innerHTML = it.tags.map(function (t) { return '<button class="tag-chip" type="button" data-tag="' + escapeHtml(t) + '">' + escapeHtml(t) + '</button>'; }).join("");
     body.appendChild(meta); body.appendChild(chips);
     var detail = buildDetail(it);
     body.appendChild(makeToggle(detail));
@@ -450,7 +450,7 @@
     body.className = "card-body";
     var chips = it.tags.map(function (t) {
       var on = state.activeTags.indexOf(t) >= 0;
-      return '<button class="tag-chip' + (on ? " on" : "") + '" type="button" data-tag="' + t + '" aria-pressed="' + (on ? "true" : "false") + '">' + t + '</button>';
+      return '<button class="tag-chip' + (on ? " on" : "") + '" type="button" data-tag="' + escapeHtml(t) + '" aria-pressed="' + (on ? "true" : "false") + '">' + escapeHtml(t) + '</button>';
     }).join("");
     body.innerHTML = '<h3>' + gh(it.title) + '</h3><p class="summary">' + gh(it.summary) + '</p>' +
       '<div class="meta">' +
