@@ -554,7 +554,7 @@
       var el = document.createElement("div");
       el.className = "pick-item"; el.tabIndex = 0;
       el.innerHTML = '<div class="pick-thumb" style="background:' + coverGrad(it) + '">' + iconFor(it) + '</div>' +
-        '<div><div class="p-title">' + it.title + '</div><div class="p-sub">影响力 ' + it.impactScore + ' · ' + catLabel(it.category) + '</div></div>';
+        '<div><div class="p-title">' + escapeHtml(it.title) + '</div><div class="p-sub">影响力 ' + it.impactScore + ' · ' + catLabel(it.category) + '</div></div>';
       el.addEventListener("click", function () { goToItem(it); });
       editorsPick.appendChild(el);
     });
@@ -562,7 +562,7 @@
     FX.trending(data.items, 5).forEach(function (it) {
       var li = document.createElement("li");
       li.tabIndex = 0;
-      li.innerHTML = '<span class="h-title">' + it.title + '</span><span class="h-score">' + it.impactScore + '</span>';
+      li.innerHTML = '<span class="h-title">' + escapeHtml(it.title) + '</span><span class="h-score">' + it.impactScore + '</span>';
       li.addEventListener("click", function () { goToItem(it); });
       hotList.appendChild(li);
     });
