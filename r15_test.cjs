@@ -25,6 +25,7 @@ load('./app.js');
 
 function click(el) { if (!el) return; el.dispatchEvent(new window.MouseEvent('click', { bubbles: true, cancelable: true })); }
 function fire(el, type) { if (!el) return; el.dispatchEvent(new window.Event(type, { bubbles: true })); }
+function flushDebounce(ms) { return new Promise(function (r) { setTimeout(r, ms || 320); }); }
 function $(s) { return document.querySelector(s); }
 function $all(s) { return Array.prototype.slice.call(document.querySelectorAll(s)); }
 
@@ -94,35 +95,54 @@ if (aiCat) {
   ok(shown === aiTotal, '新闻库 AI 筛选正确：' + shown + '/' + aiTotal);
 }
 
-/* 8. 资料库搜索（覆盖 名词/架构/新闻） */
-const kq = $('#kbSearch');
-kq.value = '量子';
-fire(kq, 'input');
-ok($('.kb-search-head') != null, '搜索“量子”出结果头');
-ok($all('.kb-term, .kb-arch, .kb-news').length >= 1, '搜索“量子”命中条目：' + $all('.kb-term, .kb-arch, .kb-news').length);
-/* 无结果 */
-kq.value = 'zzz不存在的词';
-fire(kq, 'input');
-ok($('.kb-empty') != null, '搜索无结果时显示空提示');
-kq.value = '';
-fire(kq, 'input');
+/* 8. 资料库搜索（覆盖 名词/架构/新闻）—— 输入走 debounce(200ms)，须等落地
+   前置条件：必须在资料库「列表视图」（state.view === 'kb'）。若停在 kbTerm/kbArch
+   详情态，renderKB() 会提前 return、搜索不生效——所以先点「返回索引」退出详情。
+   再打开资料库（若已关闭）并确保停在 terms 索引 tab。 */
+/* 关键：#kbBtn 的 openKB() 会强制 state.view='kb' 且清空 kbTerm/kbArch，是确定性重置入口，
+   即使已打开也安全（幂等）。必须在所有 debounce 落地后再执行，否则旧 render 会覆盖。 */
+const done = function () {
+  console.log('R15 验证：' + pass + ' 通过 / ' + fail + ' 失败');
+  if (fail) { console.log('失败项：'); fails.forEach(function (f) { console.log('  ✗ ' + f); }); process.exit(1); }
+  else console.log('R15 ALL_GREEN ✓');
+};
+flushDebounce().then(function () {
+  click($('#kbBtn'));
+  return flushDebounce(80);
+}).then(function () {
+  const kq0 = $('#kbSearch');
+  kq0.value = '量子';
+  fire(kq0, 'input');
+  return flushDebounce();
+}).then(function () {
+  ok($('.kb-search-head') != null, '搜索“量子”出结果头');
+  ok($all('.kb-term, .kb-arch, .kb-news').length >= 1, '搜索“量子”命中条目：' + $all('.kb-term, .kb-arch, .kb-news').length);
+  const kq1 = $('#kbSearch');
+  kq1.value = 'zzz不存在的词';
+  fire(kq1, 'input');
+  return flushDebounce();
+}).then(function () {
+  ok($('.kb-empty') != null, '搜索无结果时显示空提示');
+  const kq2 = $('#kbSearch');
+  kq2.value = '';
+  fire(kq2, 'input');
+  return flushDebounce();
+}).then(function () {
+  /* 9. 术语弹层 → “在资料库查看” 链接（接在第 8 步之后，保证视图已复位到资讯流） */
+  click($('.kb-back-feed')); // 回到资讯流
+  const termSpan = $('.term');
+  ok(termSpan != null, '资讯流中存在可点击术语');
+  if (termSpan) click(termSpan);
+  const pop = $('#glossPop');
+  ok(pop && pop.hidden === false, '点击术语弹出释义层');
+  ok($('.gp-more') != null, '弹层含“在资料库查看”链接');
+  const moreBtn = $('.gp-more');
+  if (moreBtn) click(moreBtn);
+  ok($('#kbView').hidden === false && $('.kb-detail-title') != null, '从弹层跳入资料库名词详情');
 
-/* 9. 术语弹层 → “在资料库查看” 链接 */
-click($('.kb-back-feed')); // 回到资讯流
-const termSpan = $('.term');
-ok(termSpan != null, '资讯流中存在可点击术语');
-click(termSpan);
-const pop = $('#glossPop');
-ok(pop && pop.hidden === false, '点击术语弹出释义层');
-ok($('.gp-more') != null, '弹层含“在资料库查看”链接');
-click($('.gp-more'));
-ok($('#kbView').hidden === false && $('.kb-detail-title') != null, '从弹层跳入资料库名词详情');
+  /* 10. 返回资讯流（data-feed） */
+  click($('.kb-back-feed'));
+  ok($('#kbView').hidden === true, '点返回资讯流关闭资料库');
+  return flushDebounce(80);
+}).then(function () { done(); });
 
-/* 10. 返回资讯流（data-feed） */
-click($('.kb-back-feed'));
-ok($('#kbView').hidden === true, '点返回资讯流关闭资料库');
-
-/* 汇总 */
-console.log('R15 验证：' + pass + ' 通过 / ' + fail + ' 失败');
-if (fail) { console.log('失败项：'); fails.forEach(function (f) { console.log('  ✗ ' + f); }); process.exit(1); }
-else console.log('R15 ALL_GREEN ✓');

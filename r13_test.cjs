@@ -28,6 +28,8 @@ const fails = [];
 function ok(cond, name) { if (cond) { pass++; } else { fail++; fails.push(name); } }
 
 const NEWS = win.NEWS_DATA;
+// 搜索输入走 debounce(200ms)，同步断言前必须等防抖落地，否则计数尚未渲染
+function flushDebounce(ms) { return new Promise(function (r) { setTimeout(r, ms || 320); }); }
 function $(s) { return doc.querySelector(s); }
 function $all(s) { return Array.prototype.slice.call(doc.querySelectorAll(s)); }
 function click(el) {
@@ -36,6 +38,7 @@ function click(el) {
 }
 function feedCount() { return $all("#feed .card").length; }
 
+(async function main() {
 try {
   /* ---- 数据层断言：全部含架构图 ---- */
   const validWeeks = new Set(NEWS.weeks.map(w => w.id));
@@ -90,14 +93,17 @@ try {
   function hayOf(i) { return [i.title, i.summary, i.what, i.compare, i.why, i.output, i.explain, i.impact, i.action, (i.tags || []).join(" ")].join(" "); }
   si.value = "量子";
   si.dispatchEvent(new win.Event("input", { bubbles: true }));
+  await flushDebounce();
   ok($("#searchCount") && !$("#searchCount").hidden, "搜索实时计数显示");
   const expectHit = NEWS.items.filter(function (i) { return i.category === "tech" && hayOf(i).indexOf("量子") >= 0; }).length;
-  const actualHit = parseInt($("#searchCount b").textContent, 10);
+  const hitEl = $("#searchCount b");
+  const actualHit = hitEl ? parseInt(hitEl.textContent, 10) : NaN;
   console.log("DEBUG search: cat=tech week=all expect=" + expectHit + " actual=" + actualHit);
   ok(actualHit === expectHit, "搜索计数与命中数一致（科技圈范围）");
   // 清空搜索
   si.value = "";
   si.dispatchEvent(new win.Event("input", { bubbles: true }));
+  await flushDebounce();
 
   /* ---- 标签 AND：用 #tagBar 第一个标签 ---- */
   const chip = $("#tagBar .tag-chip");
@@ -187,3 +193,4 @@ try {
 console.log("R13 验证结果: 通过 " + pass + " / 失败 " + fail);
 if (fail) { console.log("失败项:\n - " + fails.join("\n - ")); process.exit(1); }
 else { console.log("ALL_GREEN"); }
+})();

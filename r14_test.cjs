@@ -27,7 +27,10 @@ function ok(cond, name) { if (cond) pass++; else { fail++; fails.push(name); } }
 function $(s) { return doc.querySelector(s); }
 function $all(s) { return Array.prototype.slice.call(doc.querySelectorAll(s)); }
 function click(el) { if (!el) throw new Error("click null"); el.dispatchEvent(new win.MouseEvent("click", { bubbles: true, cancelable: true })); }
+// 搜索输入走 debounce(200ms)，同步断言前必须等防抖落地
+function flushDebounce(ms) { return new Promise(function (r) { setTimeout(r, ms || 320); }); }
 
+(async function main() {
 try {
   /* 默认视图（AI 最新周）应有术语被高亮包裹 */
   const termsInView = $all(".term");
@@ -73,10 +76,12 @@ try {
   try {
     si.value = "智能体";
     si.dispatchEvent(new win.Event("input", { bubbles: true }));
+    await flushDebounce();
     ok($("#searchCount") && !$("#searchCount").hidden, "搜索“智能体”实时计数显示（术语与高亮共存）");
   } catch (e) { searchThrew = true; fails.push("搜索+术语抛错:" + e.message); }
   ok(!searchThrew, "搜索高亮与术语包裹共存不抛错");
   si.value = ""; si.dispatchEvent(new win.Event("input", { bubbles: true }));
+  await flushDebounce();
 
 } catch (e) {
   fail++; fails.push("FATAL: " + e.message + "\n" + e.stack);
@@ -85,3 +90,4 @@ try {
 console.log("R14 验证结果: 通过 " + pass + " / 失败 " + fail);
 if (fail) { console.log("失败项:\n - " + fails.join("\n - ")); process.exit(1); }
 else { console.log("ALL_GREEN"); }
+})();
