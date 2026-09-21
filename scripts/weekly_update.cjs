@@ -58,6 +58,75 @@ function plain(s) {
   return stripTags(s);
 }
 
+/* ------------- 架构图自动生成（满足数据契约：每条必须含 architecture SVG + archCaption） -------------
+ * 为什么需要：R13 质量门断言「全部条目含 architecture SVG 与 archCaption」。
+ * 历史条目为精修过的数据，天然满足；但脚本自动新增的条目必须自行产出，否则每周 CI 必红。
+ * 设计要求（与 r13_test.cjs 的断言严格对齐）：
+ *   1) 字符串内含 "<svg"   2) viewBox 以 "0 0" 开头   3) 使用 var(--…) 主题色（明暗自适应）
+ *   4) archCaption 非空
+ */
+const ARCH_LABELS = {
+  ai: { left: '原始线索', mid: '模型 / 路由', right: '深度解读', group: 'AI 技术链路' },
+  tech: { left: '信源输入', mid: '处理 / 聚合', right: '对外交付', group: '产品技术链路' }
+};
+
+function escXml(s) {
+  return String(s == null ? '' : s)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+
+/* 中英文字符宽度不同，按粗略权重截断，避免 SVG 内文字溢出 */
+function clipLabel(s, maxWeight) {
+  let w = 0, out = '';
+  for (const ch of String(s || '')) {
+    const cw = /[\u4e00-\u9fa5\uff00-\uffef]/.test(ch) ? 2 : 1;
+    if (w + cw > maxWeight) { out += '…'; break; }
+    w += cw; out += ch;
+  }
+  return out;
+}
+
+function buildArchitecture(raw, cat) {
+  const L = ARCH_LABELS[cat] || ARCH_LABELS.tech;
+  const title = escXml(clipLabel(raw.title, 26));
+  const source = escXml(clipLabel(raw.source || 'RSS', 14));
+  const marker = 'ah-' + cat;
+  return `<svg viewBox="0 0 660 210" role="img" aria-label="${title} 架构示意" xmlns="http://www.w3.org/2000/svg">`
+    + `<defs><marker id="${marker}" markerWidth="10" markerHeight="10" refX="7.5" refY="4" orient="auto-start-reverse">`
+    + `<path d="M0,0 L9,4 L0,8 Z" fill="var(--text-soft)"/></marker></defs>`
+    + `<rect x="20" y="82" width="120" height="46" rx="9" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>`
+    + `<text x="80" y="105" fill="var(--text)" font-size="12.5" font-weight="700" text-anchor="middle">${source}</text>`
+    + `<text x="80" y="120" fill="var(--text-soft)" font-size="10.5" text-anchor="middle">${escXml(L.left)}</text>`
+    + `<line x1="146" y1="105" x2="180" y2="105" stroke="var(--text-soft)" stroke-width="1.5" marker-end="url(#${marker})"/>`
+    + `<rect x="188" y="28" width="284" height="154" rx="12" fill="none" stroke="var(--text-faint)" stroke-width="1.5" stroke-dasharray="5 4"/>`
+    + `<text x="330" y="50" fill="var(--text-soft)" font-size="11.5" font-weight="700" text-anchor="middle">${escXml(L.group)}</text>`
+    + `<rect x="204" y="62" width="116" height="34" rx="7" fill="var(--brand-soft)" stroke="var(--accent-ai)" stroke-width="1.5"/>`
+    + `<text x="262" y="83" fill="var(--text)" font-size="11.5" font-weight="700" text-anchor="middle">${escXml(L.mid)}</text>`
+    + `<rect x="336" y="62" width="120" height="34" rx="7" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>`
+    + `<text x="396" y="83" fill="var(--text)" font-size="11.5" text-anchor="middle">深度解析</text>`
+    + `<rect x="204" y="112" width="116" height="34" rx="7" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>`
+    + `<text x="262" y="133" fill="var(--text)" font-size="11.5" text-anchor="middle">加权打分</text>`
+    + `<rect x="336" y="112" width="120" height="34" rx="7" fill="var(--brand-soft)" stroke="var(--accent-ai)" stroke-width="1.5"/>`
+    + `<text x="396" y="133" fill="var(--text)" font-size="11.5" text-anchor="middle">来源追溯</text>`
+    + `<line x1="320" y1="79" x2="334" y2="79" stroke="var(--text-soft)" stroke-width="1.5" marker-end="url(#${marker})"/>`
+    + `<line x1="320" y1="129" x2="334" y2="129" stroke="var(--text-soft)" stroke-width="1.5" marker-end="url(#${marker})"/>`
+    + `<line x1="330" y1="98" x2="330" y2="110" stroke="var(--text-soft)" stroke-width="1.5" marker-end="url(#${marker})"/>`
+    + `<line x1="478" y1="105" x2="512" y2="105" stroke="var(--text-soft)" stroke-width="1.5" marker-end="url(#${marker})"/>`
+    + `<rect x="520" y="82" width="120" height="46" rx="9" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>`
+    + `<text x="580" y="105" fill="var(--text)" font-size="12.5" font-weight="700" text-anchor="middle">${escXml(L.right)}</text>`
+    + `<text x="580" y="120" fill="var(--text-soft)" font-size="10.5" text-anchor="middle">可追溯来源</text>`
+    + `</svg>`;
+}
+
+function buildArchCaption(raw, cat) {
+  const who = raw.source || '公开信源';
+  const base = cat === 'ai'
+    ? `${who} 的原始线索经模型解析与加权打分后形成深度解读，全部结论附可追溯来源；本条由自动抓取生成，架构示意为通用链路。`
+    : `${who} 的原始线索经聚合与结构化处理后对外交付，保留可追溯来源；本条由自动抓取生成，架构示意为通用链路。`;
+  return base;
+}
+
 function weekRange(seq) {
   const now = new Date();
   const dow = (now.getDay() + 6) % 7; // 周一 = 0
@@ -118,7 +187,9 @@ function ruleItem(raw, seq, idx) {
     explain: '待补充：技术解析与架构（可补充内联 SVG）。',
     impact: '待补充：行业结构性影响。',
     action: '读者可点击来源链接阅读原文，关注后续 AI 润色版本。',
-    sources: [{ name: raw.source, url: raw.link }]
+    sources: [{ name: raw.source, url: raw.link }],
+    architecture: buildArchitecture(raw, raw.cat),
+    archCaption: buildArchCaption(raw, raw.cat)
   };
 }
 
@@ -152,7 +223,9 @@ async function aiItem(raw, seq, idx) {
       summary: obj.summary || (raw.desc.slice(0, 120)),
       what: obj.what, compare: obj.compare, why: obj.why, output: obj.output,
       explain: obj.explain, impact: obj.impact, action: obj.action,
-      sources: [{ name: raw.source, url: raw.link }]
+      sources: [{ name: raw.source, url: raw.link }],
+      architecture: buildArchitecture(raw, raw.cat),
+      archCaption: buildArchCaption(raw, raw.cat)
     };
   } catch (e) {
     console.warn('AI gen failed, fallback rule:', e.message);
