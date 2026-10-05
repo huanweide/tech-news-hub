@@ -42,6 +42,11 @@ const NEWS_DATA = {
       "id": "w9",
       "label": "2026年9月 第9周",
       "range": "9/28–10/4"
+    },
+    {
+      "id": "w10",
+      "label": "2026年10月 第10周",
+      "range": "10/5–10/11"
     }
   ],
   "categories": [
@@ -2217,6 +2222,350 @@ const NEWS_DATA = {
         }
       ],
       "architecture": "<svg viewBox=\"0 0 660 210\" role=\"img\" aria-label=\"本周看什么 | 最近值得一看… 架构示意\" xmlns=\"http://www.w3.org/2000/svg\"><defs><marker id=\"ah-tech\" markerWidth=\"10\" markerHeight=\"10\" refX=\"7.5\" refY=\"4\" orient=\"auto-start-reverse\"><path d=\"M0,0 L9,4 L0,8 Z\" fill=\"var(--text-soft)\"/></marker></defs><rect x=\"20\" y=\"82\" width=\"120\" height=\"46\" rx=\"9\" fill=\"var(--surface-2)\" stroke=\"var(--border)\" stroke-width=\"1.5\"/><text x=\"80\" y=\"105\" fill=\"var(--text)\" font-size=\"12.5\" font-weight=\"700\" text-anchor=\"middle\">少数派</text><text x=\"80\" y=\"120\" fill=\"var(--text-soft)\" font-size=\"10.5\" text-anchor=\"middle\">信源输入</text><line x1=\"146\" y1=\"105\" x2=\"180\" y2=\"105\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-tech)\"/><rect x=\"188\" y=\"28\" width=\"284\" height=\"154\" rx=\"12\" fill=\"none\" stroke=\"var(--text-faint)\" stroke-width=\"1.5\" stroke-dasharray=\"5 4\"/><text x=\"330\" y=\"50\" fill=\"var(--text-soft)\" font-size=\"11.5\" font-weight=\"700\" text-anchor=\"middle\">产品技术链路</text><rect x=\"204\" y=\"62\" width=\"116\" height=\"34\" rx=\"7\" fill=\"var(--brand-soft)\" stroke=\"var(--accent-ai)\" stroke-width=\"1.5\"/><text x=\"262\" y=\"83\" fill=\"var(--text)\" font-size=\"11.5\" font-weight=\"700\" text-anchor=\"middle\">处理 / 聚合</text><rect x=\"336\" y=\"62\" width=\"120\" height=\"34\" rx=\"7\" fill=\"var(--surface-2)\" stroke=\"var(--border)\" stroke-width=\"1.5\"/><text x=\"396\" y=\"83\" fill=\"var(--text)\" font-size=\"11.5\" text-anchor=\"middle\">深度解析</text><rect x=\"204\" y=\"112\" width=\"116\" height=\"34\" rx=\"7\" fill=\"var(--surface-2)\" stroke=\"var(--border)\" stroke-width=\"1.5\"/><text x=\"262\" y=\"133\" fill=\"var(--text)\" font-size=\"11.5\" text-anchor=\"middle\">加权打分</text><rect x=\"336\" y=\"112\" width=\"120\" height=\"34\" rx=\"7\" fill=\"var(--brand-soft)\" stroke=\"var(--accent-ai)\" stroke-width=\"1.5\"/><text x=\"396\" y=\"133\" fill=\"var(--text)\" font-size=\"11.5\" text-anchor=\"middle\">来源追溯</text><line x1=\"320\" y1=\"79\" x2=\"334\" y2=\"79\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-tech)\"/><line x1=\"320\" y1=\"129\" x2=\"334\" y2=\"129\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-tech)\"/><line x1=\"330\" y1=\"98\" x2=\"330\" y2=\"110\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-tech)\"/><line x1=\"478\" y1=\"105\" x2=\"512\" y2=\"105\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-tech)\"/><rect x=\"520\" y=\"82\" width=\"120\" height=\"46\" rx=\"9\" fill=\"var(--surface-2)\" stroke=\"var(--border)\" stroke-width=\"1.5\"/><text x=\"580\" y=\"105\" fill=\"var(--text)\" font-size=\"12.5\" font-weight=\"700\" text-anchor=\"middle\">对外交付</text><text x=\"580\" y=\"120\" fill=\"var(--text-soft)\" font-size=\"10.5\" text-anchor=\"middle\">可追溯来源</text></svg>",
+      "archCaption": "少数派 的原始线索经聚合与结构化处理后对外交付，保留可追溯来源；本条由自动抓取生成，架构示意为通用链路。"
+    },
+    {
+      "id": "auto-w10-0",
+      "week": "w10",
+      "category": "ai",
+      "tags": [
+        "AI",
+        "算力"
+      ],
+      "impactScore": 72,
+      "title": "AI算力硬合作，马斯克还是更相信中国制造",
+      "summary": "一种混搭的可能：英特尔继续供先进工艺，即前端用14A；后端再接台积电，来补工厂运营、良率、封装这些能力。",
+      "what": "本条目由 RSS 自动抓取（来源：量子位）。原始报道：一种混搭的可能：英特尔继续供先进工艺，即前端用14A；后端再接台积电，来补工厂运营、良率、封装这些能力。\n（自动抓取版本，深度解读待 AI 润色。）",
+      "compare": "待补充：与站内同类条目的横向对比。",
+      "why": "待补充：战略 / 产业 / 技术动因。",
+      "output": "待补充：已交付物与量化结果。",
+      "explain": "待补充：技术解析与架构（可补充内联 SVG）。",
+      "impact": "待补充：行业结构性影响。",
+      "action": "读者可点击来源链接阅读原文，关注后续 AI 润色版本。",
+      "sources": [
+        {
+          "name": "量子位",
+          "url": "https://www.qbitai.com/2026/10/501605.html"
+        }
+      ],
+      "architecture": "<svg viewBox=\"0 0 660 210\" role=\"img\" aria-label=\"AI算力硬合作，马斯克还是更… 架构示意\" xmlns=\"http://www.w3.org/2000/svg\"><defs><marker id=\"ah-ai\" markerWidth=\"10\" markerHeight=\"10\" refX=\"7.5\" refY=\"4\" orient=\"auto-start-reverse\"><path d=\"M0,0 L9,4 L0,8 Z\" fill=\"var(--text-soft)\"/></marker></defs><rect x=\"20\" y=\"82\" width=\"120\" height=\"46\" rx=\"9\" fill=\"var(--surface-2)\" stroke=\"var(--border)\" stroke-width=\"1.5\"/><text x=\"80\" y=\"105\" fill=\"var(--text)\" font-size=\"12.5\" font-weight=\"700\" text-anchor=\"middle\">量子位</text><text x=\"80\" y=\"120\" fill=\"var(--text-soft)\" font-size=\"10.5\" text-anchor=\"middle\">原始线索</text><line x1=\"146\" y1=\"105\" x2=\"180\" y2=\"105\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-ai)\"/><rect x=\"188\" y=\"28\" width=\"284\" height=\"154\" rx=\"12\" fill=\"none\" stroke=\"var(--text-faint)\" stroke-width=\"1.5\" stroke-dasharray=\"5 4\"/><text x=\"330\" y=\"50\" fill=\"var(--text-soft)\" font-size=\"11.5\" font-weight=\"700\" text-anchor=\"middle\">AI 技术链路</text><rect x=\"204\" y=\"62\" width=\"116\" height=\"34\" rx=\"7\" fill=\"var(--brand-soft)\" stroke=\"var(--accent-ai)\" stroke-width=\"1.5\"/><text x=\"262\" y=\"83\" fill=\"var(--text)\" font-size=\"11.5\" font-weight=\"700\" text-anchor=\"middle\">模型 / 路由</text><rect x=\"336\" y=\"62\" width=\"120\" height=\"34\" rx=\"7\" fill=\"var(--surface-2)\" stroke=\"var(--border)\" stroke-width=\"1.5\"/><text x=\"396\" y=\"83\" fill=\"var(--text)\" font-size=\"11.5\" text-anchor=\"middle\">深度解析</text><rect x=\"204\" y=\"112\" width=\"116\" height=\"34\" rx=\"7\" fill=\"var(--surface-2)\" stroke=\"var(--border)\" stroke-width=\"1.5\"/><text x=\"262\" y=\"133\" fill=\"var(--text)\" font-size=\"11.5\" text-anchor=\"middle\">加权打分</text><rect x=\"336\" y=\"112\" width=\"120\" height=\"34\" rx=\"7\" fill=\"var(--brand-soft)\" stroke=\"var(--accent-ai)\" stroke-width=\"1.5\"/><text x=\"396\" y=\"133\" fill=\"var(--text)\" font-size=\"11.5\" text-anchor=\"middle\">来源追溯</text><line x1=\"320\" y1=\"79\" x2=\"334\" y2=\"79\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-ai)\"/><line x1=\"320\" y1=\"129\" x2=\"334\" y2=\"129\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-ai)\"/><line x1=\"330\" y1=\"98\" x2=\"330\" y2=\"110\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-ai)\"/><line x1=\"478\" y1=\"105\" x2=\"512\" y2=\"105\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-ai)\"/><rect x=\"520\" y=\"82\" width=\"120\" height=\"46\" rx=\"9\" fill=\"var(--surface-2)\" stroke=\"var(--border)\" stroke-width=\"1.5\"/><text x=\"580\" y=\"105\" fill=\"var(--text)\" font-size=\"12.5\" font-weight=\"700\" text-anchor=\"middle\">深度解读</text><text x=\"580\" y=\"120\" fill=\"var(--text-soft)\" font-size=\"10.5\" text-anchor=\"middle\">可追溯来源</text></svg>",
+      "archCaption": "量子位 的原始线索经模型解析与加权打分后形成深度解读，全部结论附可追溯来源；本条由自动抓取生成，架构示意为通用链路。"
+    },
+    {
+      "id": "auto-w10-1",
+      "week": "w10",
+      "category": "ai",
+      "tags": [
+        "AI"
+      ],
+      "impactScore": 72,
+      "title": "最火AI岗位FDE：月薪5万，都干这些…",
+      "summary": "什么是FDE？它会一直存在吗？",
+      "what": "本条目由 RSS 自动抓取（来源：量子位）。原始报道：什么是FDE？它会一直存在吗？\n（自动抓取版本，深度解读待 AI 润色。）",
+      "compare": "待补充：与站内同类条目的横向对比。",
+      "why": "待补充：战略 / 产业 / 技术动因。",
+      "output": "待补充：已交付物与量化结果。",
+      "explain": "待补充：技术解析与架构（可补充内联 SVG）。",
+      "impact": "待补充：行业结构性影响。",
+      "action": "读者可点击来源链接阅读原文，关注后续 AI 润色版本。",
+      "sources": [
+        {
+          "name": "量子位",
+          "url": "https://www.qbitai.com/2026/10/501506.html"
+        }
+      ],
+      "architecture": "<svg viewBox=\"0 0 660 210\" role=\"img\" aria-label=\"最火AI岗位FDE：月薪5万，都… 架构示意\" xmlns=\"http://www.w3.org/2000/svg\"><defs><marker id=\"ah-ai\" markerWidth=\"10\" markerHeight=\"10\" refX=\"7.5\" refY=\"4\" orient=\"auto-start-reverse\"><path d=\"M0,0 L9,4 L0,8 Z\" fill=\"var(--text-soft)\"/></marker></defs><rect x=\"20\" y=\"82\" width=\"120\" height=\"46\" rx=\"9\" fill=\"var(--surface-2)\" stroke=\"var(--border)\" stroke-width=\"1.5\"/><text x=\"80\" y=\"105\" fill=\"var(--text)\" font-size=\"12.5\" font-weight=\"700\" text-anchor=\"middle\">量子位</text><text x=\"80\" y=\"120\" fill=\"var(--text-soft)\" font-size=\"10.5\" text-anchor=\"middle\">原始线索</text><line x1=\"146\" y1=\"105\" x2=\"180\" y2=\"105\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-ai)\"/><rect x=\"188\" y=\"28\" width=\"284\" height=\"154\" rx=\"12\" fill=\"none\" stroke=\"var(--text-faint)\" stroke-width=\"1.5\" stroke-dasharray=\"5 4\"/><text x=\"330\" y=\"50\" fill=\"var(--text-soft)\" font-size=\"11.5\" font-weight=\"700\" text-anchor=\"middle\">AI 技术链路</text><rect x=\"204\" y=\"62\" width=\"116\" height=\"34\" rx=\"7\" fill=\"var(--brand-soft)\" stroke=\"var(--accent-ai)\" stroke-width=\"1.5\"/><text x=\"262\" y=\"83\" fill=\"var(--text)\" font-size=\"11.5\" font-weight=\"700\" text-anchor=\"middle\">模型 / 路由</text><rect x=\"336\" y=\"62\" width=\"120\" height=\"34\" rx=\"7\" fill=\"var(--surface-2)\" stroke=\"var(--border)\" stroke-width=\"1.5\"/><text x=\"396\" y=\"83\" fill=\"var(--text)\" font-size=\"11.5\" text-anchor=\"middle\">深度解析</text><rect x=\"204\" y=\"112\" width=\"116\" height=\"34\" rx=\"7\" fill=\"var(--surface-2)\" stroke=\"var(--border)\" stroke-width=\"1.5\"/><text x=\"262\" y=\"133\" fill=\"var(--text)\" font-size=\"11.5\" text-anchor=\"middle\">加权打分</text><rect x=\"336\" y=\"112\" width=\"120\" height=\"34\" rx=\"7\" fill=\"var(--brand-soft)\" stroke=\"var(--accent-ai)\" stroke-width=\"1.5\"/><text x=\"396\" y=\"133\" fill=\"var(--text)\" font-size=\"11.5\" text-anchor=\"middle\">来源追溯</text><line x1=\"320\" y1=\"79\" x2=\"334\" y2=\"79\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-ai)\"/><line x1=\"320\" y1=\"129\" x2=\"334\" y2=\"129\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-ai)\"/><line x1=\"330\" y1=\"98\" x2=\"330\" y2=\"110\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-ai)\"/><line x1=\"478\" y1=\"105\" x2=\"512\" y2=\"105\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-ai)\"/><rect x=\"520\" y=\"82\" width=\"120\" height=\"46\" rx=\"9\" fill=\"var(--surface-2)\" stroke=\"var(--border)\" stroke-width=\"1.5\"/><text x=\"580\" y=\"105\" fill=\"var(--text)\" font-size=\"12.5\" font-weight=\"700\" text-anchor=\"middle\">深度解读</text><text x=\"580\" y=\"120\" fill=\"var(--text-soft)\" font-size=\"10.5\" text-anchor=\"middle\">可追溯来源</text></svg>",
+      "archCaption": "量子位 的原始线索经模型解析与加权打分后形成深度解读，全部结论附可追溯来源；本条由自动抓取生成，架构示意为通用链路。"
+    },
+    {
+      "id": "auto-w10-2",
+      "week": "w10",
+      "category": "ai",
+      "tags": [],
+      "impactScore": 72,
+      "title": "GPT-6要“吃掉”3D公司？这家公司不到2年ARR翻百倍，破1亿美元",
+      "summary": "专业3D模型反而更稀缺了",
+      "what": "本条目由 RSS 自动抓取（来源：量子位）。原始报道：专业3D模型反而更稀缺了\n（自动抓取版本，深度解读待 AI 润色。）",
+      "compare": "待补充：与站内同类条目的横向对比。",
+      "why": "待补充：战略 / 产业 / 技术动因。",
+      "output": "待补充：已交付物与量化结果。",
+      "explain": "待补充：技术解析与架构（可补充内联 SVG）。",
+      "impact": "待补充：行业结构性影响。",
+      "action": "读者可点击来源链接阅读原文，关注后续 AI 润色版本。",
+      "sources": [
+        {
+          "name": "量子位",
+          "url": "https://www.qbitai.com/2026/10/501451.html"
+        }
+      ],
+      "architecture": "<svg viewBox=\"0 0 660 210\" role=\"img\" aria-label=\"GPT-6要“吃掉”3D公司？这家… 架构示意\" xmlns=\"http://www.w3.org/2000/svg\"><defs><marker id=\"ah-ai\" markerWidth=\"10\" markerHeight=\"10\" refX=\"7.5\" refY=\"4\" orient=\"auto-start-reverse\"><path d=\"M0,0 L9,4 L0,8 Z\" fill=\"var(--text-soft)\"/></marker></defs><rect x=\"20\" y=\"82\" width=\"120\" height=\"46\" rx=\"9\" fill=\"var(--surface-2)\" stroke=\"var(--border)\" stroke-width=\"1.5\"/><text x=\"80\" y=\"105\" fill=\"var(--text)\" font-size=\"12.5\" font-weight=\"700\" text-anchor=\"middle\">量子位</text><text x=\"80\" y=\"120\" fill=\"var(--text-soft)\" font-size=\"10.5\" text-anchor=\"middle\">原始线索</text><line x1=\"146\" y1=\"105\" x2=\"180\" y2=\"105\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-ai)\"/><rect x=\"188\" y=\"28\" width=\"284\" height=\"154\" rx=\"12\" fill=\"none\" stroke=\"var(--text-faint)\" stroke-width=\"1.5\" stroke-dasharray=\"5 4\"/><text x=\"330\" y=\"50\" fill=\"var(--text-soft)\" font-size=\"11.5\" font-weight=\"700\" text-anchor=\"middle\">AI 技术链路</text><rect x=\"204\" y=\"62\" width=\"116\" height=\"34\" rx=\"7\" fill=\"var(--brand-soft)\" stroke=\"var(--accent-ai)\" stroke-width=\"1.5\"/><text x=\"262\" y=\"83\" fill=\"var(--text)\" font-size=\"11.5\" font-weight=\"700\" text-anchor=\"middle\">模型 / 路由</text><rect x=\"336\" y=\"62\" width=\"120\" height=\"34\" rx=\"7\" fill=\"var(--surface-2)\" stroke=\"var(--border)\" stroke-width=\"1.5\"/><text x=\"396\" y=\"83\" fill=\"var(--text)\" font-size=\"11.5\" text-anchor=\"middle\">深度解析</text><rect x=\"204\" y=\"112\" width=\"116\" height=\"34\" rx=\"7\" fill=\"var(--surface-2)\" stroke=\"var(--border)\" stroke-width=\"1.5\"/><text x=\"262\" y=\"133\" fill=\"var(--text)\" font-size=\"11.5\" text-anchor=\"middle\">加权打分</text><rect x=\"336\" y=\"112\" width=\"120\" height=\"34\" rx=\"7\" fill=\"var(--brand-soft)\" stroke=\"var(--accent-ai)\" stroke-width=\"1.5\"/><text x=\"396\" y=\"133\" fill=\"var(--text)\" font-size=\"11.5\" text-anchor=\"middle\">来源追溯</text><line x1=\"320\" y1=\"79\" x2=\"334\" y2=\"79\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-ai)\"/><line x1=\"320\" y1=\"129\" x2=\"334\" y2=\"129\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-ai)\"/><line x1=\"330\" y1=\"98\" x2=\"330\" y2=\"110\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-ai)\"/><line x1=\"478\" y1=\"105\" x2=\"512\" y2=\"105\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-ai)\"/><rect x=\"520\" y=\"82\" width=\"120\" height=\"46\" rx=\"9\" fill=\"var(--surface-2)\" stroke=\"var(--border)\" stroke-width=\"1.5\"/><text x=\"580\" y=\"105\" fill=\"var(--text)\" font-size=\"12.5\" font-weight=\"700\" text-anchor=\"middle\">深度解读</text><text x=\"580\" y=\"120\" fill=\"var(--text-soft)\" font-size=\"10.5\" text-anchor=\"middle\">可追溯来源</text></svg>",
+      "archCaption": "量子位 的原始线索经模型解析与加权打分后形成深度解读，全部结论附可追溯来源；本条由自动抓取生成，架构示意为通用链路。"
+    },
+    {
+      "id": "auto-w10-3",
+      "week": "w10",
+      "category": "tech",
+      "tags": [],
+      "impactScore": 72,
+      "title": "DeepSeek扩招！弹性计算团队大量HC，尤其需要资深工程师",
+      "summary": "岗位JD甩了篇技术报告",
+      "what": "本条目由 RSS 自动抓取（来源：量子位）。原始报道：岗位JD甩了篇技术报告\n（自动抓取版本，深度解读待 AI 润色。）",
+      "compare": "待补充：与站内同类条目的横向对比。",
+      "why": "待补充：战略 / 产业 / 技术动因。",
+      "output": "待补充：已交付物与量化结果。",
+      "explain": "待补充：技术解析与架构（可补充内联 SVG）。",
+      "impact": "待补充：行业结构性影响。",
+      "action": "读者可点击来源链接阅读原文，关注后续 AI 润色版本。",
+      "sources": [
+        {
+          "name": "量子位",
+          "url": "https://www.qbitai.com/2026/10/501381.html"
+        }
+      ],
+      "architecture": "<svg viewBox=\"0 0 660 210\" role=\"img\" aria-label=\"DeepSeek扩招！弹性计算团队… 架构示意\" xmlns=\"http://www.w3.org/2000/svg\"><defs><marker id=\"ah-ai\" markerWidth=\"10\" markerHeight=\"10\" refX=\"7.5\" refY=\"4\" orient=\"auto-start-reverse\"><path d=\"M0,0 L9,4 L0,8 Z\" fill=\"var(--text-soft)\"/></marker></defs><rect x=\"20\" y=\"82\" width=\"120\" height=\"46\" rx=\"9\" fill=\"var(--surface-2)\" stroke=\"var(--border)\" stroke-width=\"1.5\"/><text x=\"80\" y=\"105\" fill=\"var(--text)\" font-size=\"12.5\" font-weight=\"700\" text-anchor=\"middle\">量子位</text><text x=\"80\" y=\"120\" fill=\"var(--text-soft)\" font-size=\"10.5\" text-anchor=\"middle\">原始线索</text><line x1=\"146\" y1=\"105\" x2=\"180\" y2=\"105\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-ai)\"/><rect x=\"188\" y=\"28\" width=\"284\" height=\"154\" rx=\"12\" fill=\"none\" stroke=\"var(--text-faint)\" stroke-width=\"1.5\" stroke-dasharray=\"5 4\"/><text x=\"330\" y=\"50\" fill=\"var(--text-soft)\" font-size=\"11.5\" font-weight=\"700\" text-anchor=\"middle\">AI 技术链路</text><rect x=\"204\" y=\"62\" width=\"116\" height=\"34\" rx=\"7\" fill=\"var(--brand-soft)\" stroke=\"var(--accent-ai)\" stroke-width=\"1.5\"/><text x=\"262\" y=\"83\" fill=\"var(--text)\" font-size=\"11.5\" font-weight=\"700\" text-anchor=\"middle\">模型 / 路由</text><rect x=\"336\" y=\"62\" width=\"120\" height=\"34\" rx=\"7\" fill=\"var(--surface-2)\" stroke=\"var(--border)\" stroke-width=\"1.5\"/><text x=\"396\" y=\"83\" fill=\"var(--text)\" font-size=\"11.5\" text-anchor=\"middle\">深度解析</text><rect x=\"204\" y=\"112\" width=\"116\" height=\"34\" rx=\"7\" fill=\"var(--surface-2)\" stroke=\"var(--border)\" stroke-width=\"1.5\"/><text x=\"262\" y=\"133\" fill=\"var(--text)\" font-size=\"11.5\" text-anchor=\"middle\">加权打分</text><rect x=\"336\" y=\"112\" width=\"120\" height=\"34\" rx=\"7\" fill=\"var(--brand-soft)\" stroke=\"var(--accent-ai)\" stroke-width=\"1.5\"/><text x=\"396\" y=\"133\" fill=\"var(--text)\" font-size=\"11.5\" text-anchor=\"middle\">来源追溯</text><line x1=\"320\" y1=\"79\" x2=\"334\" y2=\"79\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-ai)\"/><line x1=\"320\" y1=\"129\" x2=\"334\" y2=\"129\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-ai)\"/><line x1=\"330\" y1=\"98\" x2=\"330\" y2=\"110\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-ai)\"/><line x1=\"478\" y1=\"105\" x2=\"512\" y2=\"105\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-ai)\"/><rect x=\"520\" y=\"82\" width=\"120\" height=\"46\" rx=\"9\" fill=\"var(--surface-2)\" stroke=\"var(--border)\" stroke-width=\"1.5\"/><text x=\"580\" y=\"105\" fill=\"var(--text)\" font-size=\"12.5\" font-weight=\"700\" text-anchor=\"middle\">深度解读</text><text x=\"580\" y=\"120\" fill=\"var(--text-soft)\" font-size=\"10.5\" text-anchor=\"middle\">可追溯来源</text></svg>",
+      "archCaption": "量子位 的原始线索经模型解析与加权打分后形成深度解读，全部结论附可追溯来源；本条由自动抓取生成，架构示意为通用链路。"
+    },
+    {
+      "id": "auto-w10-4",
+      "week": "w10",
+      "category": "ai",
+      "tags": [
+        "AI",
+        "安全"
+      ],
+      "impactScore": 72,
+      "title": "OpenAI安全团队持续地震！负责人离职，三名员工因泄密被开",
+      "summary": "又咋啦。。。",
+      "what": "本条目由 RSS 自动抓取（来源：量子位）。原始报道：又咋啦。。。\n（自动抓取版本，深度解读待 AI 润色。）",
+      "compare": "待补充：与站内同类条目的横向对比。",
+      "why": "待补充：战略 / 产业 / 技术动因。",
+      "output": "待补充：已交付物与量化结果。",
+      "explain": "待补充：技术解析与架构（可补充内联 SVG）。",
+      "impact": "待补充：行业结构性影响。",
+      "action": "读者可点击来源链接阅读原文，关注后续 AI 润色版本。",
+      "sources": [
+        {
+          "name": "量子位",
+          "url": "https://www.qbitai.com/2026/10/501368.html"
+        }
+      ],
+      "architecture": "<svg viewBox=\"0 0 660 210\" role=\"img\" aria-label=\"OpenAI安全团队持续地震！负… 架构示意\" xmlns=\"http://www.w3.org/2000/svg\"><defs><marker id=\"ah-ai\" markerWidth=\"10\" markerHeight=\"10\" refX=\"7.5\" refY=\"4\" orient=\"auto-start-reverse\"><path d=\"M0,0 L9,4 L0,8 Z\" fill=\"var(--text-soft)\"/></marker></defs><rect x=\"20\" y=\"82\" width=\"120\" height=\"46\" rx=\"9\" fill=\"var(--surface-2)\" stroke=\"var(--border)\" stroke-width=\"1.5\"/><text x=\"80\" y=\"105\" fill=\"var(--text)\" font-size=\"12.5\" font-weight=\"700\" text-anchor=\"middle\">量子位</text><text x=\"80\" y=\"120\" fill=\"var(--text-soft)\" font-size=\"10.5\" text-anchor=\"middle\">原始线索</text><line x1=\"146\" y1=\"105\" x2=\"180\" y2=\"105\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-ai)\"/><rect x=\"188\" y=\"28\" width=\"284\" height=\"154\" rx=\"12\" fill=\"none\" stroke=\"var(--text-faint)\" stroke-width=\"1.5\" stroke-dasharray=\"5 4\"/><text x=\"330\" y=\"50\" fill=\"var(--text-soft)\" font-size=\"11.5\" font-weight=\"700\" text-anchor=\"middle\">AI 技术链路</text><rect x=\"204\" y=\"62\" width=\"116\" height=\"34\" rx=\"7\" fill=\"var(--brand-soft)\" stroke=\"var(--accent-ai)\" stroke-width=\"1.5\"/><text x=\"262\" y=\"83\" fill=\"var(--text)\" font-size=\"11.5\" font-weight=\"700\" text-anchor=\"middle\">模型 / 路由</text><rect x=\"336\" y=\"62\" width=\"120\" height=\"34\" rx=\"7\" fill=\"var(--surface-2)\" stroke=\"var(--border)\" stroke-width=\"1.5\"/><text x=\"396\" y=\"83\" fill=\"var(--text)\" font-size=\"11.5\" text-anchor=\"middle\">深度解析</text><rect x=\"204\" y=\"112\" width=\"116\" height=\"34\" rx=\"7\" fill=\"var(--surface-2)\" stroke=\"var(--border)\" stroke-width=\"1.5\"/><text x=\"262\" y=\"133\" fill=\"var(--text)\" font-size=\"11.5\" text-anchor=\"middle\">加权打分</text><rect x=\"336\" y=\"112\" width=\"120\" height=\"34\" rx=\"7\" fill=\"var(--brand-soft)\" stroke=\"var(--accent-ai)\" stroke-width=\"1.5\"/><text x=\"396\" y=\"133\" fill=\"var(--text)\" font-size=\"11.5\" text-anchor=\"middle\">来源追溯</text><line x1=\"320\" y1=\"79\" x2=\"334\" y2=\"79\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-ai)\"/><line x1=\"320\" y1=\"129\" x2=\"334\" y2=\"129\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-ai)\"/><line x1=\"330\" y1=\"98\" x2=\"330\" y2=\"110\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-ai)\"/><line x1=\"478\" y1=\"105\" x2=\"512\" y2=\"105\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-ai)\"/><rect x=\"520\" y=\"82\" width=\"120\" height=\"46\" rx=\"9\" fill=\"var(--surface-2)\" stroke=\"var(--border)\" stroke-width=\"1.5\"/><text x=\"580\" y=\"105\" fill=\"var(--text)\" font-size=\"12.5\" font-weight=\"700\" text-anchor=\"middle\">深度解读</text><text x=\"580\" y=\"120\" fill=\"var(--text-soft)\" font-size=\"10.5\" text-anchor=\"middle\">可追溯来源</text></svg>",
+      "archCaption": "量子位 的原始线索经模型解析与加权打分后形成深度解读，全部结论附可追溯来源；本条由自动抓取生成，架构示意为通用链路。"
+    },
+    {
+      "id": "auto-w10-5",
+      "week": "w10",
+      "category": "tech",
+      "tags": [],
+      "impactScore": 72,
+      "title": "Jev估值100亿美元！创始人Diogo Almeida回答一切",
+      "summary": "Jev估值100亿美元！创始人Diogo Almeida回答一切",
+      "what": "本条目由 RSS 自动抓取（来源：量子位）。原始报道：\n（自动抓取版本，深度解读待 AI 润色。）",
+      "compare": "待补充：与站内同类条目的横向对比。",
+      "why": "待补充：战略 / 产业 / 技术动因。",
+      "output": "待补充：已交付物与量化结果。",
+      "explain": "待补充：技术解析与架构（可补充内联 SVG）。",
+      "impact": "待补充：行业结构性影响。",
+      "action": "读者可点击来源链接阅读原文，关注后续 AI 润色版本。",
+      "sources": [
+        {
+          "name": "量子位",
+          "url": "https://www.qbitai.com/2026/10/500148.html"
+        }
+      ],
+      "architecture": "<svg viewBox=\"0 0 660 210\" role=\"img\" aria-label=\"Jev估值100亿美元！创始人Di… 架构示意\" xmlns=\"http://www.w3.org/2000/svg\"><defs><marker id=\"ah-ai\" markerWidth=\"10\" markerHeight=\"10\" refX=\"7.5\" refY=\"4\" orient=\"auto-start-reverse\"><path d=\"M0,0 L9,4 L0,8 Z\" fill=\"var(--text-soft)\"/></marker></defs><rect x=\"20\" y=\"82\" width=\"120\" height=\"46\" rx=\"9\" fill=\"var(--surface-2)\" stroke=\"var(--border)\" stroke-width=\"1.5\"/><text x=\"80\" y=\"105\" fill=\"var(--text)\" font-size=\"12.5\" font-weight=\"700\" text-anchor=\"middle\">量子位</text><text x=\"80\" y=\"120\" fill=\"var(--text-soft)\" font-size=\"10.5\" text-anchor=\"middle\">原始线索</text><line x1=\"146\" y1=\"105\" x2=\"180\" y2=\"105\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-ai)\"/><rect x=\"188\" y=\"28\" width=\"284\" height=\"154\" rx=\"12\" fill=\"none\" stroke=\"var(--text-faint)\" stroke-width=\"1.5\" stroke-dasharray=\"5 4\"/><text x=\"330\" y=\"50\" fill=\"var(--text-soft)\" font-size=\"11.5\" font-weight=\"700\" text-anchor=\"middle\">AI 技术链路</text><rect x=\"204\" y=\"62\" width=\"116\" height=\"34\" rx=\"7\" fill=\"var(--brand-soft)\" stroke=\"var(--accent-ai)\" stroke-width=\"1.5\"/><text x=\"262\" y=\"83\" fill=\"var(--text)\" font-size=\"11.5\" font-weight=\"700\" text-anchor=\"middle\">模型 / 路由</text><rect x=\"336\" y=\"62\" width=\"120\" height=\"34\" rx=\"7\" fill=\"var(--surface-2)\" stroke=\"var(--border)\" stroke-width=\"1.5\"/><text x=\"396\" y=\"83\" fill=\"var(--text)\" font-size=\"11.5\" text-anchor=\"middle\">深度解析</text><rect x=\"204\" y=\"112\" width=\"116\" height=\"34\" rx=\"7\" fill=\"var(--surface-2)\" stroke=\"var(--border)\" stroke-width=\"1.5\"/><text x=\"262\" y=\"133\" fill=\"var(--text)\" font-size=\"11.5\" text-anchor=\"middle\">加权打分</text><rect x=\"336\" y=\"112\" width=\"120\" height=\"34\" rx=\"7\" fill=\"var(--brand-soft)\" stroke=\"var(--accent-ai)\" stroke-width=\"1.5\"/><text x=\"396\" y=\"133\" fill=\"var(--text)\" font-size=\"11.5\" text-anchor=\"middle\">来源追溯</text><line x1=\"320\" y1=\"79\" x2=\"334\" y2=\"79\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-ai)\"/><line x1=\"320\" y1=\"129\" x2=\"334\" y2=\"129\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-ai)\"/><line x1=\"330\" y1=\"98\" x2=\"330\" y2=\"110\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-ai)\"/><line x1=\"478\" y1=\"105\" x2=\"512\" y2=\"105\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-ai)\"/><rect x=\"520\" y=\"82\" width=\"120\" height=\"46\" rx=\"9\" fill=\"var(--surface-2)\" stroke=\"var(--border)\" stroke-width=\"1.5\"/><text x=\"580\" y=\"105\" fill=\"var(--text)\" font-size=\"12.5\" font-weight=\"700\" text-anchor=\"middle\">深度解读</text><text x=\"580\" y=\"120\" fill=\"var(--text-soft)\" font-size=\"10.5\" text-anchor=\"middle\">可追溯来源</text></svg>",
+      "archCaption": "量子位 的原始线索经模型解析与加权打分后形成深度解读，全部结论附可追溯来源；本条由自动抓取生成，架构示意为通用链路。"
+    },
+    {
+      "id": "auto-w10-6",
+      "week": "w10",
+      "category": "ai",
+      "tags": [],
+      "impactScore": 72,
+      "title": "openJiuwen X-Router自演进模型路由技术首发，昇腾亲和，Agent越跑越省，实测减少50+%Token消耗",
+      "summary": "让每一次请求选对模型，让每一次反馈都成为下一次更优、更省的选择",
+      "what": "本条目由 RSS 自动抓取（来源：量子位）。原始报道：让每一次请求选对模型，让每一次反馈都成为下一次更优、更省的选择\n（自动抓取版本，深度解读待 AI 润色。）",
+      "compare": "待补充：与站内同类条目的横向对比。",
+      "why": "待补充：战略 / 产业 / 技术动因。",
+      "output": "待补充：已交付物与量化结果。",
+      "explain": "待补充：技术解析与架构（可补充内联 SVG）。",
+      "impact": "待补充：行业结构性影响。",
+      "action": "读者可点击来源链接阅读原文，关注后续 AI 润色版本。",
+      "sources": [
+        {
+          "name": "量子位",
+          "url": "https://www.qbitai.com/2026/10/500098.html"
+        }
+      ],
+      "architecture": "<svg viewBox=\"0 0 660 210\" role=\"img\" aria-label=\"openJiuwen X-Router自演进… 架构示意\" xmlns=\"http://www.w3.org/2000/svg\"><defs><marker id=\"ah-ai\" markerWidth=\"10\" markerHeight=\"10\" refX=\"7.5\" refY=\"4\" orient=\"auto-start-reverse\"><path d=\"M0,0 L9,4 L0,8 Z\" fill=\"var(--text-soft)\"/></marker></defs><rect x=\"20\" y=\"82\" width=\"120\" height=\"46\" rx=\"9\" fill=\"var(--surface-2)\" stroke=\"var(--border)\" stroke-width=\"1.5\"/><text x=\"80\" y=\"105\" fill=\"var(--text)\" font-size=\"12.5\" font-weight=\"700\" text-anchor=\"middle\">量子位</text><text x=\"80\" y=\"120\" fill=\"var(--text-soft)\" font-size=\"10.5\" text-anchor=\"middle\">原始线索</text><line x1=\"146\" y1=\"105\" x2=\"180\" y2=\"105\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-ai)\"/><rect x=\"188\" y=\"28\" width=\"284\" height=\"154\" rx=\"12\" fill=\"none\" stroke=\"var(--text-faint)\" stroke-width=\"1.5\" stroke-dasharray=\"5 4\"/><text x=\"330\" y=\"50\" fill=\"var(--text-soft)\" font-size=\"11.5\" font-weight=\"700\" text-anchor=\"middle\">AI 技术链路</text><rect x=\"204\" y=\"62\" width=\"116\" height=\"34\" rx=\"7\" fill=\"var(--brand-soft)\" stroke=\"var(--accent-ai)\" stroke-width=\"1.5\"/><text x=\"262\" y=\"83\" fill=\"var(--text)\" font-size=\"11.5\" font-weight=\"700\" text-anchor=\"middle\">模型 / 路由</text><rect x=\"336\" y=\"62\" width=\"120\" height=\"34\" rx=\"7\" fill=\"var(--surface-2)\" stroke=\"var(--border)\" stroke-width=\"1.5\"/><text x=\"396\" y=\"83\" fill=\"var(--text)\" font-size=\"11.5\" text-anchor=\"middle\">深度解析</text><rect x=\"204\" y=\"112\" width=\"116\" height=\"34\" rx=\"7\" fill=\"var(--surface-2)\" stroke=\"var(--border)\" stroke-width=\"1.5\"/><text x=\"262\" y=\"133\" fill=\"var(--text)\" font-size=\"11.5\" text-anchor=\"middle\">加权打分</text><rect x=\"336\" y=\"112\" width=\"120\" height=\"34\" rx=\"7\" fill=\"var(--brand-soft)\" stroke=\"var(--accent-ai)\" stroke-width=\"1.5\"/><text x=\"396\" y=\"133\" fill=\"var(--text)\" font-size=\"11.5\" text-anchor=\"middle\">来源追溯</text><line x1=\"320\" y1=\"79\" x2=\"334\" y2=\"79\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-ai)\"/><line x1=\"320\" y1=\"129\" x2=\"334\" y2=\"129\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-ai)\"/><line x1=\"330\" y1=\"98\" x2=\"330\" y2=\"110\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-ai)\"/><line x1=\"478\" y1=\"105\" x2=\"512\" y2=\"105\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-ai)\"/><rect x=\"520\" y=\"82\" width=\"120\" height=\"46\" rx=\"9\" fill=\"var(--surface-2)\" stroke=\"var(--border)\" stroke-width=\"1.5\"/><text x=\"580\" y=\"105\" fill=\"var(--text)\" font-size=\"12.5\" font-weight=\"700\" text-anchor=\"middle\">深度解读</text><text x=\"580\" y=\"120\" fill=\"var(--text-soft)\" font-size=\"10.5\" text-anchor=\"middle\">可追溯来源</text></svg>",
+      "archCaption": "量子位 的原始线索经模型解析与加权打分后形成深度解读，全部结论附可追溯来源；本条由自动抓取生成，架构示意为通用链路。"
+    },
+    {
+      "id": "auto-w10-7",
+      "week": "w10",
+      "category": "ai",
+      "tags": [],
+      "impactScore": 72,
+      "title": "丘成桐新论文致谢了GPT和Claude",
+      "summary": "44年前被亲自列入问题清单",
+      "what": "本条目由 RSS 自动抓取（来源：量子位）。原始报道：44年前被亲自列入问题清单\n（自动抓取版本，深度解读待 AI 润色。）",
+      "compare": "待补充：与站内同类条目的横向对比。",
+      "why": "待补充：战略 / 产业 / 技术动因。",
+      "output": "待补充：已交付物与量化结果。",
+      "explain": "待补充：技术解析与架构（可补充内联 SVG）。",
+      "impact": "待补充：行业结构性影响。",
+      "action": "读者可点击来源链接阅读原文，关注后续 AI 润色版本。",
+      "sources": [
+        {
+          "name": "量子位",
+          "url": "https://www.qbitai.com/2026/10/499991.html"
+        }
+      ],
+      "architecture": "<svg viewBox=\"0 0 660 210\" role=\"img\" aria-label=\"丘成桐新论文致谢了GPT和Cla… 架构示意\" xmlns=\"http://www.w3.org/2000/svg\"><defs><marker id=\"ah-ai\" markerWidth=\"10\" markerHeight=\"10\" refX=\"7.5\" refY=\"4\" orient=\"auto-start-reverse\"><path d=\"M0,0 L9,4 L0,8 Z\" fill=\"var(--text-soft)\"/></marker></defs><rect x=\"20\" y=\"82\" width=\"120\" height=\"46\" rx=\"9\" fill=\"var(--surface-2)\" stroke=\"var(--border)\" stroke-width=\"1.5\"/><text x=\"80\" y=\"105\" fill=\"var(--text)\" font-size=\"12.5\" font-weight=\"700\" text-anchor=\"middle\">量子位</text><text x=\"80\" y=\"120\" fill=\"var(--text-soft)\" font-size=\"10.5\" text-anchor=\"middle\">原始线索</text><line x1=\"146\" y1=\"105\" x2=\"180\" y2=\"105\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-ai)\"/><rect x=\"188\" y=\"28\" width=\"284\" height=\"154\" rx=\"12\" fill=\"none\" stroke=\"var(--text-faint)\" stroke-width=\"1.5\" stroke-dasharray=\"5 4\"/><text x=\"330\" y=\"50\" fill=\"var(--text-soft)\" font-size=\"11.5\" font-weight=\"700\" text-anchor=\"middle\">AI 技术链路</text><rect x=\"204\" y=\"62\" width=\"116\" height=\"34\" rx=\"7\" fill=\"var(--brand-soft)\" stroke=\"var(--accent-ai)\" stroke-width=\"1.5\"/><text x=\"262\" y=\"83\" fill=\"var(--text)\" font-size=\"11.5\" font-weight=\"700\" text-anchor=\"middle\">模型 / 路由</text><rect x=\"336\" y=\"62\" width=\"120\" height=\"34\" rx=\"7\" fill=\"var(--surface-2)\" stroke=\"var(--border)\" stroke-width=\"1.5\"/><text x=\"396\" y=\"83\" fill=\"var(--text)\" font-size=\"11.5\" text-anchor=\"middle\">深度解析</text><rect x=\"204\" y=\"112\" width=\"116\" height=\"34\" rx=\"7\" fill=\"var(--surface-2)\" stroke=\"var(--border)\" stroke-width=\"1.5\"/><text x=\"262\" y=\"133\" fill=\"var(--text)\" font-size=\"11.5\" text-anchor=\"middle\">加权打分</text><rect x=\"336\" y=\"112\" width=\"120\" height=\"34\" rx=\"7\" fill=\"var(--brand-soft)\" stroke=\"var(--accent-ai)\" stroke-width=\"1.5\"/><text x=\"396\" y=\"133\" fill=\"var(--text)\" font-size=\"11.5\" text-anchor=\"middle\">来源追溯</text><line x1=\"320\" y1=\"79\" x2=\"334\" y2=\"79\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-ai)\"/><line x1=\"320\" y1=\"129\" x2=\"334\" y2=\"129\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-ai)\"/><line x1=\"330\" y1=\"98\" x2=\"330\" y2=\"110\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-ai)\"/><line x1=\"478\" y1=\"105\" x2=\"512\" y2=\"105\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-ai)\"/><rect x=\"520\" y=\"82\" width=\"120\" height=\"46\" rx=\"9\" fill=\"var(--surface-2)\" stroke=\"var(--border)\" stroke-width=\"1.5\"/><text x=\"580\" y=\"105\" fill=\"var(--text)\" font-size=\"12.5\" font-weight=\"700\" text-anchor=\"middle\">深度解读</text><text x=\"580\" y=\"120\" fill=\"var(--text-soft)\" font-size=\"10.5\" text-anchor=\"middle\">可追溯来源</text></svg>",
+      "archCaption": "量子位 的原始线索经模型解析与加权打分后形成深度解读，全部结论附可追溯来源；本条由自动抓取生成，架构示意为通用链路。"
+    },
+    {
+      "id": "auto-w10-8",
+      "week": "w10",
+      "category": "tech",
+      "tags": [],
+      "impactScore": 72,
+      "title": "arXiv最严新规！每人每月最多提交2篇，拒稿不退额度",
+      "summary": "换区也没用",
+      "what": "本条目由 RSS 自动抓取（来源：量子位）。原始报道：换区也没用\n（自动抓取版本，深度解读待 AI 润色。）",
+      "compare": "待补充：与站内同类条目的横向对比。",
+      "why": "待补充：战略 / 产业 / 技术动因。",
+      "output": "待补充：已交付物与量化结果。",
+      "explain": "待补充：技术解析与架构（可补充内联 SVG）。",
+      "impact": "待补充：行业结构性影响。",
+      "action": "读者可点击来源链接阅读原文，关注后续 AI 润色版本。",
+      "sources": [
+        {
+          "name": "量子位",
+          "url": "https://www.qbitai.com/2026/10/499958.html"
+        }
+      ],
+      "architecture": "<svg viewBox=\"0 0 660 210\" role=\"img\" aria-label=\"arXiv最严新规！每人每月最… 架构示意\" xmlns=\"http://www.w3.org/2000/svg\"><defs><marker id=\"ah-ai\" markerWidth=\"10\" markerHeight=\"10\" refX=\"7.5\" refY=\"4\" orient=\"auto-start-reverse\"><path d=\"M0,0 L9,4 L0,8 Z\" fill=\"var(--text-soft)\"/></marker></defs><rect x=\"20\" y=\"82\" width=\"120\" height=\"46\" rx=\"9\" fill=\"var(--surface-2)\" stroke=\"var(--border)\" stroke-width=\"1.5\"/><text x=\"80\" y=\"105\" fill=\"var(--text)\" font-size=\"12.5\" font-weight=\"700\" text-anchor=\"middle\">量子位</text><text x=\"80\" y=\"120\" fill=\"var(--text-soft)\" font-size=\"10.5\" text-anchor=\"middle\">原始线索</text><line x1=\"146\" y1=\"105\" x2=\"180\" y2=\"105\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-ai)\"/><rect x=\"188\" y=\"28\" width=\"284\" height=\"154\" rx=\"12\" fill=\"none\" stroke=\"var(--text-faint)\" stroke-width=\"1.5\" stroke-dasharray=\"5 4\"/><text x=\"330\" y=\"50\" fill=\"var(--text-soft)\" font-size=\"11.5\" font-weight=\"700\" text-anchor=\"middle\">AI 技术链路</text><rect x=\"204\" y=\"62\" width=\"116\" height=\"34\" rx=\"7\" fill=\"var(--brand-soft)\" stroke=\"var(--accent-ai)\" stroke-width=\"1.5\"/><text x=\"262\" y=\"83\" fill=\"var(--text)\" font-size=\"11.5\" font-weight=\"700\" text-anchor=\"middle\">模型 / 路由</text><rect x=\"336\" y=\"62\" width=\"120\" height=\"34\" rx=\"7\" fill=\"var(--surface-2)\" stroke=\"var(--border)\" stroke-width=\"1.5\"/><text x=\"396\" y=\"83\" fill=\"var(--text)\" font-size=\"11.5\" text-anchor=\"middle\">深度解析</text><rect x=\"204\" y=\"112\" width=\"116\" height=\"34\" rx=\"7\" fill=\"var(--surface-2)\" stroke=\"var(--border)\" stroke-width=\"1.5\"/><text x=\"262\" y=\"133\" fill=\"var(--text)\" font-size=\"11.5\" text-anchor=\"middle\">加权打分</text><rect x=\"336\" y=\"112\" width=\"120\" height=\"34\" rx=\"7\" fill=\"var(--brand-soft)\" stroke=\"var(--accent-ai)\" stroke-width=\"1.5\"/><text x=\"396\" y=\"133\" fill=\"var(--text)\" font-size=\"11.5\" text-anchor=\"middle\">来源追溯</text><line x1=\"320\" y1=\"79\" x2=\"334\" y2=\"79\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-ai)\"/><line x1=\"320\" y1=\"129\" x2=\"334\" y2=\"129\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-ai)\"/><line x1=\"330\" y1=\"98\" x2=\"330\" y2=\"110\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-ai)\"/><line x1=\"478\" y1=\"105\" x2=\"512\" y2=\"105\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-ai)\"/><rect x=\"520\" y=\"82\" width=\"120\" height=\"46\" rx=\"9\" fill=\"var(--surface-2)\" stroke=\"var(--border)\" stroke-width=\"1.5\"/><text x=\"580\" y=\"105\" fill=\"var(--text)\" font-size=\"12.5\" font-weight=\"700\" text-anchor=\"middle\">深度解读</text><text x=\"580\" y=\"120\" fill=\"var(--text-soft)\" font-size=\"10.5\" text-anchor=\"middle\">可追溯来源</text></svg>",
+      "archCaption": "量子位 的原始线索经模型解析与加权打分后形成深度解读，全部结论附可追溯来源；本条由自动抓取生成，架构示意为通用链路。"
+    },
+    {
+      "id": "auto-w10-9",
+      "week": "w10",
+      "category": "tech",
+      "tags": [],
+      "impactScore": 72,
+      "title": "何恺明团队新作：看猫片就能学会ARC挑战",
+      "summary": "用ImageNet训练encoder",
+      "what": "本条目由 RSS 自动抓取（来源：量子位）。原始报道：用ImageNet训练encoder\n（自动抓取版本，深度解读待 AI 润色。）",
+      "compare": "待补充：与站内同类条目的横向对比。",
+      "why": "待补充：战略 / 产业 / 技术动因。",
+      "output": "待补充：已交付物与量化结果。",
+      "explain": "待补充：技术解析与架构（可补充内联 SVG）。",
+      "impact": "待补充：行业结构性影响。",
+      "action": "读者可点击来源链接阅读原文，关注后续 AI 润色版本。",
+      "sources": [
+        {
+          "name": "量子位",
+          "url": "https://www.qbitai.com/2026/10/499812.html"
+        }
+      ],
+      "architecture": "<svg viewBox=\"0 0 660 210\" role=\"img\" aria-label=\"何恺明团队新作：看猫片就能… 架构示意\" xmlns=\"http://www.w3.org/2000/svg\"><defs><marker id=\"ah-ai\" markerWidth=\"10\" markerHeight=\"10\" refX=\"7.5\" refY=\"4\" orient=\"auto-start-reverse\"><path d=\"M0,0 L9,4 L0,8 Z\" fill=\"var(--text-soft)\"/></marker></defs><rect x=\"20\" y=\"82\" width=\"120\" height=\"46\" rx=\"9\" fill=\"var(--surface-2)\" stroke=\"var(--border)\" stroke-width=\"1.5\"/><text x=\"80\" y=\"105\" fill=\"var(--text)\" font-size=\"12.5\" font-weight=\"700\" text-anchor=\"middle\">量子位</text><text x=\"80\" y=\"120\" fill=\"var(--text-soft)\" font-size=\"10.5\" text-anchor=\"middle\">原始线索</text><line x1=\"146\" y1=\"105\" x2=\"180\" y2=\"105\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-ai)\"/><rect x=\"188\" y=\"28\" width=\"284\" height=\"154\" rx=\"12\" fill=\"none\" stroke=\"var(--text-faint)\" stroke-width=\"1.5\" stroke-dasharray=\"5 4\"/><text x=\"330\" y=\"50\" fill=\"var(--text-soft)\" font-size=\"11.5\" font-weight=\"700\" text-anchor=\"middle\">AI 技术链路</text><rect x=\"204\" y=\"62\" width=\"116\" height=\"34\" rx=\"7\" fill=\"var(--brand-soft)\" stroke=\"var(--accent-ai)\" stroke-width=\"1.5\"/><text x=\"262\" y=\"83\" fill=\"var(--text)\" font-size=\"11.5\" font-weight=\"700\" text-anchor=\"middle\">模型 / 路由</text><rect x=\"336\" y=\"62\" width=\"120\" height=\"34\" rx=\"7\" fill=\"var(--surface-2)\" stroke=\"var(--border)\" stroke-width=\"1.5\"/><text x=\"396\" y=\"83\" fill=\"var(--text)\" font-size=\"11.5\" text-anchor=\"middle\">深度解析</text><rect x=\"204\" y=\"112\" width=\"116\" height=\"34\" rx=\"7\" fill=\"var(--surface-2)\" stroke=\"var(--border)\" stroke-width=\"1.5\"/><text x=\"262\" y=\"133\" fill=\"var(--text)\" font-size=\"11.5\" text-anchor=\"middle\">加权打分</text><rect x=\"336\" y=\"112\" width=\"120\" height=\"34\" rx=\"7\" fill=\"var(--brand-soft)\" stroke=\"var(--accent-ai)\" stroke-width=\"1.5\"/><text x=\"396\" y=\"133\" fill=\"var(--text)\" font-size=\"11.5\" text-anchor=\"middle\">来源追溯</text><line x1=\"320\" y1=\"79\" x2=\"334\" y2=\"79\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-ai)\"/><line x1=\"320\" y1=\"129\" x2=\"334\" y2=\"129\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-ai)\"/><line x1=\"330\" y1=\"98\" x2=\"330\" y2=\"110\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-ai)\"/><line x1=\"478\" y1=\"105\" x2=\"512\" y2=\"105\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-ai)\"/><rect x=\"520\" y=\"82\" width=\"120\" height=\"46\" rx=\"9\" fill=\"var(--surface-2)\" stroke=\"var(--border)\" stroke-width=\"1.5\"/><text x=\"580\" y=\"105\" fill=\"var(--text)\" font-size=\"12.5\" font-weight=\"700\" text-anchor=\"middle\">深度解读</text><text x=\"580\" y=\"120\" fill=\"var(--text-soft)\" font-size=\"10.5\" text-anchor=\"middle\">可追溯来源</text></svg>",
+      "archCaption": "量子位 的原始线索经模型解析与加权打分后形成深度解读，全部结论附可追溯来源；本条由自动抓取生成，架构示意为通用链路。"
+    },
+    {
+      "id": "auto-w10-10",
+      "week": "w10",
+      "category": "tech",
+      "tags": [],
+      "impactScore": 72,
+      "title": "方方面面都熟悉，方方面面都更好：iPhone 18 Pro 体验",
+      "summary": "iPhone 18 Pro 也许不会让你感觉焕然一新，却在许多地方都变得更加完整了。 查看全文",
+      "what": "本条目由 RSS 自动抓取（来源：少数派）。原始报道：iPhone 18 Pro 也许不会让你感觉焕然一新，却在许多地方都变得更加完整了。 查看全文\n（自动抓取版本，深度解读待 AI 润色。）",
+      "compare": "待补充：与站内同类条目的横向对比。",
+      "why": "待补充：战略 / 产业 / 技术动因。",
+      "output": "待补充：已交付物与量化结果。",
+      "explain": "待补充：技术解析与架构（可补充内联 SVG）。",
+      "impact": "待补充：行业结构性影响。",
+      "action": "读者可点击来源链接阅读原文，关注后续 AI 润色版本。",
+      "sources": [
+        {
+          "name": "少数派",
+          "url": "https://sspai.com/post/115308"
+        }
+      ],
+      "architecture": "<svg viewBox=\"0 0 660 210\" role=\"img\" aria-label=\"方方面面都熟悉，方方面面都… 架构示意\" xmlns=\"http://www.w3.org/2000/svg\"><defs><marker id=\"ah-tech\" markerWidth=\"10\" markerHeight=\"10\" refX=\"7.5\" refY=\"4\" orient=\"auto-start-reverse\"><path d=\"M0,0 L9,4 L0,8 Z\" fill=\"var(--text-soft)\"/></marker></defs><rect x=\"20\" y=\"82\" width=\"120\" height=\"46\" rx=\"9\" fill=\"var(--surface-2)\" stroke=\"var(--border)\" stroke-width=\"1.5\"/><text x=\"80\" y=\"105\" fill=\"var(--text)\" font-size=\"12.5\" font-weight=\"700\" text-anchor=\"middle\">少数派</text><text x=\"80\" y=\"120\" fill=\"var(--text-soft)\" font-size=\"10.5\" text-anchor=\"middle\">信源输入</text><line x1=\"146\" y1=\"105\" x2=\"180\" y2=\"105\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-tech)\"/><rect x=\"188\" y=\"28\" width=\"284\" height=\"154\" rx=\"12\" fill=\"none\" stroke=\"var(--text-faint)\" stroke-width=\"1.5\" stroke-dasharray=\"5 4\"/><text x=\"330\" y=\"50\" fill=\"var(--text-soft)\" font-size=\"11.5\" font-weight=\"700\" text-anchor=\"middle\">产品技术链路</text><rect x=\"204\" y=\"62\" width=\"116\" height=\"34\" rx=\"7\" fill=\"var(--brand-soft)\" stroke=\"var(--accent-ai)\" stroke-width=\"1.5\"/><text x=\"262\" y=\"83\" fill=\"var(--text)\" font-size=\"11.5\" font-weight=\"700\" text-anchor=\"middle\">处理 / 聚合</text><rect x=\"336\" y=\"62\" width=\"120\" height=\"34\" rx=\"7\" fill=\"var(--surface-2)\" stroke=\"var(--border)\" stroke-width=\"1.5\"/><text x=\"396\" y=\"83\" fill=\"var(--text)\" font-size=\"11.5\" text-anchor=\"middle\">深度解析</text><rect x=\"204\" y=\"112\" width=\"116\" height=\"34\" rx=\"7\" fill=\"var(--surface-2)\" stroke=\"var(--border)\" stroke-width=\"1.5\"/><text x=\"262\" y=\"133\" fill=\"var(--text)\" font-size=\"11.5\" text-anchor=\"middle\">加权打分</text><rect x=\"336\" y=\"112\" width=\"120\" height=\"34\" rx=\"7\" fill=\"var(--brand-soft)\" stroke=\"var(--accent-ai)\" stroke-width=\"1.5\"/><text x=\"396\" y=\"133\" fill=\"var(--text)\" font-size=\"11.5\" text-anchor=\"middle\">来源追溯</text><line x1=\"320\" y1=\"79\" x2=\"334\" y2=\"79\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-tech)\"/><line x1=\"320\" y1=\"129\" x2=\"334\" y2=\"129\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-tech)\"/><line x1=\"330\" y1=\"98\" x2=\"330\" y2=\"110\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-tech)\"/><line x1=\"478\" y1=\"105\" x2=\"512\" y2=\"105\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-tech)\"/><rect x=\"520\" y=\"82\" width=\"120\" height=\"46\" rx=\"9\" fill=\"var(--surface-2)\" stroke=\"var(--border)\" stroke-width=\"1.5\"/><text x=\"580\" y=\"105\" fill=\"var(--text)\" font-size=\"12.5\" font-weight=\"700\" text-anchor=\"middle\">对外交付</text><text x=\"580\" y=\"120\" fill=\"var(--text-soft)\" font-size=\"10.5\" text-anchor=\"middle\">可追溯来源</text></svg>",
+      "archCaption": "少数派 的原始线索经聚合与结构化处理后对外交付，保留可追溯来源；本条由自动抓取生成，架构示意为通用链路。"
+    },
+    {
+      "id": "auto-w10-11",
+      "week": "w10",
+      "category": "tech",
+      "tags": [],
+      "impactScore": 72,
+      "title": "TDS REVIEW | CMF Clip Pro 耳夹式无线耳机体验",
+      "summary": "不知道以后 CMF 的设计还会不会像现在一样出彩。 查看全文",
+      "what": "本条目由 RSS 自动抓取（来源：少数派）。原始报道：不知道以后 CMF 的设计还会不会像现在一样出彩。 查看全文\n（自动抓取版本，深度解读待 AI 润色。）",
+      "compare": "待补充：与站内同类条目的横向对比。",
+      "why": "待补充：战略 / 产业 / 技术动因。",
+      "output": "待补充：已交付物与量化结果。",
+      "explain": "待补充：技术解析与架构（可补充内联 SVG）。",
+      "impact": "待补充：行业结构性影响。",
+      "action": "读者可点击来源链接阅读原文，关注后续 AI 润色版本。",
+      "sources": [
+        {
+          "name": "少数派",
+          "url": "https://sspai.com/post/114922"
+        }
+      ],
+      "architecture": "<svg viewBox=\"0 0 660 210\" role=\"img\" aria-label=\"TDS REVIEW | CMF Clip Pro … 架构示意\" xmlns=\"http://www.w3.org/2000/svg\"><defs><marker id=\"ah-tech\" markerWidth=\"10\" markerHeight=\"10\" refX=\"7.5\" refY=\"4\" orient=\"auto-start-reverse\"><path d=\"M0,0 L9,4 L0,8 Z\" fill=\"var(--text-soft)\"/></marker></defs><rect x=\"20\" y=\"82\" width=\"120\" height=\"46\" rx=\"9\" fill=\"var(--surface-2)\" stroke=\"var(--border)\" stroke-width=\"1.5\"/><text x=\"80\" y=\"105\" fill=\"var(--text)\" font-size=\"12.5\" font-weight=\"700\" text-anchor=\"middle\">少数派</text><text x=\"80\" y=\"120\" fill=\"var(--text-soft)\" font-size=\"10.5\" text-anchor=\"middle\">信源输入</text><line x1=\"146\" y1=\"105\" x2=\"180\" y2=\"105\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-tech)\"/><rect x=\"188\" y=\"28\" width=\"284\" height=\"154\" rx=\"12\" fill=\"none\" stroke=\"var(--text-faint)\" stroke-width=\"1.5\" stroke-dasharray=\"5 4\"/><text x=\"330\" y=\"50\" fill=\"var(--text-soft)\" font-size=\"11.5\" font-weight=\"700\" text-anchor=\"middle\">产品技术链路</text><rect x=\"204\" y=\"62\" width=\"116\" height=\"34\" rx=\"7\" fill=\"var(--brand-soft)\" stroke=\"var(--accent-ai)\" stroke-width=\"1.5\"/><text x=\"262\" y=\"83\" fill=\"var(--text)\" font-size=\"11.5\" font-weight=\"700\" text-anchor=\"middle\">处理 / 聚合</text><rect x=\"336\" y=\"62\" width=\"120\" height=\"34\" rx=\"7\" fill=\"var(--surface-2)\" stroke=\"var(--border)\" stroke-width=\"1.5\"/><text x=\"396\" y=\"83\" fill=\"var(--text)\" font-size=\"11.5\" text-anchor=\"middle\">深度解析</text><rect x=\"204\" y=\"112\" width=\"116\" height=\"34\" rx=\"7\" fill=\"var(--surface-2)\" stroke=\"var(--border)\" stroke-width=\"1.5\"/><text x=\"262\" y=\"133\" fill=\"var(--text)\" font-size=\"11.5\" text-anchor=\"middle\">加权打分</text><rect x=\"336\" y=\"112\" width=\"120\" height=\"34\" rx=\"7\" fill=\"var(--brand-soft)\" stroke=\"var(--accent-ai)\" stroke-width=\"1.5\"/><text x=\"396\" y=\"133\" fill=\"var(--text)\" font-size=\"11.5\" text-anchor=\"middle\">来源追溯</text><line x1=\"320\" y1=\"79\" x2=\"334\" y2=\"79\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-tech)\"/><line x1=\"320\" y1=\"129\" x2=\"334\" y2=\"129\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-tech)\"/><line x1=\"330\" y1=\"98\" x2=\"330\" y2=\"110\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-tech)\"/><line x1=\"478\" y1=\"105\" x2=\"512\" y2=\"105\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-tech)\"/><rect x=\"520\" y=\"82\" width=\"120\" height=\"46\" rx=\"9\" fill=\"var(--surface-2)\" stroke=\"var(--border)\" stroke-width=\"1.5\"/><text x=\"580\" y=\"105\" fill=\"var(--text)\" font-size=\"12.5\" font-weight=\"700\" text-anchor=\"middle\">对外交付</text><text x=\"580\" y=\"120\" fill=\"var(--text-soft)\" font-size=\"10.5\" text-anchor=\"middle\">可追溯来源</text></svg>",
+      "archCaption": "少数派 的原始线索经聚合与结构化处理后对外交付，保留可追溯来源；本条由自动抓取生成，架构示意为通用链路。"
+    },
+    {
+      "id": "auto-w10-12",
+      "week": "w10",
+      "category": "tech",
+      "tags": [],
+      "impactScore": 72,
+      "title": "本周看什么 | 最近值得一看的 8 部作品",
+      "summary": "📅本周新预告《泥面人》终极预告9月24日，DC新片《泥面人》发布了终极预告，将于10月23日在北美上映。詹姆斯·瓦特金斯执导，汤姆·里斯·哈里斯主演，隆重介绍哥谭市的新面孔，一位意外毁容的演员在注射了 ... 查看全文",
+      "what": "本条目由 RSS 自动抓取（来源：少数派）。原始报道：📅本周新预告《泥面人》终极预告9月24日，DC新片《泥面人》发布了终极预告，将于10月23日在北美上映。詹姆斯·瓦特金斯执导，汤姆·里斯·哈里斯主演，隆重介绍哥谭市的新面孔，一位意外毁容的演员在注射了 ... 查看全文\n（自动抓取版本，深度解读待 AI 润色。）",
+      "compare": "待补充：与站内同类条目的横向对比。",
+      "why": "待补充：战略 / 产业 / 技术动因。",
+      "output": "待补充：已交付物与量化结果。",
+      "explain": "待补充：技术解析与架构（可补充内联 SVG）。",
+      "impact": "待补充：行业结构性影响。",
+      "action": "读者可点击来源链接阅读原文，关注后续 AI 润色版本。",
+      "sources": [
+        {
+          "name": "少数派",
+          "url": "https://sspai.com/post/115211"
+        }
+      ],
+      "architecture": "<svg viewBox=\"0 0 660 210\" role=\"img\" aria-label=\"本周看什么 | 最近值得一看… 架构示意\" xmlns=\"http://www.w3.org/2000/svg\"><defs><marker id=\"ah-tech\" markerWidth=\"10\" markerHeight=\"10\" refX=\"7.5\" refY=\"4\" orient=\"auto-start-reverse\"><path d=\"M0,0 L9,4 L0,8 Z\" fill=\"var(--text-soft)\"/></marker></defs><rect x=\"20\" y=\"82\" width=\"120\" height=\"46\" rx=\"9\" fill=\"var(--surface-2)\" stroke=\"var(--border)\" stroke-width=\"1.5\"/><text x=\"80\" y=\"105\" fill=\"var(--text)\" font-size=\"12.5\" font-weight=\"700\" text-anchor=\"middle\">少数派</text><text x=\"80\" y=\"120\" fill=\"var(--text-soft)\" font-size=\"10.5\" text-anchor=\"middle\">信源输入</text><line x1=\"146\" y1=\"105\" x2=\"180\" y2=\"105\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-tech)\"/><rect x=\"188\" y=\"28\" width=\"284\" height=\"154\" rx=\"12\" fill=\"none\" stroke=\"var(--text-faint)\" stroke-width=\"1.5\" stroke-dasharray=\"5 4\"/><text x=\"330\" y=\"50\" fill=\"var(--text-soft)\" font-size=\"11.5\" font-weight=\"700\" text-anchor=\"middle\">产品技术链路</text><rect x=\"204\" y=\"62\" width=\"116\" height=\"34\" rx=\"7\" fill=\"var(--brand-soft)\" stroke=\"var(--accent-ai)\" stroke-width=\"1.5\"/><text x=\"262\" y=\"83\" fill=\"var(--text)\" font-size=\"11.5\" font-weight=\"700\" text-anchor=\"middle\">处理 / 聚合</text><rect x=\"336\" y=\"62\" width=\"120\" height=\"34\" rx=\"7\" fill=\"var(--surface-2)\" stroke=\"var(--border)\" stroke-width=\"1.5\"/><text x=\"396\" y=\"83\" fill=\"var(--text)\" font-size=\"11.5\" text-anchor=\"middle\">深度解析</text><rect x=\"204\" y=\"112\" width=\"116\" height=\"34\" rx=\"7\" fill=\"var(--surface-2)\" stroke=\"var(--border)\" stroke-width=\"1.5\"/><text x=\"262\" y=\"133\" fill=\"var(--text)\" font-size=\"11.5\" text-anchor=\"middle\">加权打分</text><rect x=\"336\" y=\"112\" width=\"120\" height=\"34\" rx=\"7\" fill=\"var(--brand-soft)\" stroke=\"var(--accent-ai)\" stroke-width=\"1.5\"/><text x=\"396\" y=\"133\" fill=\"var(--text)\" font-size=\"11.5\" text-anchor=\"middle\">来源追溯</text><line x1=\"320\" y1=\"79\" x2=\"334\" y2=\"79\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-tech)\"/><line x1=\"320\" y1=\"129\" x2=\"334\" y2=\"129\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-tech)\"/><line x1=\"330\" y1=\"98\" x2=\"330\" y2=\"110\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-tech)\"/><line x1=\"478\" y1=\"105\" x2=\"512\" y2=\"105\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-tech)\"/><rect x=\"520\" y=\"82\" width=\"120\" height=\"46\" rx=\"9\" fill=\"var(--surface-2)\" stroke=\"var(--border)\" stroke-width=\"1.5\"/><text x=\"580\" y=\"105\" fill=\"var(--text)\" font-size=\"12.5\" font-weight=\"700\" text-anchor=\"middle\">对外交付</text><text x=\"580\" y=\"120\" fill=\"var(--text-soft)\" font-size=\"10.5\" text-anchor=\"middle\">可追溯来源</text></svg>",
+      "archCaption": "少数派 的原始线索经聚合与结构化处理后对外交付，保留可追溯来源；本条由自动抓取生成，架构示意为通用链路。"
+    },
+    {
+      "id": "auto-w10-13",
+      "week": "w10",
+      "category": "tech",
+      "tags": [],
+      "impactScore": 72,
+      "title": "从玩家的世界掠过：Bungie 的「列车」如何驶向终焉",
+      "summary": "Bungie 究竟是在和时间赛跑，还是在和自己赛跑？ 查看全文",
+      "what": "本条目由 RSS 自动抓取（来源：少数派）。原始报道：Bungie 究竟是在和时间赛跑，还是在和自己赛跑？ 查看全文\n（自动抓取版本，深度解读待 AI 润色。）",
+      "compare": "待补充：与站内同类条目的横向对比。",
+      "why": "待补充：战略 / 产业 / 技术动因。",
+      "output": "待补充：已交付物与量化结果。",
+      "explain": "待补充：技术解析与架构（可补充内联 SVG）。",
+      "impact": "待补充：行业结构性影响。",
+      "action": "读者可点击来源链接阅读原文，关注后续 AI 润色版本。",
+      "sources": [
+        {
+          "name": "少数派",
+          "url": "https://sspai.com/post/115070"
+        }
+      ],
+      "architecture": "<svg viewBox=\"0 0 660 210\" role=\"img\" aria-label=\"从玩家的世界掠过：Bungie … 架构示意\" xmlns=\"http://www.w3.org/2000/svg\"><defs><marker id=\"ah-tech\" markerWidth=\"10\" markerHeight=\"10\" refX=\"7.5\" refY=\"4\" orient=\"auto-start-reverse\"><path d=\"M0,0 L9,4 L0,8 Z\" fill=\"var(--text-soft)\"/></marker></defs><rect x=\"20\" y=\"82\" width=\"120\" height=\"46\" rx=\"9\" fill=\"var(--surface-2)\" stroke=\"var(--border)\" stroke-width=\"1.5\"/><text x=\"80\" y=\"105\" fill=\"var(--text)\" font-size=\"12.5\" font-weight=\"700\" text-anchor=\"middle\">少数派</text><text x=\"80\" y=\"120\" fill=\"var(--text-soft)\" font-size=\"10.5\" text-anchor=\"middle\">信源输入</text><line x1=\"146\" y1=\"105\" x2=\"180\" y2=\"105\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-tech)\"/><rect x=\"188\" y=\"28\" width=\"284\" height=\"154\" rx=\"12\" fill=\"none\" stroke=\"var(--text-faint)\" stroke-width=\"1.5\" stroke-dasharray=\"5 4\"/><text x=\"330\" y=\"50\" fill=\"var(--text-soft)\" font-size=\"11.5\" font-weight=\"700\" text-anchor=\"middle\">产品技术链路</text><rect x=\"204\" y=\"62\" width=\"116\" height=\"34\" rx=\"7\" fill=\"var(--brand-soft)\" stroke=\"var(--accent-ai)\" stroke-width=\"1.5\"/><text x=\"262\" y=\"83\" fill=\"var(--text)\" font-size=\"11.5\" font-weight=\"700\" text-anchor=\"middle\">处理 / 聚合</text><rect x=\"336\" y=\"62\" width=\"120\" height=\"34\" rx=\"7\" fill=\"var(--surface-2)\" stroke=\"var(--border)\" stroke-width=\"1.5\"/><text x=\"396\" y=\"83\" fill=\"var(--text)\" font-size=\"11.5\" text-anchor=\"middle\">深度解析</text><rect x=\"204\" y=\"112\" width=\"116\" height=\"34\" rx=\"7\" fill=\"var(--surface-2)\" stroke=\"var(--border)\" stroke-width=\"1.5\"/><text x=\"262\" y=\"133\" fill=\"var(--text)\" font-size=\"11.5\" text-anchor=\"middle\">加权打分</text><rect x=\"336\" y=\"112\" width=\"120\" height=\"34\" rx=\"7\" fill=\"var(--brand-soft)\" stroke=\"var(--accent-ai)\" stroke-width=\"1.5\"/><text x=\"396\" y=\"133\" fill=\"var(--text)\" font-size=\"11.5\" text-anchor=\"middle\">来源追溯</text><line x1=\"320\" y1=\"79\" x2=\"334\" y2=\"79\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-tech)\"/><line x1=\"320\" y1=\"129\" x2=\"334\" y2=\"129\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-tech)\"/><line x1=\"330\" y1=\"98\" x2=\"330\" y2=\"110\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-tech)\"/><line x1=\"478\" y1=\"105\" x2=\"512\" y2=\"105\" stroke=\"var(--text-soft)\" stroke-width=\"1.5\" marker-end=\"url(#ah-tech)\"/><rect x=\"520\" y=\"82\" width=\"120\" height=\"46\" rx=\"9\" fill=\"var(--surface-2)\" stroke=\"var(--border)\" stroke-width=\"1.5\"/><text x=\"580\" y=\"105\" fill=\"var(--text)\" font-size=\"12.5\" font-weight=\"700\" text-anchor=\"middle\">对外交付</text><text x=\"580\" y=\"120\" fill=\"var(--text-soft)\" font-size=\"10.5\" text-anchor=\"middle\">可追溯来源</text></svg>",
       "archCaption": "少数派 的原始线索经聚合与结构化处理后对外交付，保留可追溯来源；本条由自动抓取生成，架构示意为通用链路。"
     }
   ]
