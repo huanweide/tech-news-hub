@@ -94,6 +94,40 @@ GitHub Pages 自动部署  +  npm test 质量门（139 项断言 + axe-core）
 
 测试脚本：`r13_test.cjs`～`r16_test.cjs`（新闻 / 资料库 / 助手）、`deals_test.cjs`（优惠圈）、`a11y_test.cjs`（无障碍）。
 
+## 用它做你自己的周刊
+
+这套站的外壳 —— 8 维度模板、内联 SVG 架构图、可检索知识库、BYOK 助手、
+axe 无障碍回归 —— 跟「科技」没什么关系。**新闻源、分类词、标签池、架构图文案
+全部外置在 `pulse.config.js` 里**，改一个文件就能换成你自己的领域。
+
+```bash
+# 方式一：直接改 pulse.config.js（最简单）
+vim pulse.config.js
+
+# 方式二：另写一份配置，用环境变量指过去
+cp pulse.config.js my-weekly.config.js
+PULSE_CONFIG=./my-weekly.config.js DRY_RUN=1 node scripts/weekly_update.cjs
+```
+
+`pulse.config.js` 里能改什么：
+
+| 字段 | 作用 |
+|------|------|
+| `site` | 站点名 / 副标题（会写进生成的数据文件注释） |
+| `feeds` | 抓取源列表，`cat` 必须落在 `categories.ids` 里 |
+| `categories` | 分类 id、命中关键词时归到哪一类、兜底是哪一类 |
+| `categoryKeywords` | 命中即归入主分类的词 |
+| `tagPool` / `tagMax` | 标签候选池与最多取几个 |
+| `archLabels` | 各分类架构图的默认措辞 |
+| `harvest` | 只收最近几天、每周最多几条 |
+
+> **向后兼容**：`pulse.config.js` 的默认值与原先硬编码在脚本里的取值逐项相同，
+> 作者原有的每周自动更新任务行为不变。这件事由 `scripts/config_test.cjs`
+> 的等价性断言守着 —— 一旦配置和旧行为不再一致，测试立刻变红。
+>
+> 想适配全新领域（比如「生物医药周报」），把 `categories.ids` 换成你自己的
+> 分类即可；前端的分类标签会从数据层的 `categories[]` 自动读取。
+
 ## 目录结构
 
 ```
@@ -104,6 +138,8 @@ news-data.js              新闻数据层（挂 window.NEWS_DATA）
 deals-data.js             优惠圈数据层（由 deals_update.cjs 自动生成，勿手改）
 deals-sources.json        优惠圈唯一事实来源（人工策划的真实优惠）
 features.js               辅助功能（推荐 / 热度）
+pulse.config.js           站点配置：抓取源 / 分类词 / 标签池 / 架构图文案
+vendor/                   本地化的第三方依赖（Chart.js v4.4.1，MIT）
 r13_test.cjs…r16_test.cjs  新闻 / 资料库 / 助手验证脚本（jsdom）
 deals_test.cjs            优惠圈验证脚本（jsdom）
 a11y_test.cjs             无障碍回归测试（axe-core + 对比度）
@@ -120,21 +156,11 @@ LLM 助手为 Bring-Your-Own-Key：**API 密钥仅存于你的浏览器 localSto
 
 - 新增 / 更新真实优惠：编辑 `deals-sources.json`（附官方来源链接）后推送，Actions 会自动重新生成数据层。
 - 修正新闻解读或知识库：直接在对应数据文件中提交 PR。
-- 提交前请运行 `npm test`，确保 139 项断言与无障碍校验全绿。
-
-## 许可证
-
-非盈利公益科普，内容仅供学习参考；转载请保留来源。
-
----
+- 提交前请运行 `npm test`，确保全部测试用例与无障碍校验通过（用例数会随版本增长，以实际输出为准）。
 
 ## 作者
 
 由 **ReTr · 樊斯瑞** 维护 · [GitHub 主页](https://github.com/huanweide)
-
-## CI 门禁用法
-
-开箱即可接入 CI：在流水线中运行本工具，它会输出健康分与严重度；若存在不达标项会以非 0 退出码结束，从而拦下问题提交（具体参数见上方「快速开始」）。
 
 ## 赞助支持
 
@@ -142,4 +168,6 @@ LLM 助手为 Bring-Your-Own-Key：**API 密钥仅存于你的浏览器 localSto
 
 ## 许可证
 
-详见 [LICENSE](LICENSE)。
+代码采用 [MIT](LICENSE) 许可。
+
+内容（新闻解读与知识库）为**非盈利公益科普**，仅供学习参考，转载请保留来源；所引用第三方资讯的著作权归原作者所有，本站仅作索引与解读。

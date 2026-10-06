@@ -4,7 +4,8 @@
   "private": true,
   "description": "科技前瞻 TechPulse — 每周更新的权威科技资讯与可检索知识库（非盈利公益）",
   "scripts": {
-    "test": "node r13_test.cjs && node r14_test.cjs && node r15_test.cjs && node r16_test.cjs && node deals_test.cjs && node a11y_test.cjs",
+    "test": "node r13_test.cjs && node r14_test.cjs && node r15_test.cjs && node r16_test.cjs && node deals_test.cjs && node a11y_test.cjs && node scripts/config_test.cjs && node scripts/aoa_test.cjs && node scripts/site_scan.cjs",
+    "check:assets": "node scripts/site_scan.cjs",
     "weekly-update": "node scripts/weekly_update.cjs",
     "deals-update": "node scripts/deals_update.cjs"
   },

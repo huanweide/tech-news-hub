@@ -1,0 +1,61 @@
+{
+  "repo": "huanweide/tech-news-hub",
+  "owner": "huanweide",
+  "round": 1,
+  "last_run": "2026-10-06",
+  "baseline_commit": "95dec90",
+  "verdict": "keep",
+  "direction": "整体转向新方向：从「作者个人的科技周报站」转为「配置驱动的任意领域周刊生成器」",
+  "decision_reason": "项目完成度已经很高（193 项断言、axe 无障碍回归、每周自动更新流水线、README 齐全），继续做小修小补属于典型的「小农主义」。第一性原理看：这套站的外壳（8 维度模板 / 内联 SVG 架构图 / 可检索知识库 / BYOK 助手 / 无障碍回归）跟「科技」毫无关系，真正锁死它的是硬编码在 scripts/weekly_update.cjs 里的抓取源与关键词池。外置配置后它就从「一个人的周报」变成「谁都能用的生成器」——这才是它能拿到 star 的形态。",
+  "survival_check": {
+    "competitors": [
+      { "name": "各类科技 newsletter / Hacker News 镜像", "note": "只给信息流，不给可检索知识库与 8 维度深读" }
+    ],
+    "key_finding": "定位成立。真正的瓶颈不是外部竞争，而是「除作者本人外没人能用」——想换领域要改脚本源码。"
+  },
+  "changes": {
+    "direction_change": {
+      "from": "一个具体的科技周报静态站",
+      "to": "TechPulse 引擎：改一个 pulse.config.js 就能生成任意领域的周刊",
+      "compat": "默认值与原先硬编码逐项相同，作者原有每周任务行为零变化（由 config_test.cjs 的 35 项等价性断言守着）"
+    },
+    "added": [
+      "pulse.config.js（站点配置：抓取源 / 分类 / 关键词 / 标签池 / 架构图文案 / 抓取参数）",
+      "scripts/config_test.cjs（35 项等价性 + 自洽性断言）",
+      "scripts/site_scan.cjs（静态体检：资源 404 / 死按钮 / 同名全局覆盖 / 加载顺序）",
+      "vendor/chart.umd.min.js（Chart.js v4.4.1 本地化）",
+      "LICENSE（MIT，仓库原先没有，README 却链了它）"
+    ],
+    "modified": [
+      "scripts/weekly_update.cjs（FEEDS / AI_KW / 标签池 / ARCH_LABELS / 抓取参数全部改读配置；变量名不变，下游零改动）",
+      "index.html（Chart.js 由 jsdelivr CDN 改为本地 vendor/）",
+      "package.json（npm test 追加 config_test / aoa_test / site_scan）",
+      "README.md（新增「用它做你自己的周刊」；删除重复的许可证章节与一段别的项目模板残留；修正 LICENSE 死链；去掉会过期的断言数字）"
+    ],
+    "untouched": ["app.js", "style.css", "news-data.js", "deals-data.js", "features.js", "r13-r16 测试", "a11y_test.cjs", "deals_update.cjs", "aoa.cjs", ".github/workflows/"]
+  },
+  "self_check": {
+    "npm_test": "193 项断言全绿（含新增 35 + 体检）",
+    "dry_run": "DRY_RUN=1 实跑 weekly_update.cjs，抓到 14 条（= 配置的 maxItems），流程正常",
+    "site_scan": "0 问题",
+    "mutation_tests": "7/7 被拦截，基线全绿",
+    "live_site": "6 个资源全部 200，数据层 423KB 正常"
+  },
+  "known_mistakes": [
+    "【差点制造线上事故】体检脚本报告「外链脚本缺 SRI」，我差点照着补 integrity——好在下载文件看了头部注释：jsdelivr 明确写着 Do NOT use SRI with dynamically generated files，因为 CDN 会动态生成内容，加了 SRI 反而会被浏览器拒绝加载。正确解法是本地化。教训：静态检查工具给的建议也可能在特定上下文里是错的，动手前必须理解底层事实。",
+    "变异测试第一版注入了 index.html 里根本不存在的属性（本项目零内联事件处理器），导致「没拦住」的假警报；同时基线副本排除了 node_modules，npm test 必红。两处都是变异脚手架的问题，不是门禁的问题。",
+    "README 里我又一次写出混入外文字符的句子（两处），写完必须回读一遍。"
+  ],
+  "risk_notes": {
+    "pages": "Pages 从 master 分支根部署，任何合入都会立即上线。本次改动：README / LICENSE / vendor / scripts / package.json 都不影响线上页面渲染；index.html 只改了 Chart.js 的来源（CDN → 本地文件，文件已随 PR 一同提交），等价格式等价。",
+    "weekly_job": "用户每周日跑的自动更新任务未受影响：配置默认值逐项等同旧硬编码，且已用 DRY_RUN 实跑验证。",
+    "local_copy": "未发现本机另有工作副本（与 prompt-refiner 不同）。"
+  },
+  "rollback": "squash 单 commit，一条 git revert 即可整体撤销",
+  "next_round_suggestions": [
+    "前端站名也从 pulse.config.js 读（现在 index.html 里仍是硬编码，换领域要手改 HTML）",
+    "把 site_scan.cjs 的检查也接进 weekly-update workflow（现在只在 npm test 里）",
+    "vendor/ 的第三方库加一个版本清单与升级说明",
+    "新闻数据的 sources[] 可考虑加自动可达性巡检（死链提醒）"
+  ]
+}

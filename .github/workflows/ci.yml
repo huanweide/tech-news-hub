@@ -1,0 +1,56 @@
+name: CI
+
+# 这个仓库原先只有每周定时更新流水线（weekly-update.yml），
+# 没有任何 push / PR 触发的门禁 —— 于是「提交前请运行 npm test」全靠自觉，
+# 外部贡献者推个改动上来，没人会替他跑 193 项断言和无障碍回归。
+# 这个文件把这件事变成强制的。
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: 质量门 · Node ${{ matrix.node-version }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: ['20', '22']
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: npm
+
+      - name: 安装依赖
+        run: npm install --no-audit --no-fund
+
+      - name: 跑全部门禁
+        # npm test 已包含：新闻/资料库/助手回归、优惠圈、axe 无障碍与对比度、
+        # 配置等价性、静态体检、aoa
+        run: npm test
+
+  # 站点是纯静态的，没有构建步骤，所以这里单独确认一遍：
+  # 页面引用的资源都得真的在仓库里（避免手改 index.html 时漏传文件）
+  assets:
+    name: 资源完整性
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: 检查 index.html 引用的本地资源都存在
+        run: npm run check:assets
