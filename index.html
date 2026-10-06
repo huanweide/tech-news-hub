@@ -238,7 +238,13 @@
     </div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <!-- Chart.js 本地化（vendor/chart.umd.min.js，v4.4.1，MIT）。
+       原先走 jsdelivr CDN，有两个问题：一是中国大陆访问 jsdelivr 不稳，
+       图表经常加载不出来；二是**不能给 jsdelivr 加 SRI** —— CDN 会动态
+       生成文件，内容可能变化，加了 integrity 反而会被浏览器拒绝加载
+       （见文件头部注释与 https://www.jsdelivr.com/using-sri-with-dynamic-files）。
+       本地化一次性解决这两个问题，也更贴合本项目「纯静态、零后端」的定位。 -->
+  <script src="vendor/chart.umd.min.js"></script>
   <script src="news-data.js"></script>
   <script src="features.js"></script>
   <script src="deals-data.js"></script>

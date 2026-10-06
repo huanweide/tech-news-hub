@@ -15,16 +15,31 @@ const ROOT = path.resolve(__dirname, '..');
 const DATA_PATH = process.env.DATA_PATH || path.join(ROOT, 'news-data.js');
 const DRY_RUN = !!process.env.DRY_RUN;
 
-const FEEDS = [
-  { name: '量子位', url: 'https://www.qbitai.com/feed', cat: 'ai' },
-  { name: '机器之心', url: 'https://www.jiqizhixin.com/rss', cat: 'ai' },
-  { name: '36氪', url: 'https://36kr.com/feed', cat: 'tech' },
-  { name: '少数派', url: 'https://sspai.com/feed', cat: 'tech' },
-  { name: 'Hacker News', url: 'https://hnrss.org/frontpage', cat: 'tech' },
-  { name: 'arXiv cs.AI', url: 'https://rss.arxiv.org/rss/cs.AI', cat: 'ai' }
-];
+/* ---------------------------------------------------------------------------
+ * 站点配置：抓取源 / 关键词 / 标签池 / 架构图文案全部外置到 pulse.config.js。
+ *
+ * 原先这些值硬编码在本文件里，导致这套站的外壳（8 维度模板、内联 SVG、
+ * 知识库、BYOK 助手、无障碍回归）明明通用，却没人能拿去做自己领域的周刊。
+ * 外置后默认取值与原先**逐项相同**，作者原有的每周任务行为不变
+ * —— 这一点由 scripts/config_test.cjs 的等价性断言守着。
+ *
+ * 想换领域：改 pulse.config.js，或用 PULSE_CONFIG=./my.js 指向另一份配置。
+ * ------------------------------------------------------------------------- */
+function loadConfig() {
+  const rel = process.env.PULSE_CONFIG;
+  const target = rel ? path.resolve(ROOT, rel) : path.join(ROOT, 'pulse.config.js');
+  if (!fs.existsSync(target)) {
+    throw new Error(`找不到配置文件：${target}（可设 PULSE_CONFIG 指向别处）`);
+  }
+  return require(target);
+}
 
-const AI_KW = ['ai', '大模型', '模型', '智能体', 'agent', '算力', '深度学习', '神经网络', 'gpt', 'llm', 'moe', '开源', '芯片', '量子', '多模态'];
+const CONFIG = loadConfig();
+const FEEDS = CONFIG.feeds;
+const AI_KW = CONFIG.categoryKeywords;
+const TAG_POOL = CONFIG.tagPool;
+const TAG_MAX = CONFIG.tagMax;
+const HARVEST = CONFIG.harvest || { withinDays: 9, maxItems: 14 };
 
 function lastSeq(weeks) {
   let m = 0;
@@ -37,16 +52,20 @@ function lastSeq(weeks) {
 
 function catOf(text) {
   const t = (text || '').toLowerCase();
-  for (const k of AI_KW) if (t.includes(k)) return 'ai';
-  return 'tech';
+  const cats = CONFIG.categories || {};
+  const primary = cats.primaryCat || 'ai';
+  const fallback = cats.fallbackCat || 'tech';
+  for (const k of AI_KW) if (t.includes(k)) return primary;
+  return fallback;
 }
 
 function tagsOf(title, desc) {
-  const pool = ['AI', '大模型', '开源', '算力', '多模态', '智能体', '量子', '芯片', '机器人', '新能源', '航天', '生物', '数据', '安全', '开发者'];
+  const pool = TAG_POOL || [];
   const hits = new Set();
   const s = ((title || '') + ' ' + (desc || '')).toLowerCase();
-  pool.forEach(p => { if (s.includes(p.toLowerCase())) hits.add(p); });
-  return Array.from(hits).slice(0, 4);
+  // 按 pool 的顺序收集，保证同一输入的输出是确定的
+  pool.forEach(p => { if (s.includes(String(p).toLowerCase())) hits.add(p); });
+  return Array.from(hits).slice(0, TAG_MAX || 4);
 }
 
 function stripTags(s) {
@@ -65,10 +84,7 @@ function plain(s) {
  *   1) 字符串内含 "<svg"   2) viewBox 以 "0 0" 开头   3) 使用 var(--…) 主题色（明暗自适应）
  *   4) archCaption 非空
  */
-const ARCH_LABELS = {
-  ai: { left: '原始线索', mid: '模型 / 路由', right: '深度解读', group: 'AI 技术链路' },
-  tech: { left: '信源输入', mid: '处理 / 聚合', right: '对外交付', group: '产品技术链路' }
-};
+const ARCH_LABELS = CONFIG.archLabels;
 
 function escXml(s) {
   return String(s == null ? '' : s)
@@ -235,7 +251,7 @@ async function aiItem(raw, seq, idx) {
 
 function serialize(ND) {
   const header = `/*
- * tech-news-hub 数据层（自动更新生成，字段契约见各维度注释）
+ * ${(CONFIG.site && CONFIG.site.name) || 'TechPulse'} 数据层（自动更新生成，字段契约见各维度注释）
  * weeks[]      : { id, label, range }
  * categories[] : { id, label, disabled? }
  * items[]      : { id, week, category, tags[], impactScore, title, summary, what, compare, why, output, explain, impact, action, sources[], architecture?, archCaption? }
@@ -267,13 +283,13 @@ async function main() {
     const items = await fetchFeed(f);
     items.forEach(it => {
       if (!it.title || !it.link) return;
-      if (!withinDays(it.date, 9)) return;
+      if (!withinDays(it.date, HARVEST.withinDays)) return;
       if (seen.has(it.link)) return;
       seen.add(it.link);
       raws.push(it);
     });
   }
-  raws = raws.slice(0, 14);
+  raws = raws.slice(0, HARVEST.maxItems);
   if (!raws.length) { console.log('未抓取到候选新闻，跳过本次更新。'); return; }
 
   const useAI = !!process.env.DEEPSEEK_API_KEY;
