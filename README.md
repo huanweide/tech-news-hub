@@ -9,6 +9,13 @@
 
 > 在线访问：**https://huanweide.github.io/tech-news-hub/**
 
+> **📦 便携性速览**
+>
+> - **纯静态、零后端**：HTML/CSS/原生 JS，无框架、无构建，GitHub Pages 0 元托管或本地双击 `index.html` 即开。
+> - LLM 助手为 BYOK（密钥只存浏览器本地），不配 Key 也能看资讯与知识库。
+> - 想做自己的周刊：只改一个 `pulse.config.js` 即可换领域。
+
+
 ## 项目简介
 
 多数科技资讯站只给你「信息流」。TechPulse 额外提供「信息背后的知识地图」：
@@ -171,3 +178,12 @@ LLM 助手为 Bring-Your-Own-Key：**API 密钥仅存于你的浏览器 localSto
 代码采用 [MIT](LICENSE) 许可。
 
 内容（新闻解读与知识库）为**非盈利公益科普**，仅供学习参考，转载请保留来源；所引用第三方资讯的著作权归原作者所有，本站仅作索引与解读。
+---
+
+## 🧰 更多开源工具（by ReTri · 樊斯瑞）
+
+- 🎬 字幕 / 视频：[bili-subtitle-universal](https://github.com/huanweide/bili-subtitle-universal) · [live-subtitle](https://github.com/huanweide/live-subtitle) · [zhihuishu-helper](https://github.com/huanweide/zhihuishu-helper) · [video-brief](https://github.com/huanweide/video-brief)
+- 🩺 代码健康全家桶（18 轴零依赖 CLI）：[family-showcase](https://github.com/huanweide/family-showcase)
+- 🔧 命令行利器：[idiot-index](https://github.com/huanweide/idiot-index) · [recall-cli](https://github.com/huanweide/recall-cli) · [forge-safeguard](https://github.com/huanweide/forge-safeguard-20260812)
+- 🖥️ 桌面 / 资讯：[floatsnip](https://github.com/huanweide/floatsnip) · [tech-news-hub](https://github.com/huanweide/tech-news-hub)
+- 📦 全部仓库：<https://github.com/huanweide?tab=repositories>
