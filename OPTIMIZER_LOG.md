@@ -167,3 +167,5 @@ jsdelivr 会对文件做动态处理，内容可能变化，**加了 SRI 反而�
 2. 把 `site_scan.cjs` 也接进 `weekly-update` workflow（现在只在 `npm test` 里）。
 3. `vendor/` 加第三方库版本清单与升级说明。
 4. 新闻的 `sources[]` 可加自动可达性巡检（死链提醒）。
+
+- 2026-10-25 引擎自动修复 S1/S2/L11
