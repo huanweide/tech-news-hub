@@ -1,3 +1,11 @@
+<p align="center">
+  <img src="assets/banner.svg" alt="Tech News Hub">
+</p>
+
+<p align="center">
+  <a href="#项目简介">30 秒看懂</a> · <a href="#核心特性">特性</a> · <a href="#快速开始">快速开始</a> · <a href="#工作原理">架构</a> · <a href="#贡献指南">贡献</a>
+</p>
+
 [![Build](https://github.com/huanweide/tech-news-hub/actions/workflows/weekly-update.yml/badge.svg)](https://github.com/huanweide/tech-news-hub/actions/workflows/weekly-update.yml)
 [![Stars](https://img.shields.io/github/stars/huanweide/tech-news-hub)](https://github.com/huanweide/tech-news-hub/stargazers)
 [![Site](https://img.shields.io/badge/站点-huanweide.github.io%2Ftech--news--hub-blue)](https://huanweide.github.io/tech-news-hub/)
