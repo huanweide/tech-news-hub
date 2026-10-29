@@ -175,11 +175,8 @@ LLM 助手为 Bring-Your-Own-Key：**API 密钥仅存于你的浏览器 localSto
 
 ## 作者
 
-由 **ReTr · 樊斯瑞** 维护 · [GitHub 主页](https://github.com/huanweide)
+由 **ReTr · huanweide** 维护 · [GitHub 主页](https://github.com/huanweide)
 
-## 赞助支持
-
-如果这个项目帮到了你，欢迎 [点 Star](https://github.com/huanweide/tech-news-hub) 支持；也可微信扫码自愿赞助（收款码见 `sponsor/wechat-qr.png`，作者本人带 Tri 水印的码，纯静态图片、不含任何密钥）。
 
 ## 🧰 同一作者的其他工具
 
@@ -200,7 +197,7 @@ LLM 助手为 Bring-Your-Own-Key：**API 密钥仅存于你的浏览器 localSto
 内容（新闻解读与知识库）为**非盈利公益科普**，仅供学习参考，转载请保留来源；所引用第三方资讯的著作权归原作者所有，本站仅作索引与解读。
 ---
 
-## 🧰 更多开源工具（by ReTri · 樊斯瑞）
+## 🧰 更多开源工具（by ReTri · huanweide）
 
 - 🎬 字幕 / 视频：[bili-subtitle-universal](https://github.com/huanweide/bili-subtitle-universal) · [live-subtitle](https://github.com/huanweide/live-subtitle) · [zhihuishu-helper](https://github.com/huanweide/zhihuishu-helper) · [video-brief](https://github.com/huanweide/video-brief)
 - 🩺 代码健康全家桶（18 轴零依赖 CLI）：[family-showcase](https://github.com/huanweide/family-showcase)
